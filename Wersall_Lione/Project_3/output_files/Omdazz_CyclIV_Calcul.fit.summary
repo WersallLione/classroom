@@ -1,0 +1,16 @@
+Fitter Status : Successful - Wed Oct 23 20:27:34 2024
+Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Standard Edition
+Revision Name : Omdazz_CyclIV_Calcul
+Top-level Entity Name : Omdazz_calcul_top
+Family : Cyclone IV E
+Device : EP4CE10E22C8
+Timing Models : Final
+Total logic elements : 96 / 10,320 ( < 1 % )
+    Total combinational functions : 94 / 10,320 ( < 1 % )
+    Dedicated logic registers : 62 / 10,320 ( < 1 % )
+Total registers : 62
+Total pins : 7 / 92 ( 8 % )
+Total virtual pins : 0
+Total memory bits : 0 / 423,936 ( 0 % )
+Embedded Multiplier 9-bit elements : 0 / 46 ( 0 % )
+Total PLLs : 0 / 2 ( 0 % )

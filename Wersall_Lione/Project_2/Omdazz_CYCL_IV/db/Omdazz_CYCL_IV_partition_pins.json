@@ -1,0 +1,21 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "LED1",
+					"strict" : false
+				},
+				{
+					"name" : "FPGA_CLK",
+					"strict" : false
+				},
+				{
+					"name" : "KEY1",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
