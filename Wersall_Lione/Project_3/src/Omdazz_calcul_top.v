@@ -8,7 +8,7 @@ input wire FPGA_CLK ,  // 50 MHz (20ns)
 input wire UART_RXD ,    //RS-232 signal read 115pin 
 output wire UART_TXD,  //RS-232 signal data 114pin
 inout wire SCL      ,  //  I2C signal clk to thermometr
-inout wire SDA     ,  // thermometr I2C signal data write or read. 
+inout wire SDA      ,  // thermometr I2C signal data write or read. 
 output wire LED1    ,
 output wire LED2    ,
 output wire LED3    ,
@@ -116,7 +116,9 @@ SD_CLK,SD_CS,SD_WE,SD_RAS,SD_CAS,} = 1'bZ;
 //------------------------------------------------------------------
 
 wire flag1      ;
-wire flag2      ;
+wire flag4      ;
+wire flag3      ;
+wire bz         ;
 wire [3:0] pwrr ; 
 wire [3:0] N_o_b;
 
@@ -128,20 +130,27 @@ KEY_ADD_inst
 	.flag_light_1 (flag1)
 );
 
-
 KEY_ADD 
 KEY_MINUS_inst 
 (
 	.KEY1       (KEY4     ),
 	.FPGA_CLK   (FPGA_CLK ),
-	.flag_light_1 (flag2)
+	.flag_light_1 (flag4)
+);
+
+KEY_ADD
+KEY_BUZZ_inst
+(
+	.KEY1       (KEY3     ),
+	.FPGA_CLK   (FPGA_CLK ),
+	.flag_light_1 (flag3)
 );
 
 CALCUL
 CALCUL_inst
 (
    .flag_light_1           (flag1),
-   .flag_light_2           (flag2),
+   .flag_light_2           (flag4),
    .FPGA_CLK           (FPGA_CLK ),
    .Num_of_bit             (N_o_b)
 );
@@ -155,7 +164,6 @@ assign {LED4,LED3,LED2,LED1} = ~N_o_b;
 
 endmodule
 
-
 module KEY_ADD( //schitaem 1 sec i knopka najata togda flag_1 ----->1
 input wire KEY1         ,
 input wire FPGA_CLK     ,
@@ -166,9 +174,7 @@ reg [27:0] cnt1    ;
 wire f_flag_light_1;
 
 initial begin
-
 cnt1 = 'd0;
-
 end
 
 assign f_flag_light_1 = (cnt1 >= 28'h2FAF080 ? (1'b1) : (1'b0)); // 2FAF080 - 1 sec
@@ -212,7 +218,7 @@ end
 
 
 always@(posedge flag_light_1, posedge flag_light_2) begin
-    if (flag_light_1==1'b1) begin
+     if(flag_light_1==1'b1) begin
 	     Num_of_bit <= Num_of_bit + 'd1;
 	 end 
 	 else if (flag_light_2==1'b1) begin
@@ -224,5 +230,31 @@ end
 
 endmodule
 
+module Buzzer( input wire FPGA_CLK, input wire sound_on,
+                output reg beep );
+reg [7:0] cnt_bzz;
+reg beep_bzz;
+initial begin
+cnt_bzz = 'd0;
+beep_bzz = 'd0;
+end
 
+always @(posedge FPGA_CLK) begin
+    if(posedge sound_on) begin
+	    beep <= beep_bzz;
+	end else begin
+        beep <= beep;
+	end
+
+end
+always @(posedge FPGA_CLK) begin
+    cnt_bzz <= cnt_bzz + 'd1;
+    if (cnt_bzz == 'hDC)begin // 220 полупериод
+        beep_bzz; <= ~ beep_bzz;;
+        cnt_bzz <= 'd0;
+    end else begin
+	    beep_bzz; <= beep_bzz;;
+    end
+end
+endmodule
 
