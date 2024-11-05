@@ -1,5 +1,9 @@
 Analysis & Synthesis report for Omdazz_CyclIV_Calcul
+<<<<<<< HEAD
 Tue Nov 05 23:03:03 2024
+=======
+Tue Nov 05 22:55:26 2024
+>>>>>>> 8f2ca65b8a0c045bdd61168e45baed5419e747d4
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Standard Edition
 
 
@@ -43,7 +47,11 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
+<<<<<<< HEAD
 ; Analysis & Synthesis Status        ; Successful - Tue Nov 05 23:03:03 2024           ;
+=======
+; Analysis & Synthesis Status        ; Successful - Tue Nov 05 22:55:26 2024           ;
+>>>>>>> 8f2ca65b8a0c045bdd61168e45baed5419e747d4
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Standard Edition ;
 ; Revision Name                      ; Omdazz_CyclIV_Calcul                            ;
 ; Top-level Entity Name              ; Omdazz_calcul_top                               ;
@@ -276,7 +284,11 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Standard Edition
+<<<<<<< HEAD
     Info: Processing started: Tue Nov 05 23:02:52 2024
+=======
+    Info: Processing started: Tue Nov 05 22:55:14 2024
+>>>>>>> 8f2ca65b8a0c045bdd61168e45baed5419e747d4
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Omdazz_CyclIV_Calcul -c Omdazz_CyclIV_Calcul
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -359,9 +371,16 @@ Info (21057): Implemented 250 device resources after synthesis - the final resou
     Info (21060): Implemented 42 bidirectional pins
     Info (21061): Implemented 160 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 62 warnings
+<<<<<<< HEAD
     Info: Peak virtual memory: 4776 megabytes
     Info: Processing ended: Tue Nov 05 23:03:03 2024
     Info: Elapsed time: 00:00:11
     Info: Total CPU time (on all processors): 00:00:25
+=======
+    Info: Peak virtual memory: 4779 megabytes
+    Info: Processing ended: Tue Nov 05 22:55:26 2024
+    Info: Elapsed time: 00:00:12
+    Info: Total CPU time (on all processors): 00:00:27
+>>>>>>> 8f2ca65b8a0c045bdd61168e45baed5419e747d4
 
 

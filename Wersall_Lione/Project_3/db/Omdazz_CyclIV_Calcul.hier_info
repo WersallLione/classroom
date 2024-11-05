@@ -15,6 +15,7 @@ LED3 << CALCUL:CALCUL_inst.Num_of_bit
 LED4 << CALCUL:CALCUL_inst.Num_of_bit
 I2C_SCL <> I2C_SCL
 I2C_SDA <> I2C_SDA
+<<<<<<< HEAD
 beep << Buzzer:Buzzer_440Hz_inst.beep
 PS_CLOCK << <GND>
 PS_DATA << <GND>
@@ -24,6 +25,17 @@ VGA_VSYNC << <GND>
 VGA_B << <GND>
 VGA_G << <GND>
 VGA_R << <GND>
+=======
+beep <= Buzzer:Buzzer_440Hz_inst.beep
+PS_CLOCK <= <GND>
+PS_DATA <= <GND>
+IR <= <GND>
+VGA_HSYNC <= <GND>
+VGA_VSYNC <= <GND>
+VGA_B <= <GND>
+VGA_G <= <GND>
+VGA_R <= <GND>
+>>>>>>> 8f2ca65b8a0c045bdd61168e45baed5419e747d4
 DATA_EPCS4 => ~NO_FANOUT~
 ASDO_EPCS4 << <GND>
 nCSO_EPCS4 << <GND>
