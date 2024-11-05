@@ -1,10 +1,10 @@
 |Omdazz_calcul_top
 KEY1 => KEY1.IN1
 KEY2 => ~NO_FANOUT~
-KEY3 => ~NO_FANOUT~
+KEY3 => KEY3.IN1
 KEY4 => KEY4.IN1
 RESET_BUT => ~NO_FANOUT~
-FPGA_CLK => FPGA_CLK.IN3
+FPGA_CLK => FPGA_CLK.IN5
 UART_RXD => ~NO_FANOUT~
 UART_TXD <= <GND>
 SCL <> SCL
@@ -15,7 +15,7 @@ LED3 <= CALCUL:CALCUL_inst.Num_of_bit
 LED4 <= CALCUL:CALCUL_inst.Num_of_bit
 I2C_SCL <> I2C_SCL
 I2C_SDA <> I2C_SDA
-beep <= <GND>
+beep <= Buzzer:Buzzer_440Hz_inst.beep
 PS_CLOCK <= <GND>
 PS_DATA <= <GND>
 IR <= <GND>
@@ -211,6 +211,91 @@ FPGA_CLK => cnt1[25].CLK
 FPGA_CLK => cnt1[26].CLK
 FPGA_CLK => cnt1[27].CLK
 flag_light_1 <= flag_light_1~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Omdazz_calcul_top|KEY_ADD:KEY_BUZZ_inst
+KEY1 => flag_light_1~reg0.CLK
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+KEY1 => cnt1.OUTPUTSELECT
+FPGA_CLK => cnt1[0].CLK
+FPGA_CLK => cnt1[1].CLK
+FPGA_CLK => cnt1[2].CLK
+FPGA_CLK => cnt1[3].CLK
+FPGA_CLK => cnt1[4].CLK
+FPGA_CLK => cnt1[5].CLK
+FPGA_CLK => cnt1[6].CLK
+FPGA_CLK => cnt1[7].CLK
+FPGA_CLK => cnt1[8].CLK
+FPGA_CLK => cnt1[9].CLK
+FPGA_CLK => cnt1[10].CLK
+FPGA_CLK => cnt1[11].CLK
+FPGA_CLK => cnt1[12].CLK
+FPGA_CLK => cnt1[13].CLK
+FPGA_CLK => cnt1[14].CLK
+FPGA_CLK => cnt1[15].CLK
+FPGA_CLK => cnt1[16].CLK
+FPGA_CLK => cnt1[17].CLK
+FPGA_CLK => cnt1[18].CLK
+FPGA_CLK => cnt1[19].CLK
+FPGA_CLK => cnt1[20].CLK
+FPGA_CLK => cnt1[21].CLK
+FPGA_CLK => cnt1[22].CLK
+FPGA_CLK => cnt1[23].CLK
+FPGA_CLK => cnt1[24].CLK
+FPGA_CLK => cnt1[25].CLK
+FPGA_CLK => cnt1[26].CLK
+FPGA_CLK => cnt1[27].CLK
+flag_light_1 <= flag_light_1~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Omdazz_calcul_top|Buzzer:Buzzer_440Hz_inst
+FPGA_CLK => beep_bzz.CLK
+FPGA_CLK => cnt_bzz[0].CLK
+FPGA_CLK => cnt_bzz[1].CLK
+FPGA_CLK => cnt_bzz[2].CLK
+FPGA_CLK => cnt_bzz[3].CLK
+FPGA_CLK => cnt_bzz[4].CLK
+FPGA_CLK => cnt_bzz[5].CLK
+FPGA_CLK => cnt_bzz[6].CLK
+FPGA_CLK => cnt_bzz[7].CLK
+FPGA_CLK => cnt_bzz[8].CLK
+FPGA_CLK => cnt_bzz[9].CLK
+FPGA_CLK => cnt_bzz[10].CLK
+FPGA_CLK => cnt_bzz[11].CLK
+FPGA_CLK => cnt_bzz[12].CLK
+FPGA_CLK => cnt_bzz[13].CLK
+FPGA_CLK => cnt_bzz[14].CLK
+FPGA_CLK => cnt_bzz[15].CLK
+FPGA_CLK => cnt_bzz[16].CLK
+FPGA_CLK => beep~reg0.CLK
+sound_on => beep~reg0.ENA
+beep <= beep~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |Omdazz_calcul_top|CALCUL:CALCUL_inst
