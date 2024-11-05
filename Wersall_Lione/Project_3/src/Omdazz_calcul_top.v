@@ -209,7 +209,6 @@ end
 
 endmodule
 
-
 module CALCUL(
 input wire flag_light_1,
 input wire flag_light_2,
@@ -218,11 +217,9 @@ input wire FPGA_CLK    ,
 output reg  [3:0] Num_of_bit
 );
 
-
 initial begin
     Num_of_bit = 'd0;
 end 
-
 
 always@(posedge flag_light_1, posedge flag_light_2) begin
      if(flag_light_1==1'b1) begin
