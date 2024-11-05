@@ -16,9 +16,9 @@ output wire LED4    ,
 
 inout wire I2C_SCL  ,  //  I2C signal clk to EEPROM
 inout wire I2C_SDA  ,  //  I2C signal data write or read. 
-output wire beep    ,
+output wire BEEP    ,
 
-output wire PS_CLOCK,  // interface PS2
+output wire PS_CLOCK,  // interfac PS2
 output wire PS_DATA ,  
 
 output wire IR      ,   //IK Port 
@@ -29,7 +29,7 @@ output wire VGA_B    , // 0
 output wire VGA_G    , // 0
 output wire VGA_R    , // 0
 
-input wire DATA_EPCS4,
+input wire  DATA_EPCS4,
 output wire ASDO_EPCS4,
 output wire nCSO_EPCS4,
 output wire DCLK_EPCS4,
@@ -106,7 +106,7 @@ inout wire SD_WE
 //SDRAM inout 
 //assign I2C_SCL = (1'b0) ? (1'b1) : (1'bZ); //3state - read
 
-assign {UART_TXD,beep,PS_CLOCK,PS_DATA,VGA_HSYNC,VGA_VSYNC,ASDO_EPCS4,
+assign {UART_TXD,BEEP,PS_CLOCK,PS_DATA,VGA_HSYNC,VGA_VSYNC,ASDO_EPCS4,
 nCSO_EPCS4,DCLK_EPCS4,DIG_1,DIG_2,DIG_3,DIG_4} = 1'b1;
 assign {IR,VGA_B,VGA_G,VGA_R,SEG_0,SEG_1,SEG_3,SEG_4,SEG_5,SEG_6,SEG_7} = 1'b0;
 assign {I2C_SCL,I2C_SDA,SCL,SDA,S_DQ0,S_DQ1,S_DQ2,S_DQ3,S_DQ4,S_DQ5,S_DQ6,S_DQ7,
@@ -118,7 +118,6 @@ SD_CLK,SD_CS,SD_WE,SD_RAS,SD_CAS,} = 1'bZ;
 wire flag1      ;
 wire flag4      ;
 wire flag3      ;
-wire bz         ;
 wire [3:0] pwrr ; 
 wire [3:0] N_o_b;
 
@@ -127,7 +126,7 @@ KEY_ADD_inst
 (
 	.KEY1       (KEY1     ),
 	.FPGA_CLK   (FPGA_CLK ),
-	.flag_light_1 (flag1)
+	.flag_light_1   (flag1)
 );
 
 KEY_ADD 
@@ -135,7 +134,7 @@ KEY_MINUS_inst
 (
 	.KEY1       (KEY4     ),
 	.FPGA_CLK   (FPGA_CLK ),
-	.flag_light_1 (flag4)
+	.flag_light_1   (flag4)
 );
 
 KEY_ADD
@@ -143,7 +142,15 @@ KEY_BUZZ_inst
 (
 	.KEY1       (KEY3     ),
 	.FPGA_CLK   (FPGA_CLK ),
-	.flag_light_1 (flag3)
+	.flag_light_1   (flag3)
+);
+
+Buzzer
+Buzzer_440Hz_inst
+( 
+	.FPGA_CLK          (FPGA_CLK ), 
+	.sound_on              (flag3),
+    .beep                   (BEEP)
 );
 
 CALCUL
@@ -232,7 +239,7 @@ endmodule
 
 module Buzzer( input wire FPGA_CLK, input wire sound_on,
                 output reg beep );
-reg [7:0] cnt_bzz;
+reg [16:0] cnt_bzz;
 reg beep_bzz;
 initial begin
 cnt_bzz = 'd0;
@@ -249,7 +256,7 @@ always @(posedge FPGA_CLK) begin
 end
 always @(posedge FPGA_CLK) begin
     cnt_bzz <= cnt_bzz + 'd1;
-    if (cnt_bzz == 'hDC)begin // 220 полупериод
+    if (cnt_bzz == 'h1BBE5)begin // 440 Hz = 50.000.000 Hz / 113.637
         beep_bzz; <= ~ beep_bzz;;
         cnt_bzz <= 'd0;
     end else begin
