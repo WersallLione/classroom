@@ -1,9 +1,5 @@
 Flow report for Omdazz_CyclIV_Calcul
-<<<<<<< HEAD
-Tue Nov 05 23:07:49 2024
-=======
-Tue Nov 05 22:55:29 2024
->>>>>>> 8f2ca65b8a0c045bdd61168e45baed5419e747d4
+Thu Nov 07 22:38:14 2024
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Standard Edition
 
 
@@ -45,22 +41,18 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-<<<<<<< HEAD
-; Flow Status                        ; Flow Failed - Tue Nov 05 23:07:49 2024          ;
-=======
-; Flow Status                        ; Flow Failed - Tue Nov 05 22:55:29 2024          ;
->>>>>>> 8f2ca65b8a0c045bdd61168e45baed5419e747d4
+; Flow Status                        ; Successful - Thu Nov 07 22:38:14 2024           ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Standard Edition ;
 ; Revision Name                      ; Omdazz_CyclIV_Calcul                            ;
 ; Top-level Entity Name              ; Omdazz_calcul_top                               ;
 ; Family                             ; Cyclone IV E                                    ;
 ; Device                             ; EP4CE10E22C8                                    ;
 ; Timing Models                      ; Final                                           ;
-; Total logic elements               ; 161 / 10,320 ( 2 % )                            ;
-;     Total combinational functions  ; 161 / 10,320 ( 2 % )                            ;
-;     Dedicated logic registers      ; 110 / 10,320 ( 1 % )                            ;
-; Total registers                    ; 110                                             ;
-; Total pins                         ; 90 / 92 ( 98 % )                                ;
+; Total logic elements               ; 154 / 10,320 ( 1 % )                            ;
+;     Total combinational functions  ; 154 / 10,320 ( 1 % )                            ;
+;     Dedicated logic registers      ; 115 / 10,320 ( 1 % )                            ;
+; Total registers                    ; 115                                             ;
+; Total pins                         ; 86 / 92 ( 93 % )                                ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0 / 423,936 ( 0 % )                             ;
 ; Embedded Multiplier 9-bit elements ; 0 / 46 ( 0 % )                                  ;
@@ -73,11 +65,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+----------------------+
 ; Option            ; Setting              ;
 +-------------------+----------------------+
-<<<<<<< HEAD
-; Start date & time ; 11/05/2024 23:02:53  ;
-=======
-; Start date & time ; 11/05/2024 22:55:15  ;
->>>>>>> 8f2ca65b8a0c045bdd61168e45baed5419e747d4
+; Start date & time ; 11/07/2024 22:37:54  ;
 ; Main task         ; Compilation          ;
 ; Revision Name     ; Omdazz_CyclIV_Calcul ;
 +-------------------+----------------------+
@@ -88,13 +76,11 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+----------------------------------------+----------------------+-------------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value        ; Entity Name       ; Section Id ;
 +-------------------------------------+----------------------------------------+----------------------+-------------------+------------+
-<<<<<<< HEAD
-; COMPILER_SIGNATURE_ID               ; 163519832247387.173083697313204        ; --                   ; --                ; --         ;
-=======
-; COMPILER_SIGNATURE_ID               ; 163519832247387.173083651420404        ; --                   ; --                ; --         ;
->>>>>>> 8f2ca65b8a0c045bdd61168e45baed5419e747d4
+; COMPILER_SIGNATURE_ID               ; 163519832247387.173100827401584        ; --                   ; --                ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --                   ; --                ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --                   ; --                ; --         ;
+; MISC_FILE                           ; pll_0_bb.v                             ; --                   ; --                ; --         ;
+; MISC_FILE                           ; pll_0.ppf                              ; --                   ; --                ; --         ;
 ; NOMINAL_CORE_SUPPLY_VOLTAGE         ; 1.2V                                   ; --                   ; --                ; --         ;
 ; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --                   ; Omdazz_calcul_top ; Top        ;
 ; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --                   ; Omdazz_calcul_top ; Top        ;
@@ -111,17 +97,10 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-<<<<<<< HEAD
-; Analysis & Synthesis ; 00:00:11     ; 1.0                     ; 4776 MB             ; 00:00:25                           ;
-; Fitter               ; 00:00:01     ; 1.0                     ; 4959 MB             ; 00:00:01                           ;
-; Fitter               ; 00:00:02     ; 1.0                     ; 4957 MB             ; 00:00:01                           ;
-; Fitter               ; 00:00:02     ; 1.0                     ; 4957 MB             ; 00:00:01                           ;
-; Total                ; 00:00:16     ; --                      ; --                  ; 00:00:28                           ;
-=======
-; Analysis & Synthesis ; 00:00:11     ; 1.0                     ; 4779 MB             ; 00:00:26                           ;
-; Fitter               ; 00:00:02     ; 1.0                     ; 4956 MB             ; 00:00:01                           ;
-; Total                ; 00:00:13     ; --                      ; --                  ; 00:00:27                           ;
->>>>>>> 8f2ca65b8a0c045bdd61168e45baed5419e747d4
+; Analysis & Synthesis ; 00:00:10     ; 1.0                     ; 4782 MB             ; 00:00:25                           ;
+; Fitter               ; 00:00:06     ; 1.0                     ; 5539 MB             ; 00:00:08                           ;
+; Assembler            ; 00:00:01     ; 1.0                     ; 4682 MB             ; 00:00:01                           ;
+; Total                ; 00:00:17     ; --                      ; --                  ; 00:00:34                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -132,11 +111,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+------------------+------------+------------+----------------+
 ; Analysis & Synthesis ; LAPTOP-JSB8OCIT  ; Windows 10 ; 10.0       ; x86_64         ;
 ; Fitter               ; LAPTOP-JSB8OCIT  ; Windows 10 ; 10.0       ; x86_64         ;
-<<<<<<< HEAD
-; Fitter               ; LAPTOP-JSB8OCIT  ; Windows 10 ; 10.0       ; x86_64         ;
-; Fitter               ; LAPTOP-JSB8OCIT  ; Windows 10 ; 10.0       ; x86_64         ;
-=======
->>>>>>> 8f2ca65b8a0c045bdd61168e45baed5419e747d4
+; Assembler            ; LAPTOP-JSB8OCIT  ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
@@ -145,11 +120,7 @@ https://fpgasoftware.intel.com/eula.
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off Omdazz_CyclIV_Calcul -c Omdazz_CyclIV_Calcul
 quartus_fit --read_settings_files=off --write_settings_files=off Omdazz_CyclIV_Calcul -c Omdazz_CyclIV_Calcul
-<<<<<<< HEAD
-quartus_fit --read_settings_files=on --write_settings_files=off Omdazz_CyclIV_Calcul -c Omdazz_CyclIV_Calcul
-quartus_fit --read_settings_files=on --write_settings_files=off Omdazz_CyclIV_Calcul -c Omdazz_CyclIV_Calcul
-=======
->>>>>>> 8f2ca65b8a0c045bdd61168e45baed5419e747d4
+quartus_asm --read_settings_files=off --write_settings_files=off Omdazz_CyclIV_Calcul -c Omdazz_CyclIV_Calcul
 
 
 

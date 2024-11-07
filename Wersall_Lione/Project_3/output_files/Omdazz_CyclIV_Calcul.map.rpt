@@ -1,9 +1,5 @@
 Analysis & Synthesis report for Omdazz_CyclIV_Calcul
-<<<<<<< HEAD
-Tue Nov 05 23:03:03 2024
-=======
-Tue Nov 05 22:55:26 2024
->>>>>>> 8f2ca65b8a0c045bdd61168e45baed5419e747d4
+Thu Nov 07 22:38:04 2024
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Standard Edition
 
 
@@ -47,20 +43,16 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-<<<<<<< HEAD
-; Analysis & Synthesis Status        ; Successful - Tue Nov 05 23:03:03 2024           ;
-=======
-; Analysis & Synthesis Status        ; Successful - Tue Nov 05 22:55:26 2024           ;
->>>>>>> 8f2ca65b8a0c045bdd61168e45baed5419e747d4
+; Analysis & Synthesis Status        ; Successful - Thu Nov 07 22:38:04 2024           ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Standard Edition ;
 ; Revision Name                      ; Omdazz_CyclIV_Calcul                            ;
 ; Top-level Entity Name              ; Omdazz_calcul_top                               ;
 ; Family                             ; Cyclone IV E                                    ;
-; Total logic elements               ; 160                                             ;
-;     Total combinational functions  ; 160                                             ;
-;     Dedicated logic registers      ; 110                                             ;
-; Total registers                    ; 110                                             ;
-; Total pins                         ; 90                                              ;
+; Total logic elements               ; 154                                             ;
+;     Total combinational functions  ; 154                                             ;
+;     Dedicated logic registers      ; 115                                             ;
+; Total registers                    ; 115                                             ;
+; Total pins                         ; 86                                              ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
 ; Embedded Multiplier 9-bit elements ; 0                                               ;
@@ -186,30 +178,30 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimated Total logic elements              ; 160            ;
+; Estimated Total logic elements              ; 154            ;
 ;                                             ;                ;
-; Total combinational functions               ; 160            ;
+; Total combinational functions               ; 154            ;
 ; Logic element usage by number of LUT inputs ;                ;
-;     -- 4 input functions                    ; 30             ;
-;     -- 3 input functions                    ; 25             ;
-;     -- <=2 input functions                  ; 105            ;
+;     -- 4 input functions                    ; 31             ;
+;     -- 3 input functions                    ; 11             ;
+;     -- <=2 input functions                  ; 112            ;
 ;                                             ;                ;
 ; Logic elements by mode                      ;                ;
-;     -- normal mode                          ; 63             ;
-;     -- arithmetic mode                      ; 97             ;
+;     -- normal mode                          ; 53             ;
+;     -- arithmetic mode                      ; 101            ;
 ;                                             ;                ;
-; Total registers                             ; 110            ;
-;     -- Dedicated logic registers            ; 110            ;
+; Total registers                             ; 115            ;
+;     -- Dedicated logic registers            ; 115            ;
 ;     -- I/O registers                        ; 0              ;
 ;                                             ;                ;
-; I/O pins                                    ; 90             ;
+; I/O pins                                    ; 86             ;
 ;                                             ;                ;
 ; Embedded Multiplier 9-bit elements          ; 0              ;
 ;                                             ;                ;
 ; Maximum fan-out node                        ; FPGA_CLK~input ;
-; Maximum fan-out                             ; 103            ;
-; Total fan-out                               ; 846            ;
-; Average fan-out                             ; 1.72           ;
+; Maximum fan-out                             ; 108            ;
+; Total fan-out                               ; 850            ;
+; Average fan-out                             ; 1.76           ;
 +---------------------------------------------+----------------+
 
 
@@ -218,8 +210,8 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------+-------------------+--------------+
 ; Compilation Hierarchy Node    ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                         ; Entity Name       ; Library Name ;
 +-------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------+-------------------+--------------+
-; |Omdazz_calcul_top            ; 160 (0)             ; 110 (0)                   ; 0           ; 0            ; 0       ; 0         ; 90   ; 0            ; |Omdazz_calcul_top                          ; Omdazz_calcul_top ; work         ;
-;    |Buzzer:Buzzer_440Hz_inst| ; 36 (36)             ; 19 (19)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Omdazz_calcul_top|Buzzer:Buzzer_440Hz_inst ; Buzzer            ; work         ;
+; |Omdazz_calcul_top            ; 154 (0)             ; 115 (0)                   ; 0           ; 0            ; 0       ; 0         ; 86   ; 0            ; |Omdazz_calcul_top                          ; Omdazz_calcul_top ; work         ;
+;    |Buzzer:Buzzer_440Hz_inst| ; 30 (30)             ; 24 (24)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Omdazz_calcul_top|Buzzer:Buzzer_440Hz_inst ; Buzzer            ; work         ;
 ;    |CALCUL:CALCUL_inst|       ; 16 (16)             ; 4 (4)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Omdazz_calcul_top|CALCUL:CALCUL_inst       ; CALCUL            ; work         ;
 ;    |KEY_ADD:KEY_ADD_inst|     ; 36 (36)             ; 29 (29)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Omdazz_calcul_top|KEY_ADD:KEY_ADD_inst     ; KEY_ADD           ; work         ;
 ;    |KEY_ADD:KEY_BUZZ_inst|    ; 36 (36)             ; 29 (29)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Omdazz_calcul_top|KEY_ADD:KEY_BUZZ_inst    ; KEY_ADD           ; work         ;
@@ -233,8 +225,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 110   ;
-; Number of registers using Synchronous Clear  ; 84    ;
+; Total registers                              ; 115   ;
+; Number of registers using Synchronous Clear  ; 105   ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 4     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
@@ -248,24 +240,24 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 90                          ;
-; cycloneiii_ff         ; 110                         ;
+; boundary_port         ; 86                          ;
+; cycloneiii_ff         ; 115                         ;
 ;     CLR               ; 4                           ;
-;     SCLR              ; 84                          ;
-;     plain             ; 22                          ;
+;     SCLR              ; 105                         ;
+;     plain             ; 6                           ;
 ; cycloneiii_io_obuf    ; 42                          ;
-; cycloneiii_lcell_comb ; 166                         ;
-;     arith             ; 97                          ;
-;         2 data inputs ; 97                          ;
-;     normal            ; 69                          ;
-;         0 data inputs ; 2                           ;
+; cycloneiii_lcell_comb ; 159                         ;
+;     arith             ; 101                         ;
+;         2 data inputs ; 101                         ;
+;     normal            ; 58                          ;
+;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 8                           ;
-;         2 data inputs ; 4                           ;
-;         3 data inputs ; 25                          ;
-;         4 data inputs ; 30                          ;
+;         2 data inputs ; 7                           ;
+;         3 data inputs ; 11                          ;
+;         4 data inputs ; 31                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 3.70                        ;
-; Average LUT depth     ; 2.52                        ;
+; Average LUT depth     ; 2.44                        ;
 +-----------------------+-----------------------------+
 
 
@@ -284,43 +276,48 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Standard Edition
-<<<<<<< HEAD
-    Info: Processing started: Tue Nov 05 23:02:52 2024
-=======
-    Info: Processing started: Tue Nov 05 22:55:14 2024
->>>>>>> 8f2ca65b8a0c045bdd61168e45baed5419e747d4
+    Info: Processing started: Thu Nov 07 22:37:54 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Omdazz_CyclIV_Calcul -c Omdazz_CyclIV_Calcul
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 4 design units, including 4 entities, in source file src/omdazz_calcul_top.v
     Info (12023): Found entity 1: Omdazz_calcul_top File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 1
-    Info (12023): Found entity 2: KEY_ADD File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 174
-    Info (12023): Found entity 3: CALCUL File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 212
-    Info (12023): Found entity 4: Buzzer File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 237
+    Info (12023): Found entity 2: KEY_ADD File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 177
+    Info (12023): Found entity 3: CALCUL File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 215
+    Info (12023): Found entity 4: Buzzer File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 240
+Info (12021): Found 1 design units, including 1 entities, in source file pll_0.v
+    Info (12023): Found entity 1: pll_0 File: C:/Progect/classroom/Wersall_Lione/Project_3/pll_0.v Line: 40
+Warning (10236): Verilog HDL Implicit Net warning at Omdazz_calcul_top.v(110): created implicit net for "ASDO_EPCS4" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 110
+Warning (10236): Verilog HDL Implicit Net warning at Omdazz_calcul_top.v(111): created implicit net for "nCSO_EPCS4" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 111
+Warning (10236): Verilog HDL Implicit Net warning at Omdazz_calcul_top.v(111): created implicit net for "DCLK_EPCS4" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 111
 Info (12127): Elaborating entity "Omdazz_calcul_top" for the top level hierarchy
-Warning (10034): Output port "SEG_2" at Omdazz_calcul_top.v(43) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 43
-Warning (10034): Output port "LCD1_RS" at Omdazz_calcul_top.v(50) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 50
-Warning (10034): Output port "LCD2_RW" at Omdazz_calcul_top.v(51) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 51
-Warning (10034): Output port "LCD3_E" at Omdazz_calcul_top.v(52) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 52
-Warning (10034): Output port "LCD4_D0" at Omdazz_calcul_top.v(53) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 53
-Warning (10034): Output port "LCD5_D1" at Omdazz_calcul_top.v(54) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 54
-Warning (10034): Output port "LCD6_D2" at Omdazz_calcul_top.v(55) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 55
-Warning (10034): Output port "LCD7_D3" at Omdazz_calcul_top.v(56) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 56
-Warning (10034): Output port "LCD8_D4" at Omdazz_calcul_top.v(57) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 57
-Warning (10034): Output port "LCD9_D5" at Omdazz_calcul_top.v(58) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 58
-Warning (10034): Output port "LCD10_D6" at Omdazz_calcul_top.v(59) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 59
-Warning (10034): Output port "LCD11_D7" at Omdazz_calcul_top.v(60) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 60
-Info (12128): Elaborating entity "KEY_ADD" for hierarchy "KEY_ADD:KEY_ADD_inst" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 130
-Info (12128): Elaborating entity "Buzzer" for hierarchy "Buzzer:Buzzer_440Hz_inst" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 154
-Warning (10230): Verilog HDL assignment warning at Omdazz_calcul_top.v(261): truncated value with size 32 to match size of target (17) File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 261
-Info (12128): Elaborating entity "CALCUL" for hierarchy "CALCUL:CALCUL_inst" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 163
-Warning (10230): Verilog HDL assignment warning at Omdazz_calcul_top.v(226): truncated value with size 32 to match size of target (4) File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 226
+Warning (10036): Verilog HDL or VHDL warning at Omdazz_calcul_top.v(110): object "ASDO_EPCS4" assigned a value but never read File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 110
+Warning (10036): Verilog HDL or VHDL warning at Omdazz_calcul_top.v(111): object "nCSO_EPCS4" assigned a value but never read File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 111
+Warning (10036): Verilog HDL or VHDL warning at Omdazz_calcul_top.v(111): object "DCLK_EPCS4" assigned a value but never read File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 111
+Warning (10230): Verilog HDL assignment warning at Omdazz_calcul_top.v(112): truncated value with size 13 to match size of target (10) File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 112
+Warning (10034): Output port "SEG_2" at Omdazz_calcul_top.v(44) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 44
+Warning (10034): Output port "LCD1_RS" at Omdazz_calcul_top.v(51) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 51
+Warning (10034): Output port "LCD2_RW" at Omdazz_calcul_top.v(52) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 52
+Warning (10034): Output port "LCD3_E" at Omdazz_calcul_top.v(53) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 53
+Warning (10034): Output port "LCD4_D0" at Omdazz_calcul_top.v(54) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 54
+Warning (10034): Output port "LCD5_D1" at Omdazz_calcul_top.v(55) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 55
+Warning (10034): Output port "LCD6_D2" at Omdazz_calcul_top.v(56) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 56
+Warning (10034): Output port "LCD7_D3" at Omdazz_calcul_top.v(57) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 57
+Warning (10034): Output port "LCD8_D4" at Omdazz_calcul_top.v(58) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 58
+Warning (10034): Output port "LCD9_D5" at Omdazz_calcul_top.v(59) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 59
+Warning (10034): Output port "LCD10_D6" at Omdazz_calcul_top.v(60) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 60
+Warning (10034): Output port "LCD11_D7" at Omdazz_calcul_top.v(61) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 61
+Info (12128): Elaborating entity "KEY_ADD" for hierarchy "KEY_ADD:KEY_ADD_inst" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 131
+Info (12128): Elaborating entity "Buzzer" for hierarchy "Buzzer:Buzzer_440Hz_inst" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 156
+Warning (10230): Verilog HDL assignment warning at Omdazz_calcul_top.v(282): truncated value with size 32 to match size of target (21) File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 282
+Info (12128): Elaborating entity "CALCUL" for hierarchy "CALCUL:CALCUL_inst" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 165
 Warning (10230): Verilog HDL assignment warning at Omdazz_calcul_top.v(229): truncated value with size 32 to match size of target (4) File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 229
+Warning (10230): Verilog HDL assignment warning at Omdazz_calcul_top.v(232): truncated value with size 32 to match size of target (4) File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 232
 Warning (13004): Presettable and clearable registers converted to equivalent circuits with latches. Registers power-up to an undefined state, and DEVCLRn places the registers in an undefined state.
-    Warning (13310): Register "CALCUL:CALCUL_inst|Num_of_bit[0]" is converted into an equivalent circuit using register "CALCUL:CALCUL_inst|Num_of_bit[0]~_emulated" and latch "CALCUL:CALCUL_inst|Num_of_bit[0]~1" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 228
-    Warning (13310): Register "CALCUL:CALCUL_inst|Num_of_bit[1]" is converted into an equivalent circuit using register "CALCUL:CALCUL_inst|Num_of_bit[1]~_emulated" and latch "CALCUL:CALCUL_inst|Num_of_bit[1]~5" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 228
-    Warning (13310): Register "CALCUL:CALCUL_inst|Num_of_bit[2]" is converted into an equivalent circuit using register "CALCUL:CALCUL_inst|Num_of_bit[2]~_emulated" and latch "CALCUL:CALCUL_inst|Num_of_bit[2]~9" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 228
-    Warning (13310): Register "CALCUL:CALCUL_inst|Num_of_bit[3]" is converted into an equivalent circuit using register "CALCUL:CALCUL_inst|Num_of_bit[3]~_emulated" and latch "CALCUL:CALCUL_inst|Num_of_bit[3]~13" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 228
+    Warning (13310): Register "CALCUL:CALCUL_inst|Num_of_bit[0]" is converted into an equivalent circuit using register "CALCUL:CALCUL_inst|Num_of_bit[0]~_emulated" and latch "CALCUL:CALCUL_inst|Num_of_bit[0]~1" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 231
+    Warning (13310): Register "CALCUL:CALCUL_inst|Num_of_bit[1]" is converted into an equivalent circuit using register "CALCUL:CALCUL_inst|Num_of_bit[1]~_emulated" and latch "CALCUL:CALCUL_inst|Num_of_bit[1]~5" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 231
+    Warning (13310): Register "CALCUL:CALCUL_inst|Num_of_bit[2]" is converted into an equivalent circuit using register "CALCUL:CALCUL_inst|Num_of_bit[2]~_emulated" and latch "CALCUL:CALCUL_inst|Num_of_bit[2]~9" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 231
+    Warning (13310): Register "CALCUL:CALCUL_inst|Num_of_bit[3]" is converted into an equivalent circuit using register "CALCUL:CALCUL_inst|Num_of_bit[3]~_emulated" and latch "CALCUL:CALCUL_inst|Num_of_bit[3]~13" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 231
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "UART_TXD" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 9
     Warning (13410): Pin "PS_CLOCK" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 21
@@ -328,59 +325,47 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "IR" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 24
     Warning (13410): Pin "VGA_HSYNC" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 26
     Warning (13410): Pin "VGA_VSYNC" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 27
-    Warning (13410): Pin "VGA_B" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 28
     Warning (13410): Pin "VGA_G" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 29
     Warning (13410): Pin "VGA_R" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 30
-    Warning (13410): Pin "ASDO_EPCS4" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 33
-    Warning (13410): Pin "nCSO_EPCS4" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 34
-    Warning (13410): Pin "DCLK_EPCS4" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 35
-    Warning (13410): Pin "DIG_1" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 37
-    Warning (13410): Pin "DIG_2" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 38
-    Warning (13410): Pin "DIG_3" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 39
-    Warning (13410): Pin "DIG_4" is stuck at VCC File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 40
-    Warning (13410): Pin "SEG_0" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 41
-    Warning (13410): Pin "SEG_1" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 42
-    Warning (13410): Pin "SEG_2" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 43
-    Warning (13410): Pin "SEG_3" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 44
-    Warning (13410): Pin "SEG_4" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 45
-    Warning (13410): Pin "SEG_5" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 46
-    Warning (13410): Pin "SEG_6" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 47
-    Warning (13410): Pin "SEG_7" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 48
-    Warning (13410): Pin "LCD1_RS" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 50
-    Warning (13410): Pin "LCD2_RW" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 51
-    Warning (13410): Pin "LCD3_E" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 52
-    Warning (13410): Pin "LCD4_D0" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 53
-    Warning (13410): Pin "LCD5_D1" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 54
-    Warning (13410): Pin "LCD6_D2" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 55
-    Warning (13410): Pin "LCD7_D3" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 56
-    Warning (13410): Pin "LCD8_D4" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 57
-    Warning (13410): Pin "LCD9_D5" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 58
-    Warning (13410): Pin "LCD10_D6" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 59
-    Warning (13410): Pin "LCD11_D7" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 60
+    Warning (13410): Pin "DIG_1" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 38
+    Warning (13410): Pin "DIG_2" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 39
+    Warning (13410): Pin "DIG_3" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 40
+    Warning (13410): Pin "DIG_4" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 41
+    Warning (13410): Pin "SEG_0" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 42
+    Warning (13410): Pin "SEG_1" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 43
+    Warning (13410): Pin "SEG_2" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 44
+    Warning (13410): Pin "SEG_3" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 45
+    Warning (13410): Pin "SEG_4" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 46
+    Warning (13410): Pin "SEG_5" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 47
+    Warning (13410): Pin "SEG_6" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 48
+    Warning (13410): Pin "SEG_7" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 49
+    Warning (13410): Pin "LCD1_RS" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 51
+    Warning (13410): Pin "LCD2_RW" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 52
+    Warning (13410): Pin "LCD3_E" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 53
+    Warning (13410): Pin "LCD4_D0" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 54
+    Warning (13410): Pin "LCD5_D1" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 55
+    Warning (13410): Pin "LCD6_D2" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 56
+    Warning (13410): Pin "LCD7_D3" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 57
+    Warning (13410): Pin "LCD8_D4" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 58
+    Warning (13410): Pin "LCD9_D5" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 59
+    Warning (13410): Pin "LCD10_D6" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 60
+    Warning (13410): Pin "LCD11_D7" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 61
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 4 input pin(s) that do not drive logic
+Warning (21074): Design contains 3 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "KEY2" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 3
     Warning (15610): No output dependent on input pin "RESET_BUT" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 6
     Warning (15610): No output dependent on input pin "UART_RXD" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 8
-    Warning (15610): No output dependent on input pin "DATA_EPCS4" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 32
-Info (21057): Implemented 250 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 8 input pins
-    Info (21059): Implemented 40 output pins
+Info (21057): Implemented 240 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 7 input pins
+    Info (21059): Implemented 37 output pins
     Info (21060): Implemented 42 bidirectional pins
-    Info (21061): Implemented 160 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 62 warnings
-<<<<<<< HEAD
-    Info: Peak virtual memory: 4776 megabytes
-    Info: Processing ended: Tue Nov 05 23:03:03 2024
-    Info: Elapsed time: 00:00:11
+    Info (21061): Implemented 154 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 64 warnings
+    Info: Peak virtual memory: 4782 megabytes
+    Info: Processing ended: Thu Nov 07 22:38:04 2024
+    Info: Elapsed time: 00:00:10
     Info: Total CPU time (on all processors): 00:00:25
-=======
-    Info: Peak virtual memory: 4779 megabytes
-    Info: Processing ended: Tue Nov 05 22:55:26 2024
-    Info: Elapsed time: 00:00:12
-    Info: Total CPU time (on all processors): 00:00:27
->>>>>>> 8f2ca65b8a0c045bdd61168e45baed5419e747d4
 
 

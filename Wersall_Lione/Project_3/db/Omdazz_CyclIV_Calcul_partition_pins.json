@@ -24,6 +24,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "VGA_B",
+					"strict" : false
+				},
+				{
 					"name" : "FPGA_CLK",
 					"strict" : false
 				},
@@ -32,11 +36,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "KEY3",
+					"name" : "KEY4",
 					"strict" : false
 				},
 				{
-					"name" : "KEY4",
+					"name" : "KEY3",
 					"strict" : false
 				}
 			]

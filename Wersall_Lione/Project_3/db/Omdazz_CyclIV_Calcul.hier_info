@@ -6,63 +6,47 @@ KEY4 => KEY4.IN1
 RESET_BUT => ~NO_FANOUT~
 FPGA_CLK => FPGA_CLK.IN5
 UART_RXD => ~NO_FANOUT~
-UART_TXD << <GND>
+UART_TXD <= <GND>
 SCL <> SCL
 SDA <> SDA
-LED1 << CALCUL:CALCUL_inst.Num_of_bit
-LED2 << CALCUL:CALCUL_inst.Num_of_bit
-LED3 << CALCUL:CALCUL_inst.Num_of_bit
-LED4 << CALCUL:CALCUL_inst.Num_of_bit
+LED1 <= CALCUL:CALCUL_inst.Num_of_bit
+LED2 <= CALCUL:CALCUL_inst.Num_of_bit
+LED3 <= CALCUL:CALCUL_inst.Num_of_bit
+LED4 <= CALCUL:CALCUL_inst.Num_of_bit
 I2C_SCL <> I2C_SCL
 I2C_SDA <> I2C_SDA
-<<<<<<< HEAD
-beep << Buzzer:Buzzer_440Hz_inst.beep
-PS_CLOCK << <GND>
-PS_DATA << <GND>
-IR << <GND>
-VGA_HSYNC << <GND>
-VGA_VSYNC << <GND>
-VGA_B << <GND>
-VGA_G << <GND>
-VGA_R << <GND>
-=======
 beep <= Buzzer:Buzzer_440Hz_inst.beep
 PS_CLOCK <= <GND>
 PS_DATA <= <GND>
 IR <= <GND>
 VGA_HSYNC <= <GND>
 VGA_VSYNC <= <GND>
-VGA_B <= <GND>
+VGA_B <= Buzzer:Buzzer_440Hz_inst.o_clock
 VGA_G <= <GND>
 VGA_R <= <GND>
->>>>>>> 8f2ca65b8a0c045bdd61168e45baed5419e747d4
-DATA_EPCS4 => ~NO_FANOUT~
-ASDO_EPCS4 << <GND>
-nCSO_EPCS4 << <GND>
-DCLK_EPCS4 << <GND>
-DIG_1 << <GND>
-DIG_2 << <GND>
-DIG_3 << <GND>
-DIG_4 << <VCC>
-SEG_0 << <GND>
-SEG_1 << <GND>
-SEG_2 << <GND>
-SEG_3 << <GND>
-SEG_4 << <GND>
-SEG_5 << <GND>
-SEG_6 << <GND>
-SEG_7 << <GND>
-LCD1_RS << <GND>
-LCD2_RW << <GND>
-LCD3_E << <GND>
-LCD4_D0 << <GND>
-LCD5_D1 << <GND>
-LCD6_D2 << <GND>
-LCD7_D3 << <GND>
-LCD8_D4 << <GND>
-LCD9_D5 << <GND>
-LCD10_D6 << <GND>
-LCD11_D7 << <GND>
+DIG_1 <= <GND>
+DIG_2 <= <GND>
+DIG_3 <= <GND>
+DIG_4 <= <GND>
+SEG_0 <= <GND>
+SEG_1 <= <GND>
+SEG_2 <= <GND>
+SEG_3 <= <GND>
+SEG_4 <= <GND>
+SEG_5 <= <GND>
+SEG_6 <= <GND>
+SEG_7 <= <GND>
+LCD1_RS <= <GND>
+LCD2_RW <= <GND>
+LCD3_E <= <GND>
+LCD4_D0 <= <GND>
+LCD5_D1 <= <GND>
+LCD6_D2 <= <GND>
+LCD7_D3 <= <GND>
+LCD8_D4 <= <GND>
+LCD9_D5 <= <GND>
+LCD10_D6 <= <GND>
+LCD11_D7 <= <GND>
 S_DQ0 <> S_DQ0
 S_DQ1 <> S_DQ1
 S_DQ2 <> S_DQ2
@@ -287,7 +271,6 @@ flag_light_1 <= flag_light_1~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |Omdazz_calcul_top|Buzzer:Buzzer_440Hz_inst
-FPGA_CLK => beep_bzz.CLK
 FPGA_CLK => cnt_bzz[0].CLK
 FPGA_CLK => cnt_bzz[1].CLK
 FPGA_CLK => cnt_bzz[2].CLK
@@ -305,9 +288,16 @@ FPGA_CLK => cnt_bzz[13].CLK
 FPGA_CLK => cnt_bzz[14].CLK
 FPGA_CLK => cnt_bzz[15].CLK
 FPGA_CLK => cnt_bzz[16].CLK
+FPGA_CLK => cnt_bzz[17].CLK
+FPGA_CLK => cnt_bzz[18].CLK
+FPGA_CLK => cnt_bzz[19].CLK
+FPGA_CLK => cnt_bzz[20].CLK
+FPGA_CLK => beep_bzz.CLK
+FPGA_CLK => switch.CLK
 FPGA_CLK => beep~reg0.CLK
-sound_on => beep~reg0.ENA
+sound_on => switch.ENA
 beep <= beep~reg0.DB_MAX_OUTPUT_PORT_TYPE
+o_clock <= beep_bzz.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |Omdazz_calcul_top|CALCUL:CALCUL_inst

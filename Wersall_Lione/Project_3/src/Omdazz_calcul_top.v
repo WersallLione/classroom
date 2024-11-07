@@ -22,17 +22,18 @@ output wire PS_CLOCK,  // interfac PS2
 output wire PS_DATA ,  
 
 output wire IR      ,   //IK Port 
-        
+      
 output wire VGA_HSYNC,
 output wire VGA_VSYNC,
 output wire VGA_B    , // 0
 output wire VGA_G    , // 0
 output wire VGA_R    , // 0
 
-input wire  DATA_EPCS4,
-output wire ASDO_EPCS4,
-output wire nCSO_EPCS4,
-output wire DCLK_EPCS4,
+
+//input wire  DATA_EPCS4,
+//output wire ASDO_EPCS4,
+//output wire nCSO_EPCS4,
+//output wire DCLK_EPCS4,
 
 output wire DIG_1,
 output wire DIG_2,
@@ -107,8 +108,8 @@ inout wire SD_WE
 //assign I2C_SCL = (1'b0) ? (1'b1) : (1'bZ); //3state - read
 
 assign {UART_TXD,PS_CLOCK,PS_DATA,VGA_HSYNC,VGA_VSYNC,ASDO_EPCS4,
-nCSO_EPCS4,DCLK_EPCS4,DIG_1,DIG_2,DIG_3,DIG_4} = 1'b1;
-assign {IR,VGA_B,VGA_G,VGA_R,SEG_0,SEG_1,SEG_3,SEG_4,SEG_5,SEG_6,SEG_7} = 1'b0;
+nCSO_EPCS4,DCLK_EPCS4,DIG_1,DIG_2,DIG_3,DIG_4} = 'd0;
+assign {IR,VGA_G,VGA_R,SEG_0,SEG_1,SEG_3,SEG_4,SEG_5,SEG_6,SEG_7} = {13{1'b0}};
 assign {I2C_SCL,I2C_SDA,SCL,SDA,S_DQ0,S_DQ1,S_DQ2,S_DQ3,S_DQ4,S_DQ5,S_DQ6,S_DQ7,
 S_DQ8,S_DQ9,S_DQ10,S_DQ11,S_DQ12,S_DQ13,S_DQ14,S_DQ15,S_A0,S_A1,S_A2,S_A3,S_A4,
 S_A5,S_A6,S_A7,S_A8,S_A9,S_A10,S_A11,SD_BS0,SD_BS1,SD_LDQM,SD_UDQM,SD_CKE,
@@ -150,7 +151,8 @@ Buzzer_440Hz_inst
 ( 
 	.FPGA_CLK          (FPGA_CLK ), 
 	.sound_on              (flag3),
-    .beep                   (beep)
+    .beep                   (beep),
+	 .o_clock                (VGA_B)
 );
 
 CALCUL
@@ -168,6 +170,7 @@ assign {LED4,LED3,LED2,LED1} = ~N_o_b;
 //assign LED3 = ~N_o_b[3];
 //assign LED2 = ~N_o_b[2];
 //assign LED1 = ~N_o_b[1];
+
 
 endmodule
 
@@ -235,36 +238,49 @@ end
 endmodule
 
 module Buzzer( 
-input wire FPGA_CLK, 
-input wire sound_on,
-output reg beep 
+input wire FPGA_CLK, // aclk!, aclk_50mhz
+input wire sound_on, // sound_en , enable , en , butt, btn_negative, btn_n 
+output reg beep,
+output wire o_clock 
 );
 
-reg [16:0] cnt_bzz;
+reg [20:0] cnt_bzz;
 reg beep_bzz;
+reg switch;
 
 initial begin
 cnt_bzz = 'd0;
 beep_bzz = 'd0;
+switch = 'd0;
 end
 
+assign o_clock = beep_bzz;
+
 always @(posedge FPGA_CLK) begin
-    if(sound_on == 1'b1) begin
+    if(switch == 1'b1) begin
 	    beep <= beep_bzz;
 	end else begin
-        beep <= beep;
+        beep <= 'b0;
+	end
+
+end
+always @(posedge FPGA_CLK) begin
+    if(sound_on == 1'b1) begin
+	    switch <= ~switch;
+	end else begin
+        switch <= switch;
 	end
 
 end
 
 always @(posedge FPGA_CLK) begin
-    cnt_bzz <= cnt_bzz + 'd1;
-    if (cnt_bzz == 'h1BBE5)begin // 440 Hz = 50.000.000 Hz / 113.637
+    if (cnt_bzz >= ('hF4240))begin // 440 Hz = 50.000.000 Hz / (113.637 /2 !!!!!)
         beep_bzz <= ~ beep_bzz;
         cnt_bzz <= 'd0;
     end else begin
 	    beep_bzz <= beep_bzz;
+		cnt_bzz <= cnt_bzz + 'd1;
     end
 end
 endmodule
-
+// pravilnei razdelai peremenie v raznie always po smuslu
