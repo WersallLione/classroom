@@ -108,8 +108,8 @@ inout wire SD_WE
 //assign I2C_SCL = (1'b0) ? (1'b1) : (1'bZ); //3state - read
 
 assign {UART_TXD,PS_CLOCK,PS_DATA,VGA_HSYNC,VGA_VSYNC,ASDO_EPCS4,
-nCSO_EPCS4,DCLK_EPCS4,DIG_1,DIG_2,DIG_3,DIG_4} = 'd0;
-assign {IR,VGA_G,VGA_R,SEG_0,SEG_1,SEG_3,SEG_4,SEG_5,SEG_6,SEG_7} = {13{1'b0}};
+nCSO_EPCS4,DCLK_EPCS4,DIG_2,DIG_3,DIG_4} = 'd0;
+assign {IR,VGA_G,VGA_R,} = {13{1'b0}};
 assign {I2C_SCL,I2C_SDA,SCL,SDA,S_DQ0,S_DQ1,S_DQ2,S_DQ3,S_DQ4,S_DQ5,S_DQ6,S_DQ7,
 S_DQ8,S_DQ9,S_DQ10,S_DQ11,S_DQ12,S_DQ13,S_DQ14,S_DQ15,S_A0,S_A1,S_A2,S_A3,S_A4,
 S_A5,S_A6,S_A7,S_A8,S_A9,S_A10,S_A11,SD_BS0,SD_BS1,SD_LDQM,SD_UDQM,SD_CKE,
@@ -152,7 +152,7 @@ Buzzer_440Hz_inst
 	.FPGA_CLK          (FPGA_CLK ), 
 	.sound_on              (flag3),
     .beep                   (beep),
-	 .o_clock                (VGA_B)
+	
 );
 
 CALCUL
@@ -165,11 +165,20 @@ CALCUL_inst
 );
 
 assign {LED1,LED2,LED3,LED4} = ~N_o_b;
-
 //assign LED4 = ~N_o_b[4];
 //assign LED3 = ~N_o_b[3];
 //assign LED2 = ~N_o_b[2];
 //assign LED1 = ~N_o_b[1];
+
+sevenseg
+sevenseg_inst(
+    .data   (N_o_b),
+    .segment  (SEG_0,SEG_1,SEG_3,SEG_4,SEG_5,SEG_6,SEG_7),
+    .seg_enable  (DIG_1)
+);
+
+
+
 
 
 endmodule
@@ -194,7 +203,7 @@ flag_key_z = 'd0;
 flag_light_1 = 'd0;
 end
 
-assign f_flag_light_1 = (cnt1 >= 28'h2FAF080) ? (1'b0) : (1'b1); // 2FAF080 - 1 sec
+assign f_flag_light_1 = (cnt1 >= 28'h2FAF080) ? (1'b1) : (1'b0); // 2FAF080 - 1 sec, kogda cnt dohodit do 1 sec flag podnimaetcia v odin
 
 always @(posedge FPGA_CLK) begin 
 	if(flag_key > flag_key_z)begin
@@ -212,15 +221,16 @@ end
 always @(posedge FPGA_CLK) begin 
     if (KEY1==1'b0) begin
         if (f_flag_light_1)begin
-	       cnt1     <= cnt1 + 1'd1;
-		    flag_key <= 1'b0;
+	       cnt1     <= cnt1;
+		    flag_key <= 1'b1  ;
 	     end 
-		  else begin
-          cnt1     <= cnt1;
-		    flag_key <= 1'b1  ;        
+		  else begin //cnt = 0, f_flag_light_1 = 0;
+		  cnt1     <= cnt1 + 1'd1;
+		    flag_key <= 1'b0;
+                  
 	     end
 	 end 
-	 else begin
+	 else begin // key1 = 1,toest' key otjata
 		cnt1     <= 'd0  ; 
 		flag_key <= 1'b0 ;            
     end
@@ -257,7 +267,7 @@ module Buzzer(
 input wire FPGA_CLK, // aclk!, aclk_50mhz
 input wire sound_on, // sound_en , enable , en , butt, btn_negative, btn_n 
 output reg beep,
-output wire o_clock 
+
 );
 
 reg [20:0] cnt_bzz;
@@ -270,7 +280,6 @@ beep_bzz = 'd0;
 switch = 'd0;
 end
 
-assign o_clock = beep_bzz;
 
 always @(posedge FPGA_CLK) begin
     if(switch == 1'b1) begin
@@ -299,4 +308,60 @@ always @(posedge FPGA_CLK) begin
     end
 end
 endmodule
+
+module sevenseg(
+input wire data[3:0],
+
+output reg segment [6:0],
+output wire seg_enable
+);
+
+assign seg_enable = 1'b1;
+
+always @ (data) begin 
+case (data)
+
+0: segment = 7'h70;
+1: segment = 7'h30;
+2: segment = 7'h6D;
+3: segment = 7'h79;
+4: segment = 7'h33;
+5: segment = 7'h5B;
+6: segment = 7'h5F;
+7: segment = 7'h70;
+8: segment = 7'h7F;
+9: segment = 7'h7B;
+10: segment = 7'h77;
+11: segment = 7'h1F;
+12: segment = 7'h4E;
+13: segment = 7'h3D;
+14: segment = 7'h4E;
+15: segment = 7'h47;
+
+endcase
+end
+
+endmodule
+/*
+module key_v2(
+input wire KEY2         ,
+input wire FPGA_CLK     ,
+
+output reg flag_key_on
+);
+
+
+endmodule
+
+module invert_data(
+input wire data,
+input wire en_key,
+
+outpute wire 'data
+);
+
+
+endmodule
+*/
+
 // pravilnei razdelai peremenie v raznie always po smuslu
