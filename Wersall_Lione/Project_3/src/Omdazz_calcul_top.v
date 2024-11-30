@@ -164,7 +164,7 @@ CALCUL_inst
    .Num_of_bit             (N_o_b)
 );
 
-assign {LED4,LED3,LED2,LED1} = ~N_o_b;
+assign {LED1,LED2,LED3,LED4} = ~N_o_b;
 
 //assign LED4 = ~N_o_b[4];
 //assign LED3 = ~N_o_b[3];
@@ -177,20 +177,27 @@ endmodule
 module KEY_ADD( //schitaem 1 sec i knopka najata togda flag_1 ----->1
 input wire KEY1         ,
 input wire FPGA_CLK     ,
+
+output wire f_flag_light_1,
 output reg flag_light_1
 );
 
 reg [27:0] cnt1    ;
-wire f_flag_light_1;
+//wire f_flag_light_1;
+reg flag_key       ;
+reg flag_key_z     ;
 
 initial begin
-cnt1 = 'd0;
+cnt1 = 'd1;
+flag_key = 'd0;
+flag_key_z = 'd0;
+flag_light_1 = 'd0;
 end
 
-assign f_flag_light_1 = (cnt1 >= 28'h2FAF080 ? (1'b1) : (1'b0)); // 2FAF080 - 1 sec
+assign f_flag_light_1 = (cnt1 >= 28'h2FAF080) ? (1'b0) : (1'b1); // 2FAF080 - 1 sec
 
-always @(posedge KEY1) begin 
-	if(f_flag_light_1 == 1'b1)begin
+always @(posedge FPGA_CLK) begin 
+	if(flag_key > flag_key_z)begin
 		flag_light_1 <= 1'b1;
 	end 
 	else begin
@@ -199,14 +206,23 @@ always @(posedge KEY1) begin
 end
 
 always @(posedge FPGA_CLK) begin 
+	flag_key_z <= flag_key;
+end
+
+always @(posedge FPGA_CLK) begin 
     if (KEY1==1'b0) begin
-        if (cnt1 <= {28{1'b1}})begin
-	       cnt1 <= cnt1 + 1'd1;
-	     end else begin
-          cnt1<=cnt1         ;
+        if (f_flag_light_1)begin
+	       cnt1     <= cnt1 + 1'd1;
+		    flag_key <= 1'b0;
+	     end 
+		  else begin
+          cnt1     <= cnt1;
+		    flag_key <= 1'b1  ;        
 	     end
-	 end else begin
-	 cnt1 <= 'd0              ;
+	 end 
+	 else begin
+		cnt1     <= 'd0  ; 
+		flag_key <= 1'b0 ;            
     end
 end
 
@@ -224,7 +240,7 @@ initial begin
     Num_of_bit = 'd0;
 end 
 
-always@(posedge flag_light_1, posedge flag_light_2) begin
+always@(posedge FPGA_CLK) begin
      if(flag_light_1==1'b1) begin
 	     Num_of_bit <= Num_of_bit + 'd1;
 	 end 

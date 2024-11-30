@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP4CE10E22) Path("C:/Progect/Project_3/output_files/") File("Omdazz_CyclIV_Calcul.sof") MfrSpec(OpMask(1));
+		Device PartName(EP4CE10E22) Path("C:/Progect/classroom/Wersall_Lione/Project_3/output_files/") File("Omdazz_CyclIV_Calcul.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 
