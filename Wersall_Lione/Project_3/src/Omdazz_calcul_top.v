@@ -108,12 +108,14 @@ inout wire SD_WE
 //assign I2C_SCL = (1'b0) ? (1'b1) : (1'bZ); //3state - read
 
 assign {UART_TXD,PS_CLOCK,PS_DATA,VGA_HSYNC,VGA_VSYNC,ASDO_EPCS4,
-nCSO_EPCS4,DCLK_EPCS4,DIG_2,DIG_3,DIG_4} = 'd0;
-assign {IR,VGA_G,VGA_R,} = {13{1'b0}};
+nCSO_EPCS4,DCLK_EPCS4} = 'd0;
+assign {IR,VGA_G,VGA_R} = {3{1'b0}};
 assign {I2C_SCL,I2C_SDA,SCL,SDA,S_DQ0,S_DQ1,S_DQ2,S_DQ3,S_DQ4,S_DQ5,S_DQ6,S_DQ7,
 S_DQ8,S_DQ9,S_DQ10,S_DQ11,S_DQ12,S_DQ13,S_DQ14,S_DQ15,S_A0,S_A1,S_A2,S_A3,S_A4,
 S_A5,S_A6,S_A7,S_A8,S_A9,S_A10,S_A11,SD_BS0,SD_BS1,SD_LDQM,SD_UDQM,SD_CKE,
 SD_CLK,SD_CS,SD_WE,SD_RAS,SD_CAS,} = 1'bZ;
+ assign {DIG_2,DIG_3,DIG_4} = {4{1'b1}};
+
 //------------------------------------------------------------------
 
 wire flag1      ;
@@ -172,9 +174,10 @@ assign {LED1,LED2,LED3,LED4} = ~N_o_b;
 
 sevenseg
 sevenseg_inst(
-    .data   (N_o_b),
-    .segment  (SEG_0,SEG_1,SEG_3,SEG_4,SEG_5,SEG_6,SEG_7),
-    .seg_enable  (DIG_1)
+    .data                  (N_o_b),
+    .segment               ({SEG_0,SEG_1,SEG_2,SEG_3,SEG_4,SEG_5,SEG_6}),
+    .seg_enable_num        (DIG_1),
+	 .dot                   (SEG_7)
 );
 
 
@@ -266,7 +269,7 @@ endmodule
 module Buzzer( 
 input wire FPGA_CLK, // aclk!, aclk_50mhz
 input wire sound_on, // sound_en , enable , en , butt, btn_negative, btn_n 
-output reg beep,
+output reg beep
 
 );
 
@@ -310,49 +313,112 @@ end
 endmodule
 
 module sevenseg(
-input wire data[3:0],
 
-output reg segment [6:0],
-output wire seg_enable
+input wire [3:0] data,
+
+output reg [6:0] segment,
+output wire seg_enable_num,
+output wire dot
 );
 
-assign seg_enable = 1'b1;
+assign seg_enable_num = 1'b0;
+assign dot = 1'b1;
+
 
 always @ (data) begin 
 case (data)
 
-0: segment = 7'h70;
-1: segment = 7'h30;
-2: segment = 7'h6D;
-3: segment = 7'h79;
-4: segment = 7'h33;
-5: segment = 7'h5B;
-6: segment = 7'h5F;
-7: segment = 7'h70;
-8: segment = 7'h7F;
-9: segment = 7'h7B;
-10: segment = 7'h77;
-11: segment = 7'h1F;
-12: segment = 7'h4E;
-13: segment = 7'h3D;
-14: segment = 7'h4E;
-15: segment = 7'h47;
+0:       segment = 7'h1;
+1:       segment = 7'h4F;
+2:       segment = 7'h12;
+3:       segment = 7'h6;
+4:       segment = 7'h4C;
+5:       segment = 7'h24;
+6:       segment = 7'h20;
+7:       segment = 7'hF;
+8:       segment = 7'h0;
+9:       segment = 7'h4;
+10:      segment = 7'h8;
+11:      segment = 7'h60;
+12:      segment = 7'h31;
+13:      segment = 7'h42;
+14:      segment = 7'h30;
+15:      segment = 7'h38; 
+default: segment = 7'h7E;
 
 endcase
 end
 
+
+
 endmodule
-/*
+
 module key_v2(
 input wire KEY2         ,
 input wire FPGA_CLK     ,
 
-output reg flag_key_on
+output reg key_down,
+output reg key_up 
 );
+// syntch inpute wire with clk
+reg [1:0] key;
+reg key_change_f; // maybe wire???
+reg [25:0]key_cnt;
+reg key_cntmax;
+reg key_stable_f;
+reg key_sec_f;
+
+initial begin
+key = 'd0;
+key_cnt = 'd0;
+key_cntmax = 'h2FAF080 ;
+key_stable_f ='d0;
+key_change_f = 'd0;
+key_sec_f ='d0;
+end
+
+always@ (posedge FPGA_CLK ) begin
+key <= {key[0], ~KEY2};
+end
+// if key[1] = 1, button put in
+// wire key_change != key[1]; // ne to blyat'
+always@ (posedge FPGA_CLK ) begin
+ if (key_stable_f != key[1]) begin
+    key_change_f <= 'd1;
+ end else begin
+	key_change_f <= 'd0;
+end
+end
+//assign key_change_f = key_stable_f != key[1]; maybe the???
+
+
+always@ ( posedge FPGA_CLK) begin
+    if(key_change_f) begin
+       key_cnt <= key_cnt + 'd1;
+	    if(key_cnt>=key_cntmax) begin
+           key_stable_f <= ~key_stable_f;
+		   key_sec_f<= 'd1;
+	    end
+		else begin
+			key_stable_f <= key_stable_f;
+			key_sec_f<= key_sec_f;
+		end
+	end else begin
+       key_cnt <= 'd0;
+	   key_sec_f <= 'd0;
+	end
+end
+
+always@ (posedge FPGA_CLK ) begin
+key_down <= key_sec_f & key_change_f & ~key_stable_f;
+key_up <= ~key_sec_f & key_change_f & ~key_stable_f;
+end
+
+
 
 
 endmodule
-
+/*
 module invert_data(
 input wire data,
 input wire en_key,

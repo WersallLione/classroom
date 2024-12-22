@@ -24,7 +24,31 @@
 					"strict" : false
 				},
 				{
-					"name" : "VGA_B",
+					"name" : "SEG_0",
+					"strict" : false
+				},
+				{
+					"name" : "SEG_1",
+					"strict" : false
+				},
+				{
+					"name" : "SEG_2",
+					"strict" : false
+				},
+				{
+					"name" : "SEG_3",
+					"strict" : false
+				},
+				{
+					"name" : "SEG_4",
+					"strict" : false
+				},
+				{
+					"name" : "SEG_5",
+					"strict" : false
+				},
+				{
+					"name" : "SEG_6",
 					"strict" : false
 				},
 				{
@@ -41,22 +65,6 @@
 				},
 				{
 					"name" : "KEY3",
-					"strict" : false
-				},
-				{
-					"name" : "altera_reserved_tms",
-					"strict" : false
-				},
-				{
-					"name" : "altera_reserved_tck",
-					"strict" : false
-				},
-				{
-					"name" : "altera_reserved_tdi",
-					"strict" : false
-				},
-				{
-					"name" : "altera_reserved_tdo",
 					"strict" : false
 				}
 			]

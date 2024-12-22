@@ -1,1 +1,1 @@
-Warning (10268): Verilog HDL information at Omdazz_calcul_top.v(204): always construct contains both blocking and non-blocking assignments File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 204
+Warning (10268): Verilog HDL information at Omdazz_calcul_top.v(322): always construct contains both blocking and non-blocking assignments File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 322

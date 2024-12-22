@@ -6,47 +6,47 @@ KEY4 => KEY4.IN1
 RESET_BUT => ~NO_FANOUT~
 FPGA_CLK => FPGA_CLK.IN5
 UART_RXD => ~NO_FANOUT~
-UART_TXD << <GND>
+UART_TXD <= <GND>
 SCL <> SCL
 SDA <> SDA
-LED1 << CALCUL:CALCUL_inst.Num_of_bit
-LED2 << CALCUL:CALCUL_inst.Num_of_bit
-LED3 << CALCUL:CALCUL_inst.Num_of_bit
-LED4 << CALCUL:CALCUL_inst.Num_of_bit
+LED1 <= N_o_b[3].DB_MAX_OUTPUT_PORT_TYPE
+LED2 <= N_o_b[2].DB_MAX_OUTPUT_PORT_TYPE
+LED3 <= N_o_b[1].DB_MAX_OUTPUT_PORT_TYPE
+LED4 <= N_o_b[0].DB_MAX_OUTPUT_PORT_TYPE
 I2C_SCL <> I2C_SCL
 I2C_SDA <> I2C_SDA
-beep << Buzzer:Buzzer_440Hz_inst.beep
-PS_CLOCK << <GND>
-PS_DATA << <GND>
-IR << <GND>
-VGA_HSYNC << <GND>
-VGA_VSYNC << <GND>
-VGA_B << Buzzer:Buzzer_440Hz_inst.o_clock
-VGA_G << <GND>
-VGA_R << <GND>
-DIG_1 << <GND>
-DIG_2 << <GND>
-DIG_3 << <GND>
-DIG_4 << <GND>
-SEG_0 << <GND>
-SEG_1 << <GND>
-SEG_2 << <GND>
-SEG_3 << <GND>
-SEG_4 << <GND>
-SEG_5 << <GND>
-SEG_6 << <GND>
-SEG_7 << <GND>
-LCD1_RS << <GND>
-LCD2_RW << <GND>
-LCD3_E << <GND>
-LCD4_D0 << <GND>
-LCD5_D1 << <GND>
-LCD6_D2 << <GND>
-LCD7_D3 << <GND>
-LCD8_D4 << <GND>
-LCD9_D5 << <GND>
-LCD10_D6 << <GND>
-LCD11_D7 << <GND>
+beep <= Buzzer:Buzzer_440Hz_inst.beep
+PS_CLOCK <= <GND>
+PS_DATA <= <GND>
+IR <= <GND>
+VGA_HSYNC <= <GND>
+VGA_VSYNC <= <GND>
+VGA_B <= <GND>
+VGA_G <= <GND>
+VGA_R <= <GND>
+DIG_1 <= sevenseg:sevenseg_inst.seg_enable_num
+DIG_2 <= <VCC>
+DIG_3 <= <VCC>
+DIG_4 <= <VCC>
+SEG_0 <= sevenseg:sevenseg_inst.segment
+SEG_1 <= sevenseg:sevenseg_inst.segment
+SEG_2 <= sevenseg:sevenseg_inst.segment
+SEG_3 <= sevenseg:sevenseg_inst.segment
+SEG_4 <= sevenseg:sevenseg_inst.segment
+SEG_5 <= sevenseg:sevenseg_inst.segment
+SEG_6 <= sevenseg:sevenseg_inst.segment
+SEG_7 <= sevenseg:sevenseg_inst.dot
+LCD1_RS <= <GND>
+LCD2_RW <= <GND>
+LCD3_E <= <GND>
+LCD4_D0 <= <GND>
+LCD5_D1 <= <GND>
+LCD6_D2 <= <GND>
+LCD7_D3 <= <GND>
+LCD8_D4 <= <GND>
+LCD9_D5 <= <GND>
+LCD10_D6 <= <GND>
+LCD11_D7 <= <GND>
 S_DQ0 <> S_DQ0
 S_DQ1 <> S_DQ1
 S_DQ2 <> S_DQ2
@@ -309,7 +309,6 @@ FPGA_CLK => switch.CLK
 FPGA_CLK => beep~reg0.CLK
 sound_on => switch.ENA
 beep <= beep~reg0.DB_MAX_OUTPUT_PORT_TYPE
-o_clock <= beep_bzz.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |Omdazz_calcul_top|CALCUL:CALCUL_inst
@@ -329,5 +328,21 @@ Num_of_bit[0] <= Num_of_bit[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 Num_of_bit[1] <= Num_of_bit[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 Num_of_bit[2] <= Num_of_bit[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 Num_of_bit[3] <= Num_of_bit[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Omdazz_calcul_top|sevenseg:sevenseg_inst
+data[0] => Decoder0.IN3
+data[1] => Decoder0.IN2
+data[2] => Decoder0.IN1
+data[3] => Decoder0.IN0
+segment[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+segment[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+segment[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+segment[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+segment[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+segment[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+segment[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+seg_enable_num <= <GND>
+dot <= <VCC>
 
 
