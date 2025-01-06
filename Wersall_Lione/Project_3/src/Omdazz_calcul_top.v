@@ -124,28 +124,29 @@ wire flag3      ;
 wire [3:0] pwrr ; 
 wire [3:0] N_o_b;
 
-KEY_ADD 
-KEY_ADD_inst 
+key_v2
+key_v2_add_inst
 (
-	.KEY1       (KEY1     ),
-	.FPGA_CLK   (FPGA_CLK ),
-	.flag_light_1   (flag1)
+    .KEY          (KEY1),
+    .FPGA_CLK     (FPGA_CLK),
+    .f_key_down   (),
+    .f_key_up     (flag1)
 );
-
-KEY_ADD 
-KEY_MINUS_inst 
+key_v2
+key_v2_minus_inst
 (
-	.KEY1       (KEY4     ),
-	.FPGA_CLK   (FPGA_CLK ),
-	.flag_light_1   (flag4)
+    .KEY          (KEY4),
+    .FPGA_CLK     (FPGA_CLK),
+    .f_key_down   (),
+    .f_key_up     (flag4)
 );
-
-KEY_ADD
-KEY_BUZZ_inst
+key_v2
+key_v2_bzz_inst
 (
-	.KEY1       (KEY3     ),
-	.FPGA_CLK   (FPGA_CLK ),
-	.flag_light_1   (flag3)
+    .KEY          (KEY3),
+    .FPGA_CLK     (FPGA_CLK),
+    .f_key_down   (),
+    .f_key_up     (flag3)
 );
 
 Buzzer
@@ -354,67 +355,60 @@ end
 endmodule
 
 module key_v2(
-input wire KEY2         ,
+input wire KEY         ,
 input wire FPGA_CLK     ,
 
-output reg key_down,
-output reg key_up 
+output reg f_key_down,
+output reg f_key_up 
 );
 // syntch inpute wire with clk
 reg [1:0] key;
-reg key_change_f; // maybe wire???
-reg [25:0]key_cnt;
-reg key_cntmax;
-reg key_stable_f;
-reg key_sec_f;
+reg [23:0] key_cnt;
+reg f_key_en;
+reg f_key_en1;
 
 initial begin
 key = 'd0;
 key_cnt = 'd0;
-key_cntmax = 'h2FAF080 ;
-key_stable_f ='d0;
-key_change_f = 'd0;
-key_sec_f ='d0;
+f_key_en ='d0;
+f_key_en1 ='d0;
+// key_cntmax = 'hFFFFFF;
 end
 
+//sync input signal with clk
 always@ (posedge FPGA_CLK ) begin
-key <= {key[0], ~KEY2};
+key <= {key[0], ~KEY};
 end
 // if key[1] = 1, button put in
-// wire key_change != key[1]; // ne to blyat'
-always@ (posedge FPGA_CLK ) begin
- if (key_stable_f != key[1]) begin
-    key_change_f <= 'd1;
- end else begin
-	key_change_f <= 'd0;
-end
-end
-//assign key_change_f = key_stable_f != key[1]; maybe the???
-
-
-always@ ( posedge FPGA_CLK) begin
-    if(key_change_f) begin
-       key_cnt <= key_cnt + 'd1;
-	    if(key_cnt>=key_cntmax) begin
-           key_stable_f <= ~key_stable_f;
-		   key_sec_f<= 'd1;
-	    end
-		else begin
-			key_stable_f <= key_stable_f;
-			key_sec_f<= key_sec_f;
+// 
+always@(posedge FPGA_CLK) begin
+	if ( key[1]) begin
+		if(key_cnt>='hFFFFFF) begin
+		    key_cnt <= key_cnt;
+		    f_key_en <=1'b1;
+		end else begin
+		    key_cnt <= key_cnt + 1'b1; 
+            f_key_en <= f_key_en;
 		end
 	end else begin
-       key_cnt <= 'd0;
-	   key_sec_f <= 'd0;
+        key_cnt<= 'd0;
+		f_key_en <= 1'b0;
 	end
 end
 
-always@ (posedge FPGA_CLK ) begin
-key_down <= key_sec_f & key_change_f & ~key_stable_f;
-key_up <= ~key_sec_f & key_change_f & ~key_stable_f;
+always@ (posedge FPGA_CLK) begin
+f_key_en1 <= f_key_en;
 end
 
-
+always@ (posedge FPGA_CLK) begin
+    if(f_key_en > f_key_en1 ) begin
+        f_key_down <= 1'b0;
+        f_key_up <= 1'b1;
+	end else begin
+        f_key_down <= 1'b1;
+        f_key_up <= 1'b0;
+    end
+end 
 
 
 endmodule

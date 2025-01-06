@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Omdazz_CyclIV_Calcul
-Sun Dec 22 22:39:20 2024
+Mon Jan 06 15:46:41 2025
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Standard Edition
 
 
@@ -14,14 +14,14 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Standard Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. General Register Statistics
-  9. Inverted Register Statistics
- 10. Multiplexer Restructuring Statistics (Restructuring Performed)
- 11. Port Connectivity Checks: "KEY_ADD:KEY_BUZZ_inst"
- 12. Port Connectivity Checks: "KEY_ADD:KEY_MINUS_inst"
- 13. Port Connectivity Checks: "KEY_ADD:KEY_ADD_inst"
- 14. Post-Synthesis Netlist Statistics for Top Partition
- 15. Elapsed Time Per Partition
- 16. Analysis & Synthesis Messages
+  9. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 10. Port Connectivity Checks: "key_v2:key_v2_bzz_inst"
+ 11. Port Connectivity Checks: "key_v2:key_v2_minus_inst"
+ 12. Port Connectivity Checks: "key_v2:key_v2_add_inst"
+ 13. Post-Synthesis Netlist Statistics for Top Partition
+ 14. Elapsed Time Per Partition
+ 15. Analysis & Synthesis Messages
+ 16. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -48,15 +48,15 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Dec 22 22:39:20 2024           ;
+; Analysis & Synthesis Status        ; Successful - Mon Jan 06 15:46:41 2025           ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Standard Edition ;
 ; Revision Name                      ; Omdazz_CyclIV_Calcul                            ;
 ; Top-level Entity Name              ; Omdazz_calcul_top                               ;
 ; Family                             ; Cyclone IV E                                    ;
-; Total logic elements               ; 243                                             ;
-;     Total combinational functions  ; 240                                             ;
-;     Dedicated logic registers      ; 121                                             ;
-; Total registers                    ; 121                                             ;
+; Total logic elements               ; 154                                             ;
+;     Total combinational functions  ; 148                                             ;
+;     Dedicated logic registers      ; 115                                             ;
+; Total registers                    ; 115                                             ;
 ; Total pins                         ; 86                                              ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
@@ -182,20 +182,20 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimated Total logic elements              ; 243            ;
+; Estimated Total logic elements              ; 154            ;
 ;                                             ;                ;
-; Total combinational functions               ; 240            ;
+; Total combinational functions               ; 148            ;
 ; Logic element usage by number of LUT inputs ;                ;
-;     -- 4 input functions                    ; 39             ;
-;     -- 3 input functions                    ; 3              ;
-;     -- <=2 input functions                  ; 198            ;
+;     -- 4 input functions                    ; 40             ;
+;     -- 3 input functions                    ; 4              ;
+;     -- <=2 input functions                  ; 104            ;
 ;                                             ;                ;
 ; Logic elements by mode                      ;                ;
-;     -- normal mode                          ; 136            ;
-;     -- arithmetic mode                      ; 104            ;
+;     -- normal mode                          ; 56             ;
+;     -- arithmetic mode                      ; 92             ;
 ;                                             ;                ;
-; Total registers                             ; 121            ;
-;     -- Dedicated logic registers            ; 121            ;
+; Total registers                             ; 115            ;
+;     -- Dedicated logic registers            ; 115            ;
 ;     -- I/O registers                        ; 0              ;
 ;                                             ;                ;
 ; I/O pins                                    ; 86             ;
@@ -203,9 +203,9 @@ https://fpgasoftware.intel.com/eula.
 ; Embedded Multiplier 9-bit elements          ; 0              ;
 ;                                             ;                ;
 ; Maximum fan-out node                        ; FPGA_CLK~input ;
-; Maximum fan-out                             ; 121            ;
-; Total fan-out                               ; 1044           ;
-; Average fan-out                             ; 1.82           ;
+; Maximum fan-out                             ; 115            ;
+; Total fan-out                               ; 914            ;
+; Average fan-out                             ; 1.92           ;
 +---------------------------------------------+----------------+
 
 
@@ -214,12 +214,12 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------+-------------------+--------------+
 ; Compilation Hierarchy Node    ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                         ; Entity Name       ; Library Name ;
 +-------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------+-------------------+--------------+
-; |Omdazz_calcul_top            ; 240 (0)             ; 121 (0)                   ; 0           ; 0            ; 0       ; 0         ; 86   ; 0            ; |Omdazz_calcul_top                          ; Omdazz_calcul_top ; work         ;
-;    |Buzzer:Buzzer_440Hz_inst| ; 29 (29)             ; 24 (24)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Omdazz_calcul_top|Buzzer:Buzzer_440Hz_inst ; Buzzer            ; work         ;
+; |Omdazz_calcul_top            ; 148 (0)             ; 115 (0)                   ; 0           ; 0            ; 0       ; 0         ; 86   ; 0            ; |Omdazz_calcul_top                          ; Omdazz_calcul_top ; work         ;
+;    |Buzzer:Buzzer_440Hz_inst| ; 30 (30)             ; 24 (24)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Omdazz_calcul_top|Buzzer:Buzzer_440Hz_inst ; Buzzer            ; work         ;
 ;    |CALCUL:CALCUL_inst|       ; 6 (6)               ; 4 (4)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Omdazz_calcul_top|CALCUL:CALCUL_inst       ; CALCUL            ; work         ;
-;    |KEY_ADD:KEY_ADD_inst|     ; 66 (66)             ; 31 (31)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Omdazz_calcul_top|KEY_ADD:KEY_ADD_inst     ; KEY_ADD           ; work         ;
-;    |KEY_ADD:KEY_BUZZ_inst|    ; 66 (66)             ; 31 (31)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Omdazz_calcul_top|KEY_ADD:KEY_BUZZ_inst    ; KEY_ADD           ; work         ;
-;    |KEY_ADD:KEY_MINUS_inst|   ; 66 (66)             ; 31 (31)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Omdazz_calcul_top|KEY_ADD:KEY_MINUS_inst   ; KEY_ADD           ; work         ;
+;    |key_v2:key_v2_add_inst|   ; 35 (35)             ; 29 (29)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Omdazz_calcul_top|key_v2:key_v2_add_inst   ; key_v2            ; work         ;
+;    |key_v2:key_v2_bzz_inst|   ; 35 (35)             ; 29 (29)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Omdazz_calcul_top|key_v2:key_v2_bzz_inst   ; key_v2            ; work         ;
+;    |key_v2:key_v2_minus_inst| ; 35 (35)             ; 29 (29)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Omdazz_calcul_top|key_v2:key_v2_minus_inst ; key_v2            ; work         ;
 ;    |sevenseg:sevenseg_inst|   ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Omdazz_calcul_top|sevenseg:sevenseg_inst   ; sevenseg          ; work         ;
 +-------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------+-------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
@@ -230,64 +230,52 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 121   ;
-; Number of registers using Synchronous Clear  ; 21    ;
+; Total registers                              ; 115   ;
+; Number of registers using Synchronous Clear  ; 96    ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 84    ;
+; Number of registers using Clock Enable       ; 75    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+--------------------------------------------------+
-; Inverted Register Statistics                     ;
-+----------------------------------------+---------+
-; Inverted Register                      ; Fan out ;
-+----------------------------------------+---------+
-; KEY_ADD:KEY_ADD_inst|cnt1[0]           ; 2       ;
-; KEY_ADD:KEY_MINUS_inst|cnt1[0]         ; 2       ;
-; KEY_ADD:KEY_BUZZ_inst|cnt1[0]          ; 2       ;
-; Total number of inverted registers = 3 ;         ;
-+----------------------------------------+---------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------+
+; 3:1                ; 24 bits   ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; Yes        ; |Omdazz_calcul_top|key_v2:key_v2_add_inst|key_cnt[0]    ;
+; 3:1                ; 24 bits   ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; Yes        ; |Omdazz_calcul_top|key_v2:key_v2_minus_inst|key_cnt[23] ;
+; 3:1                ; 24 bits   ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; Yes        ; |Omdazz_calcul_top|key_v2:key_v2_bzz_inst|key_cnt[23]   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                   ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                         ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------+
-; 3:1                ; 27 bits   ; 54 LEs        ; 27 LEs               ; 27 LEs                 ; Yes        ; |Omdazz_calcul_top|KEY_ADD:KEY_ADD_inst|cnt1[26]   ;
-; 3:1                ; 27 bits   ; 54 LEs        ; 27 LEs               ; 27 LEs                 ; Yes        ; |Omdazz_calcul_top|KEY_ADD:KEY_MINUS_inst|cnt1[27] ;
-; 3:1                ; 27 bits   ; 54 LEs        ; 27 LEs               ; 27 LEs                 ; Yes        ; |Omdazz_calcul_top|KEY_ADD:KEY_BUZZ_inst|cnt1[27]  ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------+
++---------------------------------------------------------+
+; Port Connectivity Checks: "key_v2:key_v2_bzz_inst"      ;
++------------+--------+----------+------------------------+
+; Port       ; Type   ; Severity ; Details                ;
++------------+--------+----------+------------------------+
+; f_key_down ; Output ; Info     ; Explicitly unconnected ;
++------------+--------+----------+------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "KEY_ADD:KEY_BUZZ_inst"                                                                                             ;
-+----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
-; Port           ; Type   ; Severity ; Details                                                                                                  ;
-+----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
-; f_flag_light_1 ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-+----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
++---------------------------------------------------------+
+; Port Connectivity Checks: "key_v2:key_v2_minus_inst"    ;
++------------+--------+----------+------------------------+
+; Port       ; Type   ; Severity ; Details                ;
++------------+--------+----------+------------------------+
+; f_key_down ; Output ; Info     ; Explicitly unconnected ;
++------------+--------+----------+------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "KEY_ADD:KEY_MINUS_inst"                                                                                            ;
-+----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
-; Port           ; Type   ; Severity ; Details                                                                                                  ;
-+----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
-; f_flag_light_1 ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-+----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
-
-
-+-----------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "KEY_ADD:KEY_ADD_inst"                                                                                              ;
-+----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
-; Port           ; Type   ; Severity ; Details                                                                                                  ;
-+----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
-; f_flag_light_1 ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-+----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
++---------------------------------------------------------+
+; Port Connectivity Checks: "key_v2:key_v2_add_inst"      ;
++------------+--------+----------+------------------------+
+; Port       ; Type   ; Severity ; Details                ;
++------------+--------+----------+------------------------+
+; f_key_down ; Output ; Info     ; Explicitly unconnected ;
++------------+--------+----------+------------------------+
 
 
 +-----------------------------------------------------+
@@ -296,24 +284,25 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 86                          ;
-; cycloneiii_ff         ; 121                         ;
-;     ENA               ; 84                          ;
-;     SCLR              ; 21                          ;
+; cycloneiii_ff         ; 115                         ;
+;     ENA               ; 3                           ;
+;     ENA SCLR          ; 72                          ;
+;     SCLR              ; 24                          ;
 ;     plain             ; 16                          ;
 ; cycloneiii_io_obuf    ; 42                          ;
-; cycloneiii_lcell_comb ; 247                         ;
-;     arith             ; 104                         ;
-;         2 data inputs ; 102                         ;
+; cycloneiii_lcell_comb ; 155                         ;
+;     arith             ; 92                          ;
+;         2 data inputs ; 90                          ;
 ;         3 data inputs ; 2                           ;
-;     normal            ; 143                         ;
+;     normal            ; 63                          ;
 ;         0 data inputs ; 2                           ;
-;         1 data inputs ; 9                           ;
-;         2 data inputs ; 92                          ;
-;         3 data inputs ; 1                           ;
-;         4 data inputs ; 39                          ;
+;         1 data inputs ; 12                          ;
+;         2 data inputs ; 7                           ;
+;         3 data inputs ; 2                           ;
+;         4 data inputs ; 40                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 5.00                        ;
-; Average LUT depth     ; 3.23                        ;
+; Max LUT depth         ; 3.30                        ;
+; Average LUT depth     ; 2.17                        ;
 +-----------------------+-----------------------------+
 
 
@@ -322,7 +311,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -332,18 +321,18 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Standard Edition
-    Info: Processing started: Sun Dec 22 22:39:10 2024
+    Info: Processing started: Mon Jan 06 15:46:28 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Omdazz_CyclIV_Calcul -c Omdazz_CyclIV_Calcul
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
-Warning (10275): Verilog HDL Module Instantiation warning at Omdazz_calcul_top.v(158): ignored dangling comma in List of Port Connections File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 158
+Warning (10275): Verilog HDL Module Instantiation warning at Omdazz_calcul_top.v(159): ignored dangling comma in List of Port Connections File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 159
 Info (12021): Found 6 design units, including 6 entities, in source file src/omdazz_calcul_top.v
     Info (12023): Found entity 1: Omdazz_calcul_top File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 1
-    Info (12023): Found entity 2: KEY_ADD File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 189
-    Info (12023): Found entity 3: CALCUL File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 244
-    Info (12023): Found entity 4: Buzzer File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 269
-    Info (12023): Found entity 5: sevenseg File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 315
-    Info (12023): Found entity 6: key_v2 File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 356
+    Info (12023): Found entity 2: KEY_ADD File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 190
+    Info (12023): Found entity 3: CALCUL File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 245
+    Info (12023): Found entity 4: Buzzer File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 270
+    Info (12023): Found entity 5: sevenseg File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 316
+    Info (12023): Found entity 6: key_v2 File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 357
 Info (12021): Found 1 design units, including 1 entities, in source file pll_0.v
     Info (12023): Found entity 1: pll_0 File: C:/Progect/classroom/Wersall_Lione/Project_3/pll_0.v Line: 40
 Warning (10236): Verilog HDL Implicit Net warning at Omdazz_calcul_top.v(110): created implicit net for "ASDO_EPCS4" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 110
@@ -366,14 +355,13 @@ Warning (10034): Output port "LCD8_D4" at Omdazz_calcul_top.v(58) has no driver 
 Warning (10034): Output port "LCD9_D5" at Omdazz_calcul_top.v(59) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 59
 Warning (10034): Output port "LCD10_D6" at Omdazz_calcul_top.v(60) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 60
 Warning (10034): Output port "LCD11_D7" at Omdazz_calcul_top.v(61) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 61
-Info (12128): Elaborating entity "KEY_ADD" for hierarchy "KEY_ADD:KEY_ADD_inst" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 133
-Info (12128): Elaborating entity "Buzzer" for hierarchy "Buzzer:Buzzer_440Hz_inst" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 158
-Warning (10230): Verilog HDL assignment warning at Omdazz_calcul_top.v(310): truncated value with size 32 to match size of target (21) File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 310
-Info (12128): Elaborating entity "CALCUL" for hierarchy "CALCUL:CALCUL_inst" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 167
-Warning (10230): Verilog HDL assignment warning at Omdazz_calcul_top.v(258): truncated value with size 32 to match size of target (4) File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 258
-Warning (10230): Verilog HDL assignment warning at Omdazz_calcul_top.v(261): truncated value with size 32 to match size of target (4) File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 261
-Info (12128): Elaborating entity "sevenseg" for hierarchy "sevenseg:sevenseg_inst" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 181
-Warning (12241): 3 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (12128): Elaborating entity "key_v2" for hierarchy "key_v2:key_v2_add_inst" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 134
+Info (12128): Elaborating entity "Buzzer" for hierarchy "Buzzer:Buzzer_440Hz_inst" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 159
+Warning (10230): Verilog HDL assignment warning at Omdazz_calcul_top.v(311): truncated value with size 32 to match size of target (21) File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 311
+Info (12128): Elaborating entity "CALCUL" for hierarchy "CALCUL:CALCUL_inst" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 168
+Warning (10230): Verilog HDL assignment warning at Omdazz_calcul_top.v(259): truncated value with size 32 to match size of target (4) File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 259
+Warning (10230): Verilog HDL assignment warning at Omdazz_calcul_top.v(262): truncated value with size 32 to match size of target (4) File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 262
+Info (12128): Elaborating entity "sevenseg" for hierarchy "sevenseg:sevenseg_inst" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 182
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "UART_TXD" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 9
     Warning (13410): Pin "PS_CLOCK" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 21
@@ -401,21 +389,28 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LCD10_D6" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 60
     Warning (13410): Pin "LCD11_D7" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 61
 Info (286030): Timing-Driven Synthesis is running
+Info (144001): Generated suppressed messages file C:/Progect/classroom/Wersall_Lione/Project_3/output_files/Omdazz_CyclIV_Calcul.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 3 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "KEY2" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 3
     Warning (15610): No output dependent on input pin "RESET_BUT" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 6
     Warning (15610): No output dependent on input pin "UART_RXD" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 8
-Info (21057): Implemented 332 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 240 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 7 input pins
     Info (21059): Implemented 37 output pins
     Info (21060): Implemented 42 bidirectional pins
-    Info (21061): Implemented 246 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 55 warnings
-    Info: Peak virtual memory: 4753 megabytes
-    Info: Processing ended: Sun Dec 22 22:39:20 2024
-    Info: Elapsed time: 00:00:10
-    Info: Total CPU time (on all processors): 00:00:25
+    Info (21061): Implemented 154 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 54 warnings
+    Info: Peak virtual memory: 4756 megabytes
+    Info: Processing ended: Mon Jan 06 15:46:41 2025
+    Info: Elapsed time: 00:00:13
+    Info: Total CPU time (on all processors): 00:00:26
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in C:/Progect/classroom/Wersall_Lione/Project_3/output_files/Omdazz_CyclIV_Calcul.map.smsg.
 
 
