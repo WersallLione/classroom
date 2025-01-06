@@ -1,12 +1,12 @@
-Analysis & Synthesis Status : Successful - Sun Dec 22 22:39:20 2024
+Analysis & Synthesis Status : Successful - Mon Jan 06 15:59:31 2025
 Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Standard Edition
 Revision Name : Omdazz_CyclIV_Calcul
 Top-level Entity Name : Omdazz_calcul_top
 Family : Cyclone IV E
-Total logic elements : 243
-    Total combinational functions : 240
-    Dedicated logic registers : 121
-Total registers : 121
+Total logic elements : 154
+    Total combinational functions : 148
+    Dedicated logic registers : 115
+Total registers : 115
 Total pins : 86
 Total virtual pins : 0
 Total memory bits : 0
