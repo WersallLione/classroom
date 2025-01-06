@@ -1,5 +1,9 @@
 Analysis & Synthesis report for Omdazz_CyclIV_Calcul
+<<<<<<< HEAD
 Mon Jan 06 15:59:31 2025
+=======
+Mon Jan 06 15:46:41 2025
+>>>>>>> 211b8e1a2c7f55b8ec1f18e01cfc0cfba70d4e21
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Standard Edition
 
 
@@ -48,7 +52,11 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
+<<<<<<< HEAD
 ; Analysis & Synthesis Status        ; Successful - Mon Jan 06 15:59:31 2025           ;
+=======
+; Analysis & Synthesis Status        ; Successful - Mon Jan 06 15:46:41 2025           ;
+>>>>>>> 211b8e1a2c7f55b8ec1f18e01cfc0cfba70d4e21
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Standard Edition ;
 ; Revision Name                      ; Omdazz_CyclIV_Calcul                            ;
 ; Top-level Entity Name              ; Omdazz_calcul_top                               ;
@@ -311,7 +319,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -321,18 +329,30 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Standard Edition
+<<<<<<< HEAD
     Info: Processing started: Mon Jan 06 15:59:20 2025
+=======
+    Info: Processing started: Mon Jan 06 15:46:28 2025
+>>>>>>> 211b8e1a2c7f55b8ec1f18e01cfc0cfba70d4e21
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Omdazz_CyclIV_Calcul -c Omdazz_CyclIV_Calcul
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Warning (10275): Verilog HDL Module Instantiation warning at Omdazz_calcul_top.v(159): ignored dangling comma in List of Port Connections File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 159
 Info (12021): Found 6 design units, including 6 entities, in source file src/omdazz_calcul_top.v
     Info (12023): Found entity 1: Omdazz_calcul_top File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 1
+<<<<<<< HEAD
     Info (12023): Found entity 2: KEY_ADD File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 186
     Info (12023): Found entity 3: CALCUL File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 241
     Info (12023): Found entity 4: Buzzer File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 266
     Info (12023): Found entity 5: sevenseg File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 312
     Info (12023): Found entity 6: key_v2 File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 353
+=======
+    Info (12023): Found entity 2: KEY_ADD File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 190
+    Info (12023): Found entity 3: CALCUL File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 245
+    Info (12023): Found entity 4: Buzzer File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 270
+    Info (12023): Found entity 5: sevenseg File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 316
+    Info (12023): Found entity 6: key_v2 File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 357
+>>>>>>> 211b8e1a2c7f55b8ec1f18e01cfc0cfba70d4e21
 Info (12021): Found 1 design units, including 1 entities, in source file pll_0.v
     Info (12023): Found entity 1: pll_0 File: C:/Progect/classroom/Wersall_Lione/Project_3/pll_0.v Line: 40
 Warning (10236): Verilog HDL Implicit Net warning at Omdazz_calcul_top.v(110): created implicit net for "ASDO_EPCS4" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 110
@@ -357,10 +377,17 @@ Warning (10034): Output port "LCD10_D6" at Omdazz_calcul_top.v(60) has no driver
 Warning (10034): Output port "LCD11_D7" at Omdazz_calcul_top.v(61) has no driver File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 61
 Info (12128): Elaborating entity "key_v2" for hierarchy "key_v2:key_v2_add_inst" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 134
 Info (12128): Elaborating entity "Buzzer" for hierarchy "Buzzer:Buzzer_440Hz_inst" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 159
+<<<<<<< HEAD
 Warning (10230): Verilog HDL assignment warning at Omdazz_calcul_top.v(307): truncated value with size 32 to match size of target (21) File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 307
 Info (12128): Elaborating entity "CALCUL" for hierarchy "CALCUL:CALCUL_inst" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 168
 Warning (10230): Verilog HDL assignment warning at Omdazz_calcul_top.v(255): truncated value with size 32 to match size of target (4) File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 255
 Warning (10230): Verilog HDL assignment warning at Omdazz_calcul_top.v(258): truncated value with size 32 to match size of target (4) File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 258
+=======
+Warning (10230): Verilog HDL assignment warning at Omdazz_calcul_top.v(311): truncated value with size 32 to match size of target (21) File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 311
+Info (12128): Elaborating entity "CALCUL" for hierarchy "CALCUL:CALCUL_inst" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 168
+Warning (10230): Verilog HDL assignment warning at Omdazz_calcul_top.v(259): truncated value with size 32 to match size of target (4) File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 259
+Warning (10230): Verilog HDL assignment warning at Omdazz_calcul_top.v(262): truncated value with size 32 to match size of target (4) File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 262
+>>>>>>> 211b8e1a2c7f55b8ec1f18e01cfc0cfba70d4e21
 Info (12128): Elaborating entity "sevenseg" for hierarchy "sevenseg:sevenseg_inst" File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 182
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "UART_TXD" is stuck at GND File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 9
@@ -402,9 +429,15 @@ Info (21057): Implemented 240 device resources after synthesis - the final resou
     Info (21060): Implemented 42 bidirectional pins
     Info (21061): Implemented 154 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 54 warnings
+<<<<<<< HEAD
     Info: Peak virtual memory: 4762 megabytes
     Info: Processing ended: Mon Jan 06 15:59:31 2025
     Info: Elapsed time: 00:00:11
+=======
+    Info: Peak virtual memory: 4756 megabytes
+    Info: Processing ended: Mon Jan 06 15:46:41 2025
+    Info: Elapsed time: 00:00:13
+>>>>>>> 211b8e1a2c7f55b8ec1f18e01cfc0cfba70d4e21
     Info: Total CPU time (on all processors): 00:00:26
 
 

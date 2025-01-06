@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 Info (10281): Verilog HDL Declaration information at Omdazz_calcul_top.v(354): object "KEY" differs only in case from object "key" in the same scope File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 354
+=======
+Info (10281): Verilog HDL Declaration information at Omdazz_calcul_top.v(358): object "KEY" differs only in case from object "key" in the same scope File: C:/Progect/classroom/Wersall_Lione/Project_3/src/Omdazz_calcul_top.v Line: 358
+>>>>>>> 211b8e1a2c7f55b8ec1f18e01cfc0cfba70d4e21

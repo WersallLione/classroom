@@ -362,14 +362,21 @@ reg [1:0] key;
 reg [23:0] key_cnt;
 reg f_key_en;
 reg f_key_en1;
+<<<<<<< HEAD
 reg [23:0] key_cntmax;
+=======
+>>>>>>> 211b8e1a2c7f55b8ec1f18e01cfc0cfba70d4e21
 
 initial begin
 key = 'd0;
 key_cnt = 'd0;
 f_key_en ='d0;
 f_key_en1 ='d0;
+<<<<<<< HEAD
 key_cntmax = 'hFFFFFF;
+=======
+// key_cntmax = 'hFFFFFF;
+>>>>>>> 211b8e1a2c7f55b8ec1f18e01cfc0cfba70d4e21
 end
 
 //sync input signal with clk
@@ -380,7 +387,11 @@ end
 // 
 always@(posedge FPGA_CLK) begin
 	if ( key[1]) begin
+<<<<<<< HEAD
 		if(key_cnt >= key_cntmax) begin
+=======
+		if(key_cnt>='hFFFFFF) begin
+>>>>>>> 211b8e1a2c7f55b8ec1f18e01cfc0cfba70d4e21
 		    key_cnt <= key_cnt;
 		    f_key_en <=1'b1;
 		end else begin
