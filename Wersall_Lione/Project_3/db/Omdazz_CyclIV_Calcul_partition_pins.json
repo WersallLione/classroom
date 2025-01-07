@@ -24,6 +24,22 @@
 					"strict" : false
 				},
 				{
+					"name" : "DIG_1",
+					"strict" : false
+				},
+				{
+					"name" : "DIG_2",
+					"strict" : false
+				},
+				{
+					"name" : "DIG_3",
+					"strict" : false
+				},
+				{
+					"name" : "DIG_4",
+					"strict" : false
+				},
+				{
 					"name" : "SEG_0",
 					"strict" : false
 				},
@@ -53,6 +69,10 @@
 				},
 				{
 					"name" : "FPGA_CLK",
+					"strict" : false
+				},
+				{
+					"name" : "KEY2",
 					"strict" : false
 				},
 				{

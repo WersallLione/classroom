@@ -1,18 +1,18 @@
 |Omdazz_calcul_top
 KEY1 => KEY1.IN1
-KEY2 => ~NO_FANOUT~
+KEY2 => KEY2.IN1
 KEY3 => KEY3.IN1
 KEY4 => KEY4.IN1
 RESET_BUT => ~NO_FANOUT~
-FPGA_CLK => FPGA_CLK.IN5
+FPGA_CLK => FPGA_CLK.IN9
 UART_RXD => ~NO_FANOUT~
 UART_TXD <= <GND>
 SCL <> SCL
 SDA <> SDA
-LED1 <= N_o_b[3].DB_MAX_OUTPUT_PORT_TYPE
-LED2 <= N_o_b[2].DB_MAX_OUTPUT_PORT_TYPE
-LED3 <= N_o_b[1].DB_MAX_OUTPUT_PORT_TYPE
-LED4 <= N_o_b[0].DB_MAX_OUTPUT_PORT_TYPE
+LED1 <= inv_data_inst[3].DB_MAX_OUTPUT_PORT_TYPE
+LED2 <= inv_data_inst[2].DB_MAX_OUTPUT_PORT_TYPE
+LED3 <= inv_data_inst[1].DB_MAX_OUTPUT_PORT_TYPE
+LED4 <= inv_data_inst[0].DB_MAX_OUTPUT_PORT_TYPE
 I2C_SCL <> I2C_SCL
 I2C_SDA <> I2C_SDA
 beep <= Buzzer:Buzzer_440Hz_inst.beep
@@ -25,9 +25,9 @@ VGA_B <= <GND>
 VGA_G <= <GND>
 VGA_R <= <GND>
 DIG_1 <= sevenseg:sevenseg_inst.seg_enable_num
-DIG_2 <= <VCC>
-DIG_3 <= <VCC>
-DIG_4 <= <VCC>
+DIG_2 <= sevenseg:sevenseg_inst.seg_enable_num
+DIG_3 <= sevenseg:sevenseg_inst.seg_enable_num
+DIG_4 <= sevenseg:sevenseg_inst.seg_enable_num
 SEG_0 <= sevenseg:sevenseg_inst.segment
 SEG_1 <= sevenseg:sevenseg_inst.segment
 SEG_2 <= sevenseg:sevenseg_inst.segment
@@ -91,7 +91,7 @@ SD_WE <> SD_WE
 KEY => key[0].DATAIN
 FPGA_CLK => f_key_up~reg0.CLK
 FPGA_CLK => f_key_down~reg0.CLK
-FPGA_CLK => f_key_en1.CLK
+FPGA_CLK => f_key_en1~reg0.CLK
 FPGA_CLK => f_key_en.CLK
 FPGA_CLK => key_cnt[0].CLK
 FPGA_CLK => key_cnt[1].CLK
@@ -120,6 +120,7 @@ FPGA_CLK => key_cnt[23].CLK
 FPGA_CLK => key[0].CLK
 FPGA_CLK => key[1].CLK
 f_key_down <= f_key_down~reg0.DB_MAX_OUTPUT_PORT_TYPE
+f_key_en1 <= f_key_en1~reg0.DB_MAX_OUTPUT_PORT_TYPE
 f_key_up <= f_key_up~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
@@ -127,7 +128,7 @@ f_key_up <= f_key_up~reg0.DB_MAX_OUTPUT_PORT_TYPE
 KEY => key[0].DATAIN
 FPGA_CLK => f_key_up~reg0.CLK
 FPGA_CLK => f_key_down~reg0.CLK
-FPGA_CLK => f_key_en1.CLK
+FPGA_CLK => f_key_en1~reg0.CLK
 FPGA_CLK => f_key_en.CLK
 FPGA_CLK => key_cnt[0].CLK
 FPGA_CLK => key_cnt[1].CLK
@@ -156,6 +157,7 @@ FPGA_CLK => key_cnt[23].CLK
 FPGA_CLK => key[0].CLK
 FPGA_CLK => key[1].CLK
 f_key_down <= f_key_down~reg0.DB_MAX_OUTPUT_PORT_TYPE
+f_key_en1 <= f_key_en1~reg0.DB_MAX_OUTPUT_PORT_TYPE
 f_key_up <= f_key_up~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
@@ -163,7 +165,7 @@ f_key_up <= f_key_up~reg0.DB_MAX_OUTPUT_PORT_TYPE
 KEY => key[0].DATAIN
 FPGA_CLK => f_key_up~reg0.CLK
 FPGA_CLK => f_key_down~reg0.CLK
-FPGA_CLK => f_key_en1.CLK
+FPGA_CLK => f_key_en1~reg0.CLK
 FPGA_CLK => f_key_en.CLK
 FPGA_CLK => key_cnt[0].CLK
 FPGA_CLK => key_cnt[1].CLK
@@ -192,6 +194,44 @@ FPGA_CLK => key_cnt[23].CLK
 FPGA_CLK => key[0].CLK
 FPGA_CLK => key[1].CLK
 f_key_down <= f_key_down~reg0.DB_MAX_OUTPUT_PORT_TYPE
+f_key_en1 <= f_key_en1~reg0.DB_MAX_OUTPUT_PORT_TYPE
+f_key_up <= f_key_up~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Omdazz_calcul_top|key_v2:key_v2_inv_inst
+KEY => key[0].DATAIN
+FPGA_CLK => f_key_up~reg0.CLK
+FPGA_CLK => f_key_down~reg0.CLK
+FPGA_CLK => f_key_en1~reg0.CLK
+FPGA_CLK => f_key_en.CLK
+FPGA_CLK => key_cnt[0].CLK
+FPGA_CLK => key_cnt[1].CLK
+FPGA_CLK => key_cnt[2].CLK
+FPGA_CLK => key_cnt[3].CLK
+FPGA_CLK => key_cnt[4].CLK
+FPGA_CLK => key_cnt[5].CLK
+FPGA_CLK => key_cnt[6].CLK
+FPGA_CLK => key_cnt[7].CLK
+FPGA_CLK => key_cnt[8].CLK
+FPGA_CLK => key_cnt[9].CLK
+FPGA_CLK => key_cnt[10].CLK
+FPGA_CLK => key_cnt[11].CLK
+FPGA_CLK => key_cnt[12].CLK
+FPGA_CLK => key_cnt[13].CLK
+FPGA_CLK => key_cnt[14].CLK
+FPGA_CLK => key_cnt[15].CLK
+FPGA_CLK => key_cnt[16].CLK
+FPGA_CLK => key_cnt[17].CLK
+FPGA_CLK => key_cnt[18].CLK
+FPGA_CLK => key_cnt[19].CLK
+FPGA_CLK => key_cnt[20].CLK
+FPGA_CLK => key_cnt[21].CLK
+FPGA_CLK => key_cnt[22].CLK
+FPGA_CLK => key_cnt[23].CLK
+FPGA_CLK => key[0].CLK
+FPGA_CLK => key[1].CLK
+f_key_down <= f_key_down~reg0.DB_MAX_OUTPUT_PORT_TYPE
+f_key_en1 <= f_key_en1~reg0.DB_MAX_OUTPUT_PORT_TYPE
 f_key_up <= f_key_up~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
@@ -221,6 +261,13 @@ FPGA_CLK => beep_bzz.CLK
 FPGA_CLK => switch.CLK
 FPGA_CLK => beep~reg0.CLK
 sound_on => switch.ENA
+data[0] => Decoder1.IN3
+data[1] => Decoder0.IN2
+data[1] => Decoder1.IN2
+data[2] => Decoder0.IN1
+data[2] => Decoder1.IN1
+data[3] => Decoder0.IN0
+data[3] => Decoder1.IN0
 beep <= beep~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
@@ -243,11 +290,146 @@ Num_of_bit[2] <= Num_of_bit[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 Num_of_bit[3] <= Num_of_bit[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
+|Omdazz_calcul_top|Andei_choto_udumal_chetrila:Andei_choto_udumal_chetrila_inst
+data[0] => data0[0].DATAIN
+data[0] => Equal0.IN3
+data[1] => data0[1].DATAIN
+data[1] => Equal0.IN2
+data[2] => data0[2].DATAIN
+data[2] => Equal0.IN1
+data[3] => data0[3].DATAIN
+data[3] => Equal0.IN0
+FPGA_CLK => data1[0]~reg0.CLK
+FPGA_CLK => data1[1]~reg0.CLK
+FPGA_CLK => data1[2]~reg0.CLK
+FPGA_CLK => data1[3]~reg0.CLK
+data0[0] <= data[0].DB_MAX_OUTPUT_PORT_TYPE
+data0[1] <= data[1].DB_MAX_OUTPUT_PORT_TYPE
+data0[2] <= data[2].DB_MAX_OUTPUT_PORT_TYPE
+data0[3] <= data[3].DB_MAX_OUTPUT_PORT_TYPE
+data1[0] <= data1[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data1[1] <= data1[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data1[2] <= data1[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data1[3] <= data1[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Omdazz_calcul_top|invert_data:invert_data_inst
+FPGA_CLK => inv_data[0]~reg0.CLK
+FPGA_CLK => inv_data[1]~reg0.CLK
+FPGA_CLK => inv_data[2]~reg0.CLK
+FPGA_CLK => inv_data[3]~reg0.CLK
+FPGA_CLK => f_inv.CLK
+FPGA_CLK => cnt3sec[0].CLK
+FPGA_CLK => cnt3sec[1].CLK
+FPGA_CLK => cnt3sec[2].CLK
+FPGA_CLK => cnt3sec[3].CLK
+FPGA_CLK => cnt3sec[4].CLK
+FPGA_CLK => cnt3sec[5].CLK
+FPGA_CLK => cnt3sec[6].CLK
+FPGA_CLK => cnt3sec[7].CLK
+FPGA_CLK => cnt3sec[8].CLK
+FPGA_CLK => cnt3sec[9].CLK
+FPGA_CLK => cnt3sec[10].CLK
+FPGA_CLK => cnt3sec[11].CLK
+FPGA_CLK => cnt3sec[12].CLK
+FPGA_CLK => cnt3sec[13].CLK
+FPGA_CLK => cnt3sec[14].CLK
+FPGA_CLK => cnt3sec[15].CLK
+FPGA_CLK => cnt3sec[16].CLK
+FPGA_CLK => cnt3sec[17].CLK
+FPGA_CLK => cnt3sec[18].CLK
+FPGA_CLK => cnt3sec[19].CLK
+FPGA_CLK => cnt3sec[20].CLK
+FPGA_CLK => cnt3sec[21].CLK
+FPGA_CLK => cnt3sec[22].CLK
+FPGA_CLK => cnt3sec[23].CLK
+FPGA_CLK => cnt3sec[24].CLK
+FPGA_CLK => cnt3sec[25].CLK
+FPGA_CLK => cnt3sec[26].CLK
+FPGA_CLK => cnt3sec[27].CLK
+data[0] => inv_data.DATAA
+data[0] => inv_data.DATAB
+data[1] => inv_data.DATAA
+data[1] => inv_data.DATAB
+data[2] => inv_data.DATAA
+data[2] => inv_data.DATAB
+data[3] => inv_data.DATAA
+data[3] => inv_data.DATAB
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => cnt3sec.OUTPUTSELECT
+en_key => f_inv.OUTPUTSELECT
+inv_data[0] <= inv_data[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+inv_data[1] <= inv_data[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+inv_data[2] <= inv_data[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+inv_data[3] <= inv_data[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Omdazz_calcul_top|select_seg:select_seg_inst
+data0[0] => data_seg.DATAB
+data0[1] => data_seg.DATAB
+data0[2] => data_seg.DATAB
+data0[3] => data_seg.DATAB
+data1[0] => data_seg.DATAA
+data1[1] => data_seg.DATAA
+data1[2] => data_seg.DATAA
+data1[3] => data_seg.DATAA
+FPGA_CLK => dt~reg0.CLK
+FPGA_CLK => en_seg[0]~reg0.CLK
+FPGA_CLK => en_seg[1]~reg0.CLK
+FPGA_CLK => en_seg[2]~reg0.CLK
+FPGA_CLK => en_seg[3]~reg0.CLK
+FPGA_CLK => data_seg[0]~reg0.CLK
+FPGA_CLK => data_seg[1]~reg0.CLK
+FPGA_CLK => data_seg[2]~reg0.CLK
+FPGA_CLK => data_seg[3]~reg0.CLK
+FPGA_CLK => enable_segment.CLK
+data_seg[0] <= data_seg[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_seg[1] <= data_seg[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_seg[2] <= data_seg[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_seg[3] <= data_seg[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+en_seg[0] <= en_seg[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+en_seg[1] <= en_seg[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+en_seg[2] <= en_seg[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+en_seg[3] <= en_seg[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+dt <= dt~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
 |Omdazz_calcul_top|sevenseg:sevenseg_inst
 data[0] => Decoder0.IN3
 data[1] => Decoder0.IN2
 data[2] => Decoder0.IN1
 data[3] => Decoder0.IN0
+en_seg[0] => seg_enable_num[0].DATAIN
+en_seg[1] => seg_enable_num[1].DATAIN
+en_seg[2] => seg_enable_num[2].DATAIN
+en_seg[3] => seg_enable_num[3].DATAIN
+dt => dot.DATAIN
 segment[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
 segment[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
 segment[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
@@ -255,7 +437,10 @@ segment[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
 segment[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
 segment[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
 segment[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
-seg_enable_num <= <GND>
-dot <= <VCC>
+seg_enable_num[0] <= en_seg[0].DB_MAX_OUTPUT_PORT_TYPE
+seg_enable_num[1] <= en_seg[1].DB_MAX_OUTPUT_PORT_TYPE
+seg_enable_num[2] <= en_seg[2].DB_MAX_OUTPUT_PORT_TYPE
+seg_enable_num[3] <= en_seg[3].DB_MAX_OUTPUT_PORT_TYPE
+dot <= dt.DB_MAX_OUTPUT_PORT_TYPE
 
 

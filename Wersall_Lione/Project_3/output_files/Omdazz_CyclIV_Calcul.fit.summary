@@ -1,18 +1,14 @@
-<<<<<<< HEAD
-Fitter Status : Successful - Mon Jan 06 15:59:39 2025
-=======
-Fitter Status : Successful - Mon Jan 06 15:46:49 2025
->>>>>>> 211b8e1a2c7f55b8ec1f18e01cfc0cfba70d4e21
+Fitter Status : Successful - Tue Jan 07 19:02:16 2025
 Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Standard Edition
 Revision Name : Omdazz_CyclIV_Calcul
 Top-level Entity Name : Omdazz_calcul_top
 Family : Cyclone IV E
 Device : EP4CE10E22C8
 Timing Models : Final
-Total logic elements : 154 / 10,320 ( 1 % )
-    Total combinational functions : 148 / 10,320 ( 1 % )
-    Dedicated logic registers : 115 / 10,320 ( 1 % )
-Total registers : 115
+Total logic elements : 272 / 10,320 ( 3 % )
+    Total combinational functions : 263 / 10,320 ( 3 % )
+    Dedicated logic registers : 189 / 10,320 ( 2 % )
+Total registers : 189
 Total pins : 86 / 92 ( 93 % )
 Total virtual pins : 0
 Total memory bits : 0 / 423,936 ( 0 % )

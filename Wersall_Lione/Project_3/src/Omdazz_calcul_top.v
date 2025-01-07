@@ -114,23 +114,31 @@ assign {I2C_SCL,I2C_SDA,SCL,SDA,S_DQ0,S_DQ1,S_DQ2,S_DQ3,S_DQ4,S_DQ5,S_DQ6,S_DQ7,
 S_DQ8,S_DQ9,S_DQ10,S_DQ11,S_DQ12,S_DQ13,S_DQ14,S_DQ15,S_A0,S_A1,S_A2,S_A3,S_A4,
 S_A5,S_A6,S_A7,S_A8,S_A9,S_A10,S_A11,SD_BS0,SD_BS1,SD_LDQM,SD_UDQM,SD_CKE,
 SD_CLK,SD_CS,SD_WE,SD_RAS,SD_CAS,} = 1'bZ;
- assign {DIG_2,DIG_3,DIG_4} = {4{1'b1}};
+ 
 
 //------------------------------------------------------------------
 
 wire flag1      ;
 wire flag4      ;
 wire flag3      ;
-wire [3:0] pwrr ; 
-wire [3:0] N_o_b;
+wire flag2      ;
+wire [3:0] inv_data_inst; 
+wire [3:0]    N_o_b;
+wire [3:0]    data0;
+wire [3:0]    data1;
+wire [3:0] data_seg;
+wire [3:0]   en_seg;
+wire             dt;
+
 
 key_v2
 key_v2_add_inst
 (
-    .KEY          (KEY1),
-    .FPGA_CLK     (FPGA_CLK),
-    .f_key_down   (),
-    .f_key_up     (flag1)
+    .KEY                    (KEY1),
+    .FPGA_CLK           (FPGA_CLK),
+    .f_key_down                 (),
+	.f_key_en1                   (),
+    .f_key_up              (flag1)
 );
 key_v2
 key_v2_minus_inst
@@ -138,6 +146,7 @@ key_v2_minus_inst
     .KEY          (KEY4),
     .FPGA_CLK     (FPGA_CLK),
     .f_key_down   (),
+    .f_key_en1    (),
     .f_key_up     (flag4)
 );
 key_v2
@@ -146,7 +155,17 @@ key_v2_bzz_inst
     .KEY          (KEY3),
     .FPGA_CLK     (FPGA_CLK),
     .f_key_down   (),
+    .f_key_en1    (),
     .f_key_up     (flag3)
+);
+key_v2
+key_v2_inv_inst
+(
+    .KEY          (KEY2),
+    .FPGA_CLK     (FPGA_CLK),
+    .f_key_down   (),
+    .f_key_en1    (flag2),
+    .f_key_up     ()
 );
 
 Buzzer
@@ -154,7 +173,8 @@ Buzzer_440Hz_inst
 ( 
 	.FPGA_CLK          (FPGA_CLK ), 
 	.sound_on              (flag3),
-    .beep                   (beep),
+    .data                  (N_o_b),
+    .beep                   (beep)
 	
 );
 
@@ -166,18 +186,49 @@ CALCUL_inst
    .FPGA_CLK           (FPGA_CLK ),
    .Num_of_bit             (N_o_b)
 );
+Andei_choto_udumal_chetrila
+Andei_choto_udumal_chetrila_inst
+(
+   .data                   (N_o_b),
+   .FPGA_CLK            (FPGA_CLK),
+   .data0                  (data0),
+   .data1                  (data1)
+);
 
-assign {LED1,LED2,LED3,LED4} = ~N_o_b;
-//assign LED4 = ~N_o_b[4];
-//assign LED3 = ~N_o_b[3];
-//assign LED2 = ~N_o_b[2];
-//assign LED1 = ~N_o_b[1];
+invert_data
+invert_data_inst
+(
+    .FPGA_CLK            (FPGA_CLK),
+    .data                   (data0),
+    .en_key                 (flag2),
+    .inv_data       (inv_data_inst)
+);
+assign {LED1,LED2,LED3,LED4} = ~inv_data_inst;
+//assign LED4 = ~data0[4];
+//assign LED3 = ~data0[3];
+//assign LED2 = ~data0[2];
+//assign LED1 = ~data0[1];
+
+select_seg
+select_seg_inst
+(
+   .data0          (inv_data_inst),
+   .data1                  (data1),
+   .FPGA_CLK            (FPGA_CLK),
+
+   .data_seg            (data_seg),
+   .en_seg                (en_seg),
+   .dt                        (dt)
+);
 
 sevenseg
 sevenseg_inst(
-    .data                  (N_o_b),
-    .segment               ({SEG_0,SEG_1,SEG_2,SEG_3,SEG_4,SEG_5,SEG_6}),
-    .seg_enable_num        (DIG_1),
+    .data               (data_seg),
+    .en_seg               (en_seg),
+    .dt                       (dt),
+
+    .segment   ({SEG_0,SEG_1,SEG_2,SEG_3,SEG_4,SEG_5,SEG_6}),
+    .seg_enable_num   ({DIG_4,DIG_3,DIG_2,DIG_1}),
 	 .dot                   (SEG_7)
 );
 
@@ -263,23 +314,73 @@ end
 
 endmodule
 
+module Andei_choto_udumal_chetrila(
+input wire [3:0]data,
+input wire FPGA_CLK,
+
+output wire [3:0] data0,
+output reg [3:0] data1
+);
+
+initial begin
+data1 = 'd0;
+end
+
+always@(posedge FPGA_CLK) begin
+    if (data == 4'b1111) begin
+        data1 <= data1 + 'd1;
+    end else begin
+        data1 <= data1;
+    end
+end    
+assign data0 = data;
+
+endmodule
+
 module Buzzer( 
 input wire FPGA_CLK, // aclk!, aclk_50mhz
 input wire sound_on, // sound_en , enable , en , butt, btn_negative, btn_n 
-output reg beep
+input wire [3:0] data,
 
+output reg beep
 );
 
 reg [20:0] cnt_bzz;
 reg beep_bzz;
 reg switch;
+reg [20:0] freq;
 
 initial begin
 cnt_bzz = 'd0;
 beep_bzz = 'd0;
 switch = 'd0;
+freq = 'd0;
 end
 
+// add function select freq on data
+always @ (data) begin 
+case (data)
+
+0:       freq = 'h6EF9;  // 440 Hz == 50.000.000 Hz / (113.637 /2 !) F4240
+1:       freq = 'h62F1;
+2:       freq = 'h5D5C;
+3:       freq = 'h532E;
+4:       freq = 'h4A18;
+5:       freq = 'h45F4;
+6:       freq = 'h3E47;
+7:       freq = 'h377C;
+8:       freq = 'h3172;
+9:       freq = 'h2EA8;
+10:      freq = 'h2992;
+11:      freq = 'h2508;
+12:      freq = 'h22F6;
+13:      freq = 'h1F23;
+14:      freq = 'h1BBE;
+15:      freq = 'h18B7; 
+default: freq = 'hF4240;
+
+endcase
+end
 
 always @(posedge FPGA_CLK) begin
     if(switch == 1'b1) begin
@@ -299,7 +400,7 @@ always @(posedge FPGA_CLK) begin
 end
 
 always @(posedge FPGA_CLK) begin
-    if (cnt_bzz >= ('hF4240))begin // 440 Hz = 50.000.000 Hz / (113.637 /2 !!!!!)
+    if (cnt_bzz >= freq)begin 
         beep_bzz <= ~ beep_bzz;
         cnt_bzz <= 'd0;
     end else begin
@@ -309,17 +410,56 @@ always @(posedge FPGA_CLK) begin
 end
 endmodule
 
+module select_seg (
+   input wire [3:0] data0,
+   input wire [3:0] data1,
+   input wire FPGA_CLK,
+
+   output reg [3:0] data_seg,
+   output reg [3:0] en_seg,
+   output reg dt
+);
+
+reg enable_segment;
+
+initial begin
+enable_segment = 'd0;
+data_seg = 'd1;
+en_seg = 'd1;
+dt = 'd1;
+end
+
+always@(posedge FPGA_CLK) begin
+enable_segment <= ~enable_segment; // freq segment 25 MHZ
+end
+
+always@(posedge FPGA_CLK) begin
+    if(enable_segment) begin
+        data_seg <= data0;
+        en_seg <= 4'b1110;
+        dt <= 'd1;
+    end else begin
+        data_seg <= data1;
+        en_seg <= 4'b1101;
+        dt <= 'd1;
+    end
+end 
+
+endmodule
+
 module sevenseg(
 
 input wire [3:0] data,
+input wire [3:0] en_seg,
+input wire dt,
 
 output reg [6:0] segment,
-output wire seg_enable_num,
+output wire [3:0] seg_enable_num,
 output wire dot
 );
 
-assign seg_enable_num = 1'b0;
-assign dot = 1'b1;
+assign seg_enable_num = en_seg;
+assign dot = dt;
 
 
 always @ (data) begin 
@@ -345,9 +485,6 @@ default: segment = 7'h7E;
 
 endcase
 end
-
-
-
 endmodule
 
 module key_v2(
@@ -355,28 +492,23 @@ input wire KEY         ,
 input wire FPGA_CLK     ,
 
 output reg f_key_down,
+output reg f_key_en1,
 output reg f_key_up 
 );
 // syntch inpute wire with clk
 reg [1:0] key;
 reg [23:0] key_cnt;
 reg f_key_en;
-reg f_key_en1;
-<<<<<<< HEAD
 reg [23:0] key_cntmax;
-=======
->>>>>>> 211b8e1a2c7f55b8ec1f18e01cfc0cfba70d4e21
 
 initial begin
 key = 'd0;
+f_key_down = 'd0;
+f_key_up = 'd0;
 key_cnt = 'd0;
 f_key_en ='d0;
 f_key_en1 ='d0;
-<<<<<<< HEAD
 key_cntmax = 'hFFFFFF;
-=======
-// key_cntmax = 'hFFFFFF;
->>>>>>> 211b8e1a2c7f55b8ec1f18e01cfc0cfba70d4e21
 end
 
 //sync input signal with clk
@@ -387,11 +519,7 @@ end
 // 
 always@(posedge FPGA_CLK) begin
 	if ( key[1]) begin
-<<<<<<< HEAD
 		if(key_cnt >= key_cntmax) begin
-=======
-		if(key_cnt>='hFFFFFF) begin
->>>>>>> 211b8e1a2c7f55b8ec1f18e01cfc0cfba70d4e21
 		    key_cnt <= key_cnt;
 		    f_key_en <=1'b1;
 		end else begin
@@ -420,16 +548,45 @@ end
 
 
 endmodule
-/*
+
 module invert_data(
-input wire data,
-input wire en_key,
-
-outpute wire 'data
+input wire FPGA_CLK    ,
+input wire [3:0] data  ,
+input wire en_key      ,
+output reg [3:0] inv_data
 );
+reg [27:0] cnt3sec;
+reg f_inv;
 
+
+initial begin
+    cnt3sec = 'd0;
+    f_inv = 'd0;
+end
+
+always@(posedge FPGA_CLK) begin //time 3sec and f_inv = 1;
+	if(en_key) begin
+        if(cnt3sec >= 'h8F0D180) begin
+            cnt3sec <= cnt3sec;
+			   f_inv <= 1'b1;
+		  end else begin
+            cnt3sec <= cnt3sec + 'd1;
+			   f_inv <= f_inv;
+		end
+	end else begin
+    cnt3sec <= 'd0;
+	f_inv <= 1'b0;
+	end
+end
+
+always@(posedge FPGA_CLK) begin
+    if(f_inv) begin
+       inv_data <= ~data; 
+	end else begin
+       inv_data <= data;
+	end
+end
 
 endmodule
-*/
 
 // pravilnei razdelai peremenie v raznie always po smuslu
