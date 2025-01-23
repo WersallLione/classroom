@@ -88,7 +88,7 @@ SD_WE <> SD_WE
 
 
 |Omdazz_calcul_top|key_v2:key_v2_add_inst
-KEY => key[0].DATAIN
+KEY => butt[0].DATAIN
 FPGA_CLK => f_key_up~reg0.CLK
 FPGA_CLK => f_key_down~reg0.CLK
 FPGA_CLK => f_key_en1~reg0.CLK
@@ -117,15 +117,15 @@ FPGA_CLK => key_cnt[20].CLK
 FPGA_CLK => key_cnt[21].CLK
 FPGA_CLK => key_cnt[22].CLK
 FPGA_CLK => key_cnt[23].CLK
-FPGA_CLK => key[0].CLK
-FPGA_CLK => key[1].CLK
+FPGA_CLK => butt[0].CLK
+FPGA_CLK => butt[1].CLK
 f_key_down <= f_key_down~reg0.DB_MAX_OUTPUT_PORT_TYPE
 f_key_en1 <= f_key_en1~reg0.DB_MAX_OUTPUT_PORT_TYPE
 f_key_up <= f_key_up~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |Omdazz_calcul_top|key_v2:key_v2_minus_inst
-KEY => key[0].DATAIN
+KEY => butt[0].DATAIN
 FPGA_CLK => f_key_up~reg0.CLK
 FPGA_CLK => f_key_down~reg0.CLK
 FPGA_CLK => f_key_en1~reg0.CLK
@@ -154,15 +154,15 @@ FPGA_CLK => key_cnt[20].CLK
 FPGA_CLK => key_cnt[21].CLK
 FPGA_CLK => key_cnt[22].CLK
 FPGA_CLK => key_cnt[23].CLK
-FPGA_CLK => key[0].CLK
-FPGA_CLK => key[1].CLK
+FPGA_CLK => butt[0].CLK
+FPGA_CLK => butt[1].CLK
 f_key_down <= f_key_down~reg0.DB_MAX_OUTPUT_PORT_TYPE
 f_key_en1 <= f_key_en1~reg0.DB_MAX_OUTPUT_PORT_TYPE
 f_key_up <= f_key_up~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |Omdazz_calcul_top|key_v2:key_v2_bzz_inst
-KEY => key[0].DATAIN
+KEY => butt[0].DATAIN
 FPGA_CLK => f_key_up~reg0.CLK
 FPGA_CLK => f_key_down~reg0.CLK
 FPGA_CLK => f_key_en1~reg0.CLK
@@ -191,15 +191,15 @@ FPGA_CLK => key_cnt[20].CLK
 FPGA_CLK => key_cnt[21].CLK
 FPGA_CLK => key_cnt[22].CLK
 FPGA_CLK => key_cnt[23].CLK
-FPGA_CLK => key[0].CLK
-FPGA_CLK => key[1].CLK
+FPGA_CLK => butt[0].CLK
+FPGA_CLK => butt[1].CLK
 f_key_down <= f_key_down~reg0.DB_MAX_OUTPUT_PORT_TYPE
 f_key_en1 <= f_key_en1~reg0.DB_MAX_OUTPUT_PORT_TYPE
 f_key_up <= f_key_up~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |Omdazz_calcul_top|key_v2:key_v2_inv_inst
-KEY => key[0].DATAIN
+KEY => butt[0].DATAIN
 FPGA_CLK => f_key_up~reg0.CLK
 FPGA_CLK => f_key_down~reg0.CLK
 FPGA_CLK => f_key_en1~reg0.CLK
@@ -228,8 +228,8 @@ FPGA_CLK => key_cnt[20].CLK
 FPGA_CLK => key_cnt[21].CLK
 FPGA_CLK => key_cnt[22].CLK
 FPGA_CLK => key_cnt[23].CLK
-FPGA_CLK => key[0].CLK
-FPGA_CLK => key[1].CLK
+FPGA_CLK => butt[0].CLK
+FPGA_CLK => butt[1].CLK
 f_key_down <= f_key_down~reg0.DB_MAX_OUTPUT_PORT_TYPE
 f_key_en1 <= f_key_en1~reg0.DB_MAX_OUTPUT_PORT_TYPE
 f_key_up <= f_key_up~reg0.DB_MAX_OUTPUT_PORT_TYPE
@@ -290,7 +290,7 @@ Num_of_bit[2] <= Num_of_bit[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 Num_of_bit[3] <= Num_of_bit[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|Omdazz_calcul_top|Andei_choto_udumal_chetrila:Andei_choto_udumal_chetrila_inst
+|Omdazz_calcul_top|Andei_choto_udumal_chertila:Andei_choto_udumal_chertila_inst
 data[0] => data0[0].DATAIN
 data[0] => Equal0.IN3
 data[1] => data0[1].DATAIN
@@ -314,10 +314,6 @@ data1[3] <= data1[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |Omdazz_calcul_top|invert_data:invert_data_inst
-FPGA_CLK => inv_data[0]~reg0.CLK
-FPGA_CLK => inv_data[1]~reg0.CLK
-FPGA_CLK => inv_data[2]~reg0.CLK
-FPGA_CLK => inv_data[3]~reg0.CLK
 FPGA_CLK => f_inv.CLK
 FPGA_CLK => cnt3sec[0].CLK
 FPGA_CLK => cnt3sec[1].CLK
@@ -347,14 +343,10 @@ FPGA_CLK => cnt3sec[24].CLK
 FPGA_CLK => cnt3sec[25].CLK
 FPGA_CLK => cnt3sec[26].CLK
 FPGA_CLK => cnt3sec[27].CLK
-data[0] => inv_data.DATAA
-data[0] => inv_data.DATAB
-data[1] => inv_data.DATAA
-data[1] => inv_data.DATAB
-data[2] => inv_data.DATAA
-data[2] => inv_data.DATAB
-data[3] => inv_data.DATAA
-data[3] => inv_data.DATAB
+data[0] => inv_data[0]~reg0.DATAIN
+data[1] => inv_data[1]~reg0.DATAIN
+data[2] => inv_data[2]~reg0.DATAIN
+data[3] => inv_data[3]~reg0.DATAIN
 en_key => cnt3sec.OUTPUTSELECT
 en_key => cnt3sec.OUTPUTSELECT
 en_key => cnt3sec.OUTPUTSELECT

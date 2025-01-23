@@ -186,8 +186,8 @@ CALCUL_inst
    .FPGA_CLK           (FPGA_CLK ),
    .Num_of_bit             (N_o_b)
 );
-Andei_choto_udumal_chetrila
-Andei_choto_udumal_chetrila_inst
+Andei_choto_udumal_chertila
+Andei_choto_udumal_chertila_inst
 (
    .data                   (N_o_b),
    .FPGA_CLK            (FPGA_CLK),
@@ -319,7 +319,7 @@ input wire [3:0]data,
 input wire FPGA_CLK,
 
 output wire [3:0] data0,
-output reg [3:0] data1
+output reg  [3:0] data1
 );
 
 initial begin
@@ -421,7 +421,7 @@ module select_seg (
 );
 
 reg enable_segment;
-reg [] cnt_freq_seg  ; // сколько нужно блять разрядов???
+//reg [] cnt_freq_seg  ; 
 
 initial begin
 enable_segment = 'd0;
