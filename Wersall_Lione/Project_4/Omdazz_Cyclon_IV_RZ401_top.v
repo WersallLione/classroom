@@ -1,9 +1,9 @@
 module Omdazz_Cyclon_IV_RZ401_top(
-input wire key_1     ,
-input wire key_2     ,
-input wire key_3     ,
-input wire key_4     ,
-input wire rst_butt,
+input wire KEY1     ,
+input wire KEY2     ,
+input wire KEY3     ,
+input wire KEY4     ,
+input wire RESET_BUT,
 input wire FPGA_CLK ,  // 50 MHz (20ns)
 input wire UART_RXD ,    //RS-232 signal read 115pin 
 output wire UART_TXD,  //RS-232 signal data 114pin
@@ -106,7 +106,7 @@ inout wire SD_WE
 
 //SDRAM inout 
 //assign I2C_SCL = (1'b0) ? (1'b1) : (1'bZ); //3state - read
-
+//-------------------------------------------------------------------------------------------------
 assign {UART_TXD,PS_CLOCK,PS_DATA,VGA_HSYNC,VGA_VSYNC,ASDO_EPCS4,
 nCSO_EPCS4,DCLK_EPCS4} = 'd0;
 assign {IR,VGA_G,VGA_R} = {3{1'b0}};
@@ -115,8 +115,7 @@ S_DQ8,S_DQ9,S_DQ10,S_DQ11,S_DQ12,S_DQ13,S_DQ14,S_DQ15,S_A0,S_A1,S_A2,S_A3,S_A4,
 S_A5,S_A6,S_A7,S_A8,S_A9,S_A10,S_A11,SD_BS0,SD_BS1,SD_LDQM,SD_UDQM,SD_CKE,
 SD_CLK,SD_CS,SD_WE,SD_RAS,SD_CAS,} = 1'bZ;
  
-
-//------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 
 wire flag1      ;
 wire flag4      ;
