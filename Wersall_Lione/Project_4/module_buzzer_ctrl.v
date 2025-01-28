@@ -5,7 +5,10 @@ input wire [3:0] data,
 
 output reg beep
 );
+   
 
+
+   
 reg [20:0] cnt_bzz;
 reg beep_bzz;
 reg switch;
