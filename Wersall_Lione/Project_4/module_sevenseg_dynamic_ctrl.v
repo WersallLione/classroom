@@ -9,19 +9,25 @@ module select_seg (
 );
 
 reg enable_segment;
-//reg [] cnt_freq_seg  ; 
+reg [23:0] cnt_freq_seg  ; 
 
 initial begin
 enable_segment = 'd0;
+cnt_freq_seg = 'd0  ;
 data_seg = 'd1      ;
 en_seg = 'd1        ;
 dt = 'd1            ;
 
 end
 
-always@(posedge FPGA_CLK) begin
-
-enable_segment <= ~enable_segment; // freq segment 25 MHZ
+always@(posedge FPGA_CLK) begin // how to use another module??? use module_count_3sec_ctrl
+    if(cnt_freq_seg >= 'h98_9680) begin // 50M == 1sec. 50M/5=10M ----> (0.2sec),'h98_9680 == 10M. 
+        cnt_freq_seg <= 'd0; 
+        enable_segment <= ~enable_segment; // freq segment 10MHz
+    end else begin
+        cnt_freq_seg <= cnt_freq_seg + 1'd1;
+        enable_segment <= enable_segment;
+    end
 end
 
 always@(posedge FPGA_CLK) begin

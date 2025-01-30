@@ -6,7 +6,7 @@ output reg f_key_down,
 output reg f_key_en1 ,
 output reg f_key_up 
 );
-// syntch inpute wire with clk
+
 reg [1:0] butt;
 reg [23:0] key_cnt;
 reg f_key_en;

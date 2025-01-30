@@ -117,11 +117,11 @@ SD_CLK,SD_CS,SD_WE,SD_RAS,SD_CAS,} = 1'bZ;
  
 //-------------------------------------------------------------------------------------------------
 
-wire flag1      ;
-wire flag4      ;
-wire flag3      ;
-wire flag2      ;
-wire [3:0] inv_data_inst; 
+wire push1      ;
+wire push4      ;
+wire push3      ;
+wire push2      ;
+wire [3:0] ne_data; 
 wire [3:0]    N_o_b;
 wire [3:0]    data0;
 wire [3:0]    data1;
@@ -129,52 +129,50 @@ wire [3:0] data_seg;
 wire [3:0]   en_seg;
 wire             dt;
 
+key_ctrl
+key_add_inst
+(
+    .KEY             (KEY1),
+    .FPGA_CLK    (FPGA_CLK),
+    .f_key_down          (),
+	.f_key_en1           (),
+    .f_key_up       (push1)
+);
+key_ctrl
+key_minus_inst
+(
+    .KEY             (KEY4),
+    .FPGA_CLK    (FPGA_CLK),
+    .f_key_down          (),
+    .f_key_en1           (),
+    .f_key_up       (push4)
+);
+key_ctrl
+key_bzz_inst
+(
+    .KEY             (KEY3),
+    .FPGA_CLK    (FPGA_CLK),
+    .f_key_down          (),
+    .f_key_en1           (),
+    .f_key_up       (push3)
+);
+key_ctrl
+key_inv_inst
+(
+    .KEY             (KEY2),
+    .FPGA_CLK    (FPGA_CLK),
+    .f_key_down          (),
+    .f_key_en1      (push2),
+    .f_key_up            ()
+);
 
-key_v2
-key_v2_add_inst
-(
-    .KEY                    (KEY1),
-    .FPGA_CLK           (FPGA_CLK),
-    .f_key_down                 (),
-	.f_key_en1                   (),
-    .f_key_up              (flag1)
-);
-key_v2
-key_v2_minus_inst
-(
-    .KEY          (KEY4),
-    .FPGA_CLK     (FPGA_CLK),
-    .f_key_down   (),
-    .f_key_en1    (),
-    .f_key_up     (flag4)
-);
-key_v2
-key_v2_bzz_inst
-(
-    .KEY          (KEY3),
-    .FPGA_CLK     (FPGA_CLK),
-    .f_key_down   (),
-    .f_key_en1    (),
-    .f_key_up     (flag3)
-);
-key_v2
-key_v2_inv_inst
-(
-    .KEY          (KEY2),
-    .FPGA_CLK     (FPGA_CLK),
-    .f_key_down   (),
-    .f_key_en1    (flag2),
-    .f_key_up     ()
-);
-
-Buzzer
-Buzzer_440Hz_inst
+buzzer
+buzzer_inst
 ( 
-	.FPGA_CLK          (FPGA_CLK ), 
-	.sound_on              (flag3),
-    .data                  (N_o_b),
-    .beep                   (beep)
-	
+	.FPGA_CLK     (FPGA_CLK), 
+	.sound_on        (push3),
+    .data            (N_o_b),
+    .beep             (beep)
 );
 
 CALCUL
@@ -200,9 +198,9 @@ invert_data_inst
     .FPGA_CLK            (FPGA_CLK),
     .data                   (data0),
     .en_key                 (flag2),
-    .inv_data       (inv_data_inst)
+    .inv_data             (ne_data)
 );
-assign {LED1,LED2,LED3,LED4} = ~inv_data_inst;
+assign {LED1,LED2,LED3,LED4} = ~ne_data;
 //assign LED4 = ~data0[4];
 //assign LED3 = ~data0[3];
 //assign LED2 = ~data0[2];
