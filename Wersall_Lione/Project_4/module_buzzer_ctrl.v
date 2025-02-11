@@ -1,10 +1,26 @@
-module buzzer_ctrl( 
+module buzzer_ctrl
+// #(
+//     parameter P_ACTAVA = 0
+// )
+( 
 input wire FPGA_CLK, // aclk!, aclk_50mhz
 input wire sound_on, // sound_en , enable , en , butt, btn_negative, btn_n 
 input wire [3:0] data,
 
 output reg beep
 );
+// localparam LP_ACTAVA_DELTA = 'h1;
+
+// localparam [15:0]
+//     LP_DO  = P_ACTAVA                       ,
+
+//     LP_RE  = P_ACTAVA + (LP_ACTAVA_DELTA *1),
+//     LP_MI  = P_ACTAVA + (LP_ACTAVA_DELTA *2),
+
+//     LP_FA  = LP_MI +LP_ACTAVA_DELTA         ,
+//     LP_SOL = LP_FA +LP_ACTAVA_DELTA         ,
+//     LP_LA  = LP_FA +LP_ACTAVA_DELTA         ;
+
 
 reg [20:0] cnt_bzz;
 reg beep_bzz      ;

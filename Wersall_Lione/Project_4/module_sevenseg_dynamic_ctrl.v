@@ -8,6 +8,11 @@ module select_seg (
    output reg dt
 );
 
+wire w_FPGA_CLK;
+assign w_FPGA_CLK = FPGA_CLK;
+
+wire w_mux2_dout;
+
 reg enable_segment;
 reg [23:0] cnt_freq_seg  ; 
 
@@ -36,10 +41,21 @@ always@(posedge FPGA_CLK) begin
         en_seg <= 4'b1110;
         dt <= 'd1;
     end else begin
-        data_seg <= data1;
-        en_seg <= 4'b1101;
-        dt <= 'd1;
+        data_seg <= data1  ;
+        en_seg   <= 4'b1101;
+        dt       <= 'd1    ;
     end
 end 
+
+mux2
+ghsdhdgh
+(
+    .FPGA_CLK    (w_FPGA_CLK),
+    .en_key      (dghdjkd),
+    .din1        (fgsfgsg),
+    .din2        (),
+
+    .dout        (w_mux2_dout)
+);
 
 endmodule

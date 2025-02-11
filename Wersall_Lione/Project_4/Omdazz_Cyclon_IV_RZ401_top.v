@@ -1,4 +1,9 @@
-module Omdazz_Cyclon_IV_RZ401_top(
+module Omdazz_Cyclon_IV_RZ401_top
+#(
+    parameter LP_ENABLE_LOGIC  = 1,
+    parameter P_SELECT_WRAPPER = 0
+)
+(
 input wire KEY1     ,
 input wire KEY2     ,
 input wire KEY3     ,
@@ -104,16 +109,66 @@ inout wire SD_WE
 
 );
 
+wire w_button_on         ;
+wire w_button_reset      ;
+wire w_button_bigbadaboom;
+wire w_button_huy_n      ;
+wire w_LED_hren          ;
+wire w_LED_pohren_n      ;
+
+wire [7:0] w_LCD_DATA;
+
+assign w_button_on          = KEY1 ;
+assign w_button_reset       = KEY2 ;
+assign w_button_bigbadaboom = KEY3 ;
+assign w_button_huy_n       = ~KEY4;
+assign DIG_1                = w_LED_hren          ;
+assign DIG_2                = w_LED_pohren_n      ;
+
+assign {
+    LCD11_D7,
+    LCD10_D6,
+    LCD9_D5 ,
+    LCD8_D4 ,
+    LCD7_D3 ,
+    LCD6_D2 ,
+    LCD5_D1 ,
+    LCD4_D0  
+} = w_LCD_DATA;
+
+sonin_wrapper
+#(                                    
+    .P_ENABLE (LP_ENABLE_LOGIC)       // prisvoenie param k drugomu, delat k kajdomu  modulu
+)                                     
+sonin_wrapper_inst
+(
+    .button_on          (w_button_on         ),
+    .button_reset       (w_button_reset      ),
+    .button_bigbadaboom (w_button_bigbadaboom),
+    .button_huy_n       (w_button_huy_n      ),
+    .LED_hren           (w_LED_hren          ),
+    .LED_pohren_n       (w_LED_pohren_n      ),
+    .LCD_DATA           (w_LCD_DATA          )
+);
+
 //SDRAM inout 
 //assign I2C_SCL = (1'b0) ? (1'b1) : (1'bZ); //3state - read
 //-------------------------------------------------------------------------------------------------
-assign {UART_TXD,PS_CLOCK,PS_DATA,VGA_HSYNC,VGA_VSYNC,ASDO_EPCS4,
-nCSO_EPCS4,DCLK_EPCS4} = 'd0;
-assign {IR,VGA_G,VGA_R} = {3{1'b0}};
+assign {
+    UART_TXD,
+    PS_CLOCK,
+    PS_DATA,
+    VGA_HSYNC,
+    VGA_VSYNC,
+    ASDO_EPCS4,
+    nCSO_EPCS4,
+    DCLK_EPCS4
+} = 'd0;
+assign {IR,VGA_G,VGA_R} = {2{1'b0},1{1'b1}};
 assign {I2C_SCL,I2C_SDA,SCL,SDA,S_DQ0,S_DQ1,S_DQ2,S_DQ3,S_DQ4,S_DQ5,S_DQ6,S_DQ7,
 S_DQ8,S_DQ9,S_DQ10,S_DQ11,S_DQ12,S_DQ13,S_DQ14,S_DQ15,S_A0,S_A1,S_A2,S_A3,S_A4,
 S_A5,S_A6,S_A7,S_A8,S_A9,S_A10,S_A11,SD_BS0,SD_BS1,SD_LDQM,SD_UDQM,SD_CKE,
-SD_CLK,SD_CS,SD_WE,SD_RAS,SD_CAS,} = 1'bZ;
+SD_CLK,SD_CS,SD_WE,SD_RAS,SD_CAS,} = 'bZ;
  
 //-------------------------------------------------------------------------------------------------
 
