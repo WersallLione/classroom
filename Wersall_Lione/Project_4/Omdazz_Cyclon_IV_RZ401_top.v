@@ -172,26 +172,35 @@ SD_CLK,SD_CS,SD_WE,SD_RAS,SD_CAS,} = 'bZ;
  
 //-------------------------------------------------------------------------------------------------
 
-wire w_key1               ;
-wire w_key2               ;
-wire w_key3               ;
-wire w_key4               ;
-wire w_key_1or4           ;
-wire w_key_direct_1or4    ;
-wire w_data_low_cnt       ;
-wire [3:0] ne_data        ; 
-wire [3:0]    N_o_b       ;
-wire [3:0]    data0       ;
-wire [3:0]    data1       ;
-wire [3:0] data_seg       ;
-wire [3:0]   en_seg       ;
-wire             dt       ;
+wire w_key1            ;
+wire w_key2            ;
+wire w_key3            ;
+wire w_key4            ;
+wire w_key_1or4        ;
+wire w_key_direct_1or4 ;
+wire w_data_low_cnt    ;
+wire w_overflow_low    ;
+wire w_data_high_cnt   ;
+wire w_cnt_3sec        ;
+wire w_low_data_inv    ;
+wire w_high_data_inv   ;
+wire w_data_seg        ;
+wire w_en_seg          ;
+wire w_dt              ;
+wire [3:0] ne_data     ; 
+wire [3:0]    N_o_b    ;
+wire [3:0]    data0    ;
+wire [3:0]    data1    ;
+wire [3:0] data_seg    ;
+wire [3:0]   en_seg    ;
+wire             dt    ;
 
 key_ctrl
 key_add_inst
 (
     .KEY             (KEY1),
     .FPGA_CLK    (FPGA_CLK),
+
     .f_key_down          (),
 	.f_key_en1           (),
     .f_key_up      (w_key1)
@@ -201,6 +210,7 @@ key_minus_inst
 (
     .KEY             (KEY4),
     .FPGA_CLK    (FPGA_CLK),
+
     .f_key_down          (),
     .f_key_en1           (),
     .f_key_up      (w_key4)
@@ -210,6 +220,7 @@ key_bzz_inst
 (
     .KEY             (KEY3),
     .FPGA_CLK    (FPGA_CLK),
+
     .f_key_down          (),
     .f_key_en1           (),
     .f_key_up      (w_key3)
@@ -219,6 +230,7 @@ key_inv_inst
 (
     .KEY             (KEY2),
     .FPGA_CLK    (FPGA_CLK),
+
     .f_key_down          (),
     .f_key_en1     (w_key2),
     .f_key_up            ()
@@ -238,58 +250,91 @@ sensivity_key_inst
 count1_4bit_ctrl
 count_low_bit_inst
 (
-    .f_key_add         (w_key_1or4),
+    .f_key_add                (w_key_1or4),
     .f_key_direction   (w_key_direct_1or4),
-    .FPGA_CLK          (FPGA_CLK), 
+    .FPGA_CLK                   (FPGA_CLK), 
 
-    .f_overflow        (),
-    .[3:0] dout        (w_data_low_cnt)
+    .f_overflow           (w_overflow_low),
+    .dout                 (w_data_low_cnt)
 );
 
-buzzer
-buzzer_inst
-( 
-	.FPGA_CLK     (FPGA_CLK), 
-	.sound_on        (push3),
-    .data            (N_o_b),
-    .beep             (beep)
-);
-
-invert_data
-invert_data_inst
+count1_4bit_ctrl
+count_high_bit_inst
 (
-    .FPGA_CLK            (FPGA_CLK),
-    .data                   (data0),
-    .en_key                 (flag2),
-    .inv_data             (ne_data)
+    .f_key_add            (w_overflow_low),
+    .f_key_direction   (w_key_direct_1or4),
+    .FPGA_CLK                   (FPGA_CLK), 
+
+    .f_overflow                         (),
+    .dout                (w_data_high_cnt)
 );
-assign {LED1,LED2,LED3,LED4} = ~ne_data;
+
+count_3sec_ctrl
+count_3sec
+(
+    .FPGA_CLK                   (FPGA_CLK),
+    .en_key                       (w_key2),
+
+    .f_cnt_3sec               (w_cnt_3sec)
+);
+
+invert_ctr
+invert_low_inst
+(
+    .FPGA_CLK                   (FPGA_CLK), 
+    .data                 (w_data_low_cnt),
+    .en_key                   (w_cnt_3sec),
+
+    .inv_data             (w_low_data_inv)
+);
+
+invert_ctr
+invert_high_inst
+(
+    .FPGA_CLK                   (FPGA_CLK), 
+    .data                (w_data_high_cnt),
+    .en_key                   (w_cnt_3sec),
+
+    .inv_data             (w_high_data_inv)
+);
+
+assign {LED1,LED2,LED3,LED4} = ~w_low_data_inv;
 //assign LED4 = ~data0[4];
 //assign LED3 = ~data0[3];
 //assign LED2 = ~data0[2];
 //assign LED1 = ~data0[1];
 
-select_seg
-select_seg_inst
+sevenseg_dynamic_ctrl
+sv_seg_dynamic_inst
 (
-   .data0          (inv_data_inst),
-   .data1                  (data1),
-   .FPGA_CLK            (FPGA_CLK),
+    .data0                (w_low_data_inv),
+    .data1               (w_high_data_inv),
+    .FPGA_CLK                   (FPGA_CLK),
 
-   .data_seg            (data_seg),
-   .en_seg                (en_seg),
-   .dt                        (dt)
+    .data_seg                 (w_data_seg),
+    .en_seg                     (w_en_seg),
+    .dt                             (w_dt)
 );
 
-sevenseg
-sevenseg_inst(
-    .data               (data_seg),
-    .en_seg               (en_seg),
-    .dt                       (dt),
+sevenseg_ctrl
+sevenseg_inst
+(
+    .data                     (w_data_seg),
+    .en_seg                     (w_en_seg),
+    .dt                             (w_dt),
 
     .segment   ({SEG_0,SEG_1,SEG_2,SEG_3,SEG_4,SEG_5,SEG_6}),
-    .seg_enable_num   ({DIG_4,DIG_3,DIG_2,DIG_1}),
-	 .dot                   (SEG_7)
+    .seg_enable_num              ({DIG_4,DIG_3,DIG_2,DIG_1}),
+	.dot                                             (SEG_7)
+);
+
+buzzer_ctrl
+buzzer_inst
+( 
+	.FPGA_CLK                   (FPGA_CLK), 
+	.sound_on                     (w_key3),
+    .data                 (w_low_data_inv),
+    .beep                           (beep)
 );
 
 endmodule
