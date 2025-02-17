@@ -29,12 +29,14 @@ always@ (posedge FPGA_CLK) begin
 	    if(f_key_direction) begin
 			if(dout == 4'b1111) begin
 			   f_overflow <= 1'b1;
+			   dout == 4'b0000;
 			end else begin
                f_overflow <= f_overflow;
 			end	
 		end else begin
            if(dout == 4'b0000) begin
 			   f_overflow <= 1'b0;
+			   dout == 4'b0000;
 			end else begin
                f_overflow <= f_overflow;
 			end	

@@ -1,4 +1,4 @@
-module sevenseg(
+module sevenseg_ctrl(
 
 input wire [3:0] data,
 input wire [3:0] en_seg,

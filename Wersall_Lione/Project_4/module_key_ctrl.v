@@ -1,4 +1,4 @@
-module key_v2(
+module key_ctrl(
 input wire KEY       ,
 input wire FPGA_CLK  ,
 

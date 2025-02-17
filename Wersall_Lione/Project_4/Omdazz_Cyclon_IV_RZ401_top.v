@@ -1,8 +1,8 @@
 module Omdazz_Cyclon_IV_RZ401_top
-#(
-    parameter LP_ENABLE_LOGIC  = 1,
-    parameter P_SELECT_WRAPPER = 0
-)
+// #(
+//     parameter LP_ENABLE_LOGIC  = 1,
+//     parameter P_SELECT_WRAPPER = 0
+// )
 (
 input wire KEY1     ,
 input wire KEY2     ,
@@ -109,47 +109,47 @@ inout wire SD_WE
 
 );
 
-wire w_button_on         ;
-wire w_button_reset      ;
-wire w_button_bigbadaboom;
-wire w_button_huy_n      ;
-wire w_LED_hren          ;
-wire w_LED_pohren_n      ;
+// wire w_button_on         ;
+// wire w_button_reset      ;
+// wire w_button_bigbadaboom;
+// wire w_button_huy_n      ;
+// wire w_LED_hren          ;
+// wire w_LED_pohren_n      ;
 
-wire [7:0] w_LCD_DATA;
+// wire [7:0] w_LCD_DATA;
 
-assign w_button_on          = KEY1 ;
-assign w_button_reset       = KEY2 ;
-assign w_button_bigbadaboom = KEY3 ;
-assign w_button_huy_n       = ~KEY4;
-assign DIG_1                = w_LED_hren          ;
-assign DIG_2                = w_LED_pohren_n      ;
+// assign w_button_on          = KEY1 ;
+// assign w_button_reset       = KEY2 ;
+// assign w_button_bigbadaboom = KEY3 ;
+// assign w_button_huy_n       = ~KEY4;
+// assign DIG_1                = w_LED_hren          ;
+// assign DIG_2                = w_LED_pohren_n      ;
 
-assign {
-    LCD11_D7,
-    LCD10_D6,
-    LCD9_D5 ,
-    LCD8_D4 ,
-    LCD7_D3 ,
-    LCD6_D2 ,
-    LCD5_D1 ,
-    LCD4_D0  
-} = w_LCD_DATA;
+// assign {
+//     LCD11_D7,
+//     LCD10_D6,
+//     LCD9_D5 ,
+//     LCD8_D4 ,
+//     LCD7_D3 ,
+//     LCD6_D2 ,
+//     LCD5_D1 ,
+//     LCD4_D0  
+// } = w_LCD_DATA;
 
-sonin_wrapper
-#(                                    
-    .P_ENABLE (LP_ENABLE_LOGIC)       // prisvoenie param k drugomu, delat k kajdomu  modulu
-)                                     
-sonin_wrapper_inst
-(
-    .button_on          (w_button_on         ),
-    .button_reset       (w_button_reset      ),
-    .button_bigbadaboom (w_button_bigbadaboom),
-    .button_huy_n       (w_button_huy_n      ),
-    .LED_hren           (w_LED_hren          ),
-    .LED_pohren_n       (w_LED_pohren_n      ),
-    .LCD_DATA           (w_LCD_DATA          )
-);
+// sonin_wrapper
+// #(                                    
+//     .P_ENABLE (LP_ENABLE_LOGIC)       // prisvoenie param k drugomu, delat k kajdomu  modulu
+// )                                     
+// sonin_wrapper_inst
+// (
+//     .button_on          (w_button_on         ),
+//     .button_reset       (w_button_reset      ),
+//     .button_bigbadaboom (w_button_bigbadaboom),
+//     .button_huy_n       (w_button_huy_n      ),
+//     .LED_hren           (w_LED_hren          ),
+//     .LED_pohren_n       (w_LED_pohren_n      ),
+//     .LCD_DATA           (w_LCD_DATA          )
+// );
 
 //SDRAM inout 
 //assign I2C_SCL = (1'b0) ? (1'b1) : (1'bZ); //3state - read
@@ -172,17 +172,20 @@ SD_CLK,SD_CS,SD_WE,SD_RAS,SD_CAS,} = 'bZ;
  
 //-------------------------------------------------------------------------------------------------
 
-wire push1      ;
-wire push4      ;
-wire push3      ;
-wire push2      ;
-wire [3:0] ne_data; 
-wire [3:0]    N_o_b;
-wire [3:0]    data0;
-wire [3:0]    data1;
-wire [3:0] data_seg;
-wire [3:0]   en_seg;
-wire             dt;
+wire w_key1               ;
+wire w_key2               ;
+wire w_key3               ;
+wire w_key4               ;
+wire w_key_1or4           ;
+wire w_key_direct_1or4    ;
+wire w_data_low_cnt       ;
+wire [3:0] ne_data        ; 
+wire [3:0]    N_o_b       ;
+wire [3:0]    data0       ;
+wire [3:0]    data1       ;
+wire [3:0] data_seg       ;
+wire [3:0]   en_seg       ;
+wire             dt       ;
 
 key_ctrl
 key_add_inst
@@ -191,7 +194,7 @@ key_add_inst
     .FPGA_CLK    (FPGA_CLK),
     .f_key_down          (),
 	.f_key_en1           (),
-    .f_key_up       (push1)
+    .f_key_up      (w_key1)
 );
 key_ctrl
 key_minus_inst
@@ -200,7 +203,7 @@ key_minus_inst
     .FPGA_CLK    (FPGA_CLK),
     .f_key_down          (),
     .f_key_en1           (),
-    .f_key_up       (push4)
+    .f_key_up      (w_key4)
 );
 key_ctrl
 key_bzz_inst
@@ -209,7 +212,7 @@ key_bzz_inst
     .FPGA_CLK    (FPGA_CLK),
     .f_key_down          (),
     .f_key_en1           (),
-    .f_key_up       (push3)
+    .f_key_up      (w_key3)
 );
 key_ctrl
 key_inv_inst
@@ -217,8 +220,30 @@ key_inv_inst
     .KEY             (KEY2),
     .FPGA_CLK    (FPGA_CLK),
     .f_key_down          (),
-    .f_key_en1      (push2),
+    .f_key_en1     (w_key2),
     .f_key_up            ()
+);
+
+sensivity_key
+sensivity_key_inst
+(
+   .FPGA_CLK        (FPGA_CLK),
+   .din1              (w_key1),
+   .din2,             (w_key4),
+
+   .sens_key      (w_key_1or4), 
+   .dir    (w_key_direct_1or4)
+);
+
+count1_4bit_ctrl
+count_low_bit_inst
+(
+    .f_key_add         (w_key_1or4),
+    .f_key_direction   (w_key_direct_1or4),
+    .FPGA_CLK          (FPGA_CLK), 
+
+    .f_overflow        (),
+    .[3:0] dout        (w_data_low_cnt)
 );
 
 buzzer
@@ -228,23 +253,6 @@ buzzer_inst
 	.sound_on        (push3),
     .data            (N_o_b),
     .beep             (beep)
-);
-
-CALCUL
-CALCUL_inst
-(
-   .flag_light_1           (flag1),
-   .flag_light_2           (flag4),
-   .FPGA_CLK           (FPGA_CLK ),
-   .Num_of_bit             (N_o_b)
-);
-Andei_choto_udumal_chertila
-Andei_choto_udumal_chertila_inst
-(
-   .data                   (N_o_b),
-   .FPGA_CLK            (FPGA_CLK),
-   .data0                  (data0),
-   .data1                  (data1)
 );
 
 invert_data
