@@ -4,7 +4,7 @@ module Omdazz_Cyclon_IV_RZ401_top
 //     parameter P_SELECT_WRAPPER = 0
 // )
 (
-input wire KEY1     ,
+(*"chip_pin" = PIN_89*) input wire KEY1 /*synthesis chip_pin = "PIN_89"*/,
 input wire KEY2     ,
 input wire KEY3     ,
 input wire KEY4     ,
@@ -157,14 +157,16 @@ inout wire SD_WE
 assign {
     UART_TXD,
     PS_CLOCK,
-    PS_DATA,
+    PS_DATA, 
     VGA_HSYNC,
     VGA_VSYNC,
     ASDO_EPCS4,
     nCSO_EPCS4,
     DCLK_EPCS4
 } = 'd0;
-assign {IR,VGA_G,VGA_R} = {2{1'b0},1{1'b1}};
+
+assign {IR,VGA_G,VGA_R} = {2{1'd1},1{1'd0}};
+
 assign {I2C_SCL,I2C_SDA,SCL,SDA,S_DQ0,S_DQ1,S_DQ2,S_DQ3,S_DQ4,S_DQ5,S_DQ6,S_DQ7,
 S_DQ8,S_DQ9,S_DQ10,S_DQ11,S_DQ12,S_DQ13,S_DQ14,S_DQ15,S_A0,S_A1,S_A2,S_A3,S_A4,
 S_A5,S_A6,S_A7,S_A8,S_A9,S_A10,S_A11,SD_BS0,SD_BS1,SD_LDQM,SD_UDQM,SD_CKE,
@@ -241,7 +243,7 @@ sensivity_key_inst
 (
    .FPGA_CLK        (FPGA_CLK),
    .din1              (w_key1),
-   .din2,             (w_key4),
+   .din2              (w_key4),
 
    .sens_key      (w_key_1or4), 
    .dir    (w_key_direct_1or4)
@@ -278,7 +280,7 @@ count_3sec
     .f_cnt_3sec               (w_cnt_3sec)
 );
 
-invert_ctr
+invert_ctrl
 invert_low_inst
 (
     .FPGA_CLK                   (FPGA_CLK), 
@@ -288,7 +290,7 @@ invert_low_inst
     .inv_data             (w_low_data_inv)
 );
 
-invert_ctr
+invert_ctrl
 invert_high_inst
 (
     .FPGA_CLK                   (FPGA_CLK), 

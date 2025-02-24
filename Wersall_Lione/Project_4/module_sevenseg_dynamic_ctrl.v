@@ -47,4 +47,140 @@ always@(posedge FPGA_CLK) begin
     end
 end 
 
+// localparam [2:0]
+// STATE_0 = 'h0,
+// STATE_1 = 'h1,
+// STATE_2 = 'h2;
+
+// reg [2:0] FSM;
+// initial begin
+//     FMS <= STATE_RST;
+// end
+
+/// FSM <= en_seg;
+
+// always @(posedge aclk) begin :FSM_inst
+//     case (FSM)
+//     STATE_RST :begin
+//         FSM <= STATE_0;
+//     end
+//     STATE_0 :begin
+//         if(f_prev)begin
+//             FSM <= STATE_2;
+//         end
+//         else if(f_next)begin
+//             FSM <= STATE_1;
+//         end
+//         else begin
+//             FSM <= STATE_0;
+//         end
+//     end
+//     STATE_1 :begin
+//         if(f_prev)begin
+//             FSM <= STATE_0;
+//         end
+//         else if(f_next)begin
+//             FSM <= STATE_2;
+//         end
+//         else if(f_err)begin
+//             FSM <= STATE_1;
+//         end
+//         else 
+//         else begin
+//             FSM <= STATE_1;
+//         end
+//     end
+//     'h2 :begin
+//         if(f_prev)begin
+//             FSM <= STATE_1;
+//         end
+//         else if(f_next)begin
+//             FSM <= STATE_0;
+//         end
+//         else begin
+//             FSM <= STATE_2;
+//         end
+//     end 
+//     default :begin
+//         FSM <= STATE_0;
+//     end 
+//     endcase
+// end
+
+
+// always @(posedge aclk) begin :FLAGS_inst
+//     case (FSM)
+//     STATE_RST :begin
+//         f_prev <= 1'b0;
+//         f_next <= 1'b0;
+//     end
+//     STATE_0 :begin
+//         if(key_0  == 1'b1)begin
+//             f_prev <= 1'b1;
+//             f_next <= 1'b0;
+//         end
+//         else if(key_1 == 1'b1)begin
+//             f_prev <= 1'b0;
+//             f_next <= 1'b1;
+//         end
+//         else begin
+//             f_prev <= 1'b0;
+//             f_next <= 1'b0;
+//         end
+//     end
+//     STATE_1 :begin
+//         if(key_0  == 1'b1)begin
+//             f_prev <= 1'b1;
+//             f_next <= 1'b0;
+//         end
+//         else if(key_1 == 1'b1)begin
+//             f_prev <= 1'b0;
+//             f_next <= 1'b1;
+//         end
+//         else begin
+//             f_prev <= 1'b0;
+//             f_next <= 1'b0;
+//         end
+//     end
+//     STATE_2 :begin
+//         if(key_0  == 1'b1)begin
+//             f_prev <= 1'b1;
+//             f_next <= 1'b0;
+//         end
+//         else if(key_1 == 1'b1)begin
+//             f_prev <= 1'b0;
+//             f_next <= 1'b1;
+//         end
+//         else begin
+//             f_prev <= 1'b0;
+//             f_next <= 1'b0;
+//         end
+//     end 
+//     default :begin
+//         f_prev <= 1'b0;
+//         f_next <= 1'b0;
+//     end 
+//     endcase
+// end
+
+// always @(posedge aclk) begin :ctrl_inst
+//     case (FSM)
+//     STATE_RST :begin
+//         r_en <= 1'b0;
+//     end
+//     STATE_0 :begin
+//         r_en <= 1'b0;
+//     end
+//     STATE_1 :begin
+//         r_en <= 1'b0;
+//     end
+//     STATE_2 :begin
+//         r_en <= 1'b1;
+//     end 
+//     default :begin
+//         r_en <= 1'b0;
+//     end 
+//     endcase
+// end
+
 endmodule
