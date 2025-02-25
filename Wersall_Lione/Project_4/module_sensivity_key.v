@@ -16,12 +16,10 @@ assign sens[0] = din1;
 assign sens[1] = din2;
 
 always@ (posedge FPGA_CLK) begin
-    case (sens)
-        : 
-        default: 
-    endcase
-
-
+//    case (sens)
+//        : 
+//        default: 
+//    endcase
     if(sens[0]) begin 
         sens_key <= 'd1;
         dir <= 'd1;
