@@ -2,7 +2,7 @@ module invert_ctrl(
 input wire FPGA_CLK    ,
 input wire [3:0] data  ,
 input wire en_key      ,
-output reg [3:0] inv_data
+output wire [3:0] inv_data
 );
 
 reg f_inv;
@@ -19,8 +19,7 @@ always@(posedge FPGA_CLK) begin
 	end
 end
 
-always@(posedge f_inv) begin 
-    inv_data <= ~data; 
-end
+assign inv_data = (f_inv) ? (data) : (~data);
+ 
 
 endmodule

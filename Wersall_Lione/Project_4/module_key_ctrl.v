@@ -24,7 +24,7 @@ end
 
 //sync input signal with clk
 always@ (posedge FPGA_CLK ) begin
-butt <= {butt[0], ~KEY}; // ne razlichaet registr bukvu
+	butt <= {butt[0], ~KEY}; // ne razlichaet registr bukvu
 end
 // if butt[1] = 1, key put in
 // 
@@ -32,7 +32,7 @@ always@(posedge FPGA_CLK) begin
 	if ( butt[1]) begin
 		if(key_cnt >= key_cntmax) begin
 		    key_cnt <= key_cnt;
-		    f_key_en <=1'b1;
+		    f_key_en <= 1'b1;
 		end else begin
 		    key_cnt <= key_cnt + 1'b1; 
             f_key_en <= f_key_en;
@@ -44,11 +44,11 @@ always@(posedge FPGA_CLK) begin
 end
 
 always@ (posedge FPGA_CLK) begin
-f_key_en1 <= f_key_en;
+	f_key_en1 <= f_key_en;
 end
 
 always@ (posedge FPGA_CLK) begin
-    if(f_key_en > f_key_en1 ) begin
+    if(f_key_en < f_key_en1 ) begin
         f_key_down <= 1'b0;
         f_key_up <= 1'b1;
 	end else begin

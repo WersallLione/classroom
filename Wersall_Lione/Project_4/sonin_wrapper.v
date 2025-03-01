@@ -34,7 +34,7 @@ assign LCD_DATA = w_LCD_DATA;
 
 generate
     if(P_SELECT_WRAPPER == 0)begin
-        omdazz_wrapper // p.Enable po umolchaniu kak v module 
+        omdazz_wrapper_gkfjg // p.Enable po umolchaniu kak v module 
         omdazz_wrapper_inst0               
         (
             .button_on          (w_button_on         ),
@@ -47,7 +47,7 @@ generate
         );
     end
     else if(P_SELECT_WRAPPER == 1)begin
-        omdazz_wrapper
+        omdazz_wrapper_gkfjg
         #(                                    
             .P_ENABLE (LP_ENABLE_LOGIC)       // prisvoenie param k drugomu, delat k kajdomu  modulu
         )                                     
