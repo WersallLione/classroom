@@ -21,149 +21,117 @@ initial begin
  f_cnt_3sec = 'd0;
 end 
 
-// generate
-// 	if(P_SHORT_OR_LONG == 1)begin
-		
-// 		always@(posedge FPGA_CLK) begin  // how work cnt
-// 			if(en_key) begin
-// 				if (cnt3sec >= P_LIMIT_CNT) begin
-// 					cnt3sec <= cnt3sec;
-// 				end
-// 				else begin
-// 					cnt3sec <= cnt3sec + 'd1;
-// 				end
-// 			end 
-// 			else begin
-// 				cnt3sec <= 'd0;
-// 			end
-// 		end
-
-// 		always@(posedge FPGA_CLK) begin //time 3sec and f_inv = 1;
-// 			if(en_key) begin
-// 				if (cnt3sec >= P_LIMIT_CNT) begin
-// 					f_cnt_3sec <= 1'b1;
-// 				end
-// 				else begin
-// 					f_cnt_3sec <= f_cnt_3sec;
-// 				end
-// 			end 
-// 			else begin
-// 				f_cnt_3sec <= 1'b0;	
-// 			end
-// 		end
-
-// 	end
-// 	else if(P_SHORT_OR_LONG == 0)begin
-		
-// 		always@(posedge FPGA_CLK) begin  // how work cnt
-// 			if(en_key) begin
-// 				if (cnt3sec >= P_LIMIT_CNT) begin
-// 					cnt3sec <= 'd0; //----------------
-// 				end
-// 				else begin
-// 					cnt3sec <= cnt3sec + 'd1;//-----------------
-// 				end
-// 			end 
-// 			else begin
-// 				cnt3sec <= 'd0;
-// 			end
-// 		end
-		
-// 		always@(posedge FPGA_CLK) begin //time 3sec and f_inv = 1;
-// 			if(en_key) begin
-// 				if (cnt3sec >= P_LIMIT_CNT) begin
-// 					f_cnt_3sec <= ~f_cnt_3sec;
-// 				end
-// 				else begin
-// 					f_cnt_3sec <= f_cnt_3sec;			
-// 				end
-// 			end 
-// 			else begin
-// 				f_cnt_3sec <= 1'b0;	
-// 			end
-// 		end
-
-// 	end
-// 	else begin
-		
-// 		always@(posedge FPGA_CLK) begin  // how work cnt
-// 			if(en_key) begin
-// 				if (cnt3sec >= P_LIMIT_CNT) begin
-// 					cnt3sec <= 'd0; //----------------
-// 				end
-// 				else begin
-// 					cnt3sec <= cnt3sec + 'd1;//-----------------
-// 				end
-// 			end 
-// 			else begin
-// 				cnt3sec <= 'd0;
-// 			end
-// 		end
-		
-// 		always@(posedge FPGA_CLK) begin //time 3sec and f_inv = 1;
-// 			if(en_key) begin
-// 				if (cnt3sec >= P_LIMIT_CNT) begin
-// 					f_cnt_3sec <= ~f_cnt_3sec;
-// 				end
-// 				else begin
-// 					f_cnt_3sec <= f_cnt_3sec;			
-// 				end
-// 			end 
-// 			else begin
-// 				f_cnt_3sec <= 1'b0;	
-// 			end
-// 		end
-		
-// 	end
-// endgenerate
-
-always@(posedge FPGA_CLK) begin  // how work cnt
-	if(en_key) begin
-		if(P_SHORT_OR_LONG) begin
-			if (cnt3sec >= P_LIMIT_CNT) begin
-			    cnt3sec <= cnt3sec;
-			end
+generate
+	if(P_SHORT_OR_LONG == 1)begin		
+		always@(posedge FPGA_CLK) begin  // how work cnt
+			if(en_key) begin
+				if (cnt3sec >= P_LIMIT_CNT) begin
+					cnt3sec <= cnt3sec;
+				end
+				else begin
+					cnt3sec <= cnt3sec + 'd1;
+				end
+			end 
 			else begin
-			    cnt3sec <= cnt3sec + 'd1;
+				cnt3sec <= 'd0;
 			end
 		end
-		else begin // mojno je uprostit' do prosto cnt++  ???
-			if (cnt3sec >= P_LIMIT_CNT) begin
-				cnt3sec <= 'd0; //----------------
-			end
+		always@(posedge FPGA_CLK) begin //time 3sec and f_inv = 1;
+			if(en_key) begin
+				if (cnt3sec >= P_LIMIT_CNT) begin
+					f_cnt_3sec <= 1'b1;
+				end
+				else begin
+					f_cnt_3sec <= 1'd0;
+				end
+			end 
 			else begin
-			    cnt3sec <= cnt3sec + 'd1;//-----------------
+				f_cnt_3sec <= 1'b0;	
 			end
 		end
-	end 
-	else begin
-	    cnt3sec <= 'd0;
 	end
-end
-
-always@(posedge FPGA_CLK) begin //time 3sec and f_inv = 1;
-	if(en_key) begin
-		if(P_SHORT_OR_LONG) begin
-			if (cnt3sec >= P_LIMIT_CNT) begin
-			    f_cnt_3sec <= 1'b1;
-			end
+	else if(P_SHORT_OR_LONG == 0)begin		
+		always@(posedge FPGA_CLK) begin  // how work cnt
+			if(en_key) begin
+				if (cnt3sec >= P_LIMIT_CNT) begin
+					cnt3sec <= 'd0; //----------------
+				end
+				else begin
+					cnt3sec <= cnt3sec + 'd1;//-----------------
+				end
+			end 
 			else begin
-			    f_cnt_3sec <= f_cnt_3sec;
+				cnt3sec <= 'd0;
+			end
+		end		
+		always@(posedge FPGA_CLK) begin //time 3sec and f_inv = 1;
+			if(en_key) begin
+				if (cnt3sec >= P_LIMIT_CNT) begin
+					f_cnt_3sec <= ~f_cnt_3sec;
+				end
+				else begin
+					f_cnt_3sec <= f_cnt_3sec;			
+				end
+			end 
+			else begin
+				f_cnt_3sec <= 1'b0;	
 			end
 		end
-		else begin
-			if (cnt3sec >= P_LIMIT_CNT) begin
-			    f_cnt_3sec <= ~f_cnt_3sec;
-			end
+ 	end
+ 	else begin		
+ 		always@(posedge FPGA_CLK) begin  // how work cnt
+			if(en_key) begin
+				if (cnt3sec >= P_LIMIT_CNT) begin
+					cnt3sec <= cnt3sec;
+				end
+				else begin
+					cnt3sec <= cnt3sec + 'd1;
+				end
+			end 
 			else begin
-			    f_cnt_3sec <= f_cnt_3sec;			
+				cnt3sec <= 'd0;
 			end
 		end
-	end 
-	else begin
-	    f_cnt_3sec <= 1'b0;	
-	end
-end
+		always@(posedge FPGA_CLK) begin //time 3sec and f_inv = 1;
+			if(en_key) begin
+				if (cnt3sec >= P_LIMIT_CNT) begin
+					f_cnt_3sec <= 1'b1;
+				end
+				else begin
+					f_cnt_3sec <= 1'd0;
+				end
+			end 
+			else begin
+				f_cnt_3sec <= 1'b0;	
+			end
+		end
+ 	end
+ endgenerate
 
 
+//always@(posedge FPGA_CLK) begin 
+//	if(en_key) begin
+//		if(P_SHORT_OR_LONG) begin
+//			if (cnt3sec >= P_LIMIT_CNT) begin
+//			    f_cnt_3sec <= 1'b1;
+//			end
+//			else begin
+//			    f_cnt_3sec <= 1'b0;
+//			end
+//		end
+//		else begin // P_SHORT_OR_LONG == 0
+//			if (cnt3sec >= P_LIMIT_CNT) begin
+//			    f_cnt_3sec <= ~f_cnt_3sec;
+//			end
+//			else begin
+//			    f_cnt_3sec <= f_cnt_3sec;			
+//			end
+//		end
+//	end 
+//	else begin
+//	    f_cnt_3sec <= 'b0;	
+//	end
+//end
+//
+//
 endmodule

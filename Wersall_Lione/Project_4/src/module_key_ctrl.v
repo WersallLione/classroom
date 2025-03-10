@@ -48,13 +48,18 @@ always@ (posedge FPGA_CLK) begin
 end
 
 always@ (posedge FPGA_CLK) begin
-    if(f_key_en < f_key_en1 ) begin
+    if(f_key_en < f_key_en1) begin
         f_key_down <= 1'b0;
         f_key_up <= 1'b1;
-	end else begin
+	end 
+	else if (f_key_en > f_key_en1) begin
         f_key_down <= 1'b1;
         f_key_up <= 1'b0;
     end
+	else begin
+        f_key_down <= 1'b0;
+        f_key_up <= 1'b0;
+	end
 end 
 
 

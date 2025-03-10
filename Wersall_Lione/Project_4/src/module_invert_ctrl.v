@@ -19,7 +19,7 @@ always@(posedge FPGA_CLK) begin
 	end
 end
 
-assign inv_data = (f_inv) ? (data) : (~data);
+assign inv_data = (f_inv) ? (~data) : (data);
  
 
 endmodule

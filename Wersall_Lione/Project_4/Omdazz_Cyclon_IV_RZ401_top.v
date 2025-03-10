@@ -159,29 +159,24 @@ SD_CLK,SD_CS,SD_WE,SD_RAS,SD_CAS,} = 'bZ;
  
 //-------------------------------------------------------------------------------------------------
 
-wire w_key1            ;
-wire w_key2            ;
-wire w_key3            ;
-wire w_key4            ;
-wire w_key_1or4        ;
-wire w_key_direct_1or4 ;
-wire [3:0] w_data_low_cnt    ;
-wire w_overflow_low    ;
-wire w_data_high_cnt   ;
-wire w_cnt_3sec        ;
-wire [3:0]  w_low_data_inv    ;
-wire w_high_data_inv   ;
-wire w_data_seg        ;
-wire [3:0] w_en_seg    ;
-wire w_dt              ;
-wire w_cnt_strobe      ;
-wire [3:0] ne_data     ; 
-wire [3:0]    N_o_b    ;
-wire [3:0]    data0    ;
-wire [3:0]    data1    ;
-wire [3:0] data_seg    ;
-wire [3:0]   en_seg    ;
-wire             dt    ;
+wire w_key1                   ;
+wire w_key2                   ;
+wire w_key3                   ;
+wire w_key4                   ;
+wire w_key_1or4               ;
+wire w_key_direct_1or4        ;
+wire [3:0] w_data_low_cnt     ;
+wire w_overflow_low           ;
+//wire w_direct_over_low        ;
+wire [3:0] w_data_high_cnt    ;
+wire w_cnt_3sec               ;
+wire [3:0] w_low_data_inv     ;
+wire [3:0] w_high_data_inv    ;
+wire [3:0] w_data_seg         ;
+wire [3:0] w_en_seg           ;
+wire w_dt                     ;
+wire w_cnt_strobe             ;
+
 
 key_ctrl
 key_add_inst
@@ -215,6 +210,7 @@ key_bzz_inst
     .f_key_en1           (),
     .f_key_up      (w_key3)
 );
+
 key_ctrl
 key_inv_inst
 (
@@ -245,6 +241,7 @@ count_low_bit_inst
     .FPGA_CLK                   (FPGA_CLK), 
 
     .f_overflow           (w_overflow_low),
+ //   .f_direct_over     (w_direct_over_low),
     .dout                 (w_data_low_cnt)
 );
 
@@ -252,10 +249,11 @@ count1_4bit_ctrl
 count_high_bit_inst
 (
     .f_key_add            (w_overflow_low),
-    .f_key_direction   (w_key_direct_1or4),
+    .f_key_direction   (w_key_direct_1or4), // w_direct_over_low
     .FPGA_CLK                   (FPGA_CLK), 
 
     .f_overflow                         (),
+  //  .f_direct_over                      (),
     .dout                (w_data_high_cnt)
 );
 
@@ -288,7 +286,7 @@ invert_high_inst
     .inv_data             (w_high_data_inv)
 );
 
-assign {LED1,LED2,LED3,LED4} = ~w_low_data_inv;
+assign {LED1,LED2,LED3,LED4} = ~w_high_data_inv;
 //assign LED4 = ~data0[4];
 //assign LED3 = ~data0[3];
 //assign LED2 = ~data0[2];
@@ -342,3 +340,4 @@ buzzer_inst
 );
 
 endmodule
+ 

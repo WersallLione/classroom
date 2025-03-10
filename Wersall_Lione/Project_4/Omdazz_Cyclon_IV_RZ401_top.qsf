@@ -42,22 +42,13 @@ set_global_assignment -name DEVICE EP4CE10E22C8
 set_global_assignment -name TOP_LEVEL_ENTITY Omdazz_Cyclon_IV_RZ401_top
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 20.1.1
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "23:40:36  FEBRUARY 17, 2025"
-set_global_assignment -name LAST_QUARTUS_VERSION "22.1std.0 Standard Edition"
-set_global_assignment -name VERILOG_FILE Omdazz_Cyclon_IV_RZ401_top.v
-set_global_assignment -name VERILOG_FILE module_sevenseg_dynamic_ctrl.v
-set_global_assignment -name VERILOG_FILE module_sevenseg_ctrl.v
-set_global_assignment -name VERILOG_FILE module_sensivity_key.v
-set_global_assignment -name VERILOG_FILE module_key_ctrl.v
-set_global_assignment -name VERILOG_FILE module_invert_ctrl.v
-set_global_assignment -name VERILOG_FILE module_count_3sec_ctrl.v
-set_global_assignment -name VERILOG_FILE module_count1_4bit_ctrl.v
-set_global_assignment -name VERILOG_FILE module_buzzer_ctrl.v
+set_global_assignment -name LAST_QUARTUS_VERSION "20.1.1 Standard Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
 set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.2V
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_NETLIST_TYPE POST_FIT -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_location_assignment PIN_133 -to DIG_1
@@ -161,6 +152,16 @@ set_location_assignment PIN_91 -to KEY4
 set_location_assignment PIN_110 -to beep
 set_global_assignment -name ENABLE_SIGNALTAP ON
 set_global_assignment -name USE_SIGNALTAP_FILE stp2.stp
-set_global_assignment -name SIGNALTAP_FILE stp2.stp
+set_global_assignment -name VERILOG_FILE src/module_sevenseg_dynamic_ctrl.v
+set_global_assignment -name VERILOG_FILE src/module_sevenseg_ctrl.v
+set_global_assignment -name VERILOG_FILE src/module_sensivity_key.v
+set_global_assignment -name VERILOG_FILE src/module_key_ctrl.v
+set_global_assignment -name VERILOG_FILE src/module_invert_ctrl.v
+set_global_assignment -name VERILOG_FILE src/module_count1_4bit_ctrl.v
+set_global_assignment -name VERILOG_FILE src/module_count_3sec_ctrl.v
+set_global_assignment -name VERILOG_FILE src/module_buzzer_ctrl.v
+set_global_assignment -name VERILOG_FILE Omdazz_Cyclon_IV_RZ401_top.v
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name SLD_FILE db/stp2_auto_stripped.stp

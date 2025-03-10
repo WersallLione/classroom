@@ -26,7 +26,7 @@ dt = 'd1            ;
 end
 
 always@(posedge FPGA_CLK) begin 
-    if(cnt_freq_seg >= 'h98_9680) begin // 50M == 1sec. 50M/5=10M ----> (0.2sec),'h98_9680 == 10M. 4C 4B40 == 5M (0.1 sec)
+    if(cnt_freq_seg >= 'h4E20) begin // 50M == 1sec. 50M/5000=10000Hz ----> (0.0002sec),'h2710 == 10000Hz. h'1388 == 5000Hz (0.0001 sec)
         cnt_freq_seg <= 'd0; 
         enable_segment <= ~enable_segment; // freq segment 10MHz
     end else begin
