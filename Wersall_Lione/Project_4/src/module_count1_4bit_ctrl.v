@@ -23,7 +23,7 @@ end
 //assign wire_1 = (dout == 4'b1111);
 
 always@ (posedge FPGA_CLK) begin
-    if(f_key_add) begin
+    if(f_key_add) begin  // po idei eto enable
 	    if(f_key_direction) begin
 			if(dout == 4'b1111) begin
 			   f_overflow <= 1'b1;
@@ -48,7 +48,7 @@ always@ (posedge FPGA_CLK) begin
         end 
 	end 
 	else begin
-	    f_overflow <= f_overflow;
+	    f_overflow <= 'd0;
 //		f_direct_over <= f_direct_over;
 		dout <= dout;
 	end

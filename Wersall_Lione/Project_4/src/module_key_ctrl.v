@@ -30,7 +30,7 @@ end
 // 
 always@(posedge FPGA_CLK) begin
 	if ( butt[1]) begin
-		if(key_cnt >= key_cntmax) begin
+		if(key_cnt >= key_cntmax) begin // cntmax pochti 1/3 sec
 		    key_cnt <= key_cnt;
 		    f_key_en <= 1'b1;
 		end else begin
