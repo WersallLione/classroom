@@ -37,16 +37,16 @@ end
 
 always@(posedge FPGA_CLK) begin
     if(enable_segment) begin
-        data_seg <= data0;
-        en_seg <= 4'b1110;
-        dt <= 'd1;
+        data_seg <= data0  ;
+        en_seg   <= 4'b1110;
+        dt           <= 'd1;
     end else begin
         data_seg <= data1  ;
         en_seg   <= 4'b1101;
         dt       <= 'd1    ;
     end
 end 
-
+endmodule
 // localparam [2:0]
 // STATE_0 = 'h0,
 // STATE_1 = 'h1,
@@ -183,4 +183,3 @@ end
 //     endcase
 // end
 
-endmodule

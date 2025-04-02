@@ -165,17 +165,23 @@ wire w_key3                   ;
 wire w_key4                   ;
 wire w_key_1or4               ;
 wire w_key_direct_1or4        ;
-wire [3:0] w_data_low_cnt     ;
 wire w_overflow_low           ;
 //wire w_direct_over_low        ;
-wire [3:0] w_data_high_cnt    ;
 wire w_cnt_3sec               ;
+wire w_dt                     ;
+wire w_cnt_strobe             ;
+wire w_strobe_end             ;
+wire w_capacity_cnt           ;
+
+wire [3:0] w_data_low_cnt     ;
+wire [3:0] w_data_high_cnt    ;
 wire [3:0] w_low_data_inv     ;
 wire [3:0] w_high_data_inv    ;
 wire [3:0] w_data_seg         ;
 wire [3:0] w_en_seg           ;
-wire w_dt                     ;
-wire w_cnt_strobe             ;
+wire [3:0] w_notes            ;
+
+
 
 
 key_ctrl
@@ -262,7 +268,7 @@ count_3sec
 (
     .FPGA_CLK                   (FPGA_CLK),
     .en_key                       (w_key2),
-
+    
     .f_cnt_3sec               (w_cnt_3sec)
 );
 
@@ -315,27 +321,40 @@ sevenseg_inst
     .seg_enable_num              ({DIG_4,DIG_3,DIG_2,DIG_1}),
 	.dot                                             (SEG_7)
 );
+//----------------------------------------------------------------------------------------
+// create music
+
+select_number_of_notes_driver
+number_of_notes_inst
+(
+    .i_global_en                  (w_key3),
+    .i_enable               (w_strobe_end),
+    .o_volume             (w_capacity_cnt),
+    .o_data                      (w_notes),
+    .aclk                      (FPGA_CLK)
+);
 
 count_3sec_ctrl
-#(  
-   //  .P_LIMIT_CNT      (), // ne ukazuvat esli ne menyau
-   // .P_CAPACITY_CNT   (),                                  
-     .P_SHORT_OR_LONG (0)       // potomn butet upravlyztsya drugim param
+#(  // не указывай если не менял, относиться построчно
+   .P_LIMIT_CNT                         (),
+   .P_CAPACITY_CNT        (w_capacity_cnt),                                  
+   .P_SHORT_OR_LONG                    (0)      // potomn butet upravlyztsya drugim param
  )
 count_long_strobe_music_sheet
 (
     .FPGA_CLK                    (FPGA_CLK),
     .en_key                        (w_key3),
 
-    .f_cnt_3sec               (w_cnt_strobe)
+    .f_cnt_cycl_end          (w_strobe_end),
+    .f_cnt_3sec              (w_cnt_strobe)
 );
 
 buzzer_ctrl
 buzzer_inst
 ( 
 	.FPGA_CLK                   (FPGA_CLK), 
-	.sound_on                     (w_key3), //  potom dlitelnost noty budet zaviset' ot     w_cnt_strobe
-    .data                 (w_low_data_inv),
+	.sound_on               (w_cnt_strobe), //  potom dlitelnost noty budet zaviset' ot     w_cnt_strobe
+    .data                        (w_notes),
     .beep                           (beep)
 );
 
