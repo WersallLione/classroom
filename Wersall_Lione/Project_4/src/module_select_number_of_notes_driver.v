@@ -1,37 +1,39 @@
 module select_number_of_notes_driver
 #(
-
+   parameter P_ENABLE = 0
 )
+
 ( 
 input wire i_global_en     , // внешнее разрешение, например с кнопки для того что бы запустить маш состояний
 input wire i_enable        , // разрешение от стробирующего модуля
 output integer o_volume    , // значение int объем счетчика которые будет считать стробирование
-output wire [3:0] o_data   , // данные для нот
-output wire [26:0] o_limit ,
-output wire o_en           , // разрешение для следующего блока (например для строб)
+output reg [3:0] o_data   , // данные для нот
+output reg [26:0] o_limit ,
+output reg o_en           , // разрешение для следующего блока (например для строб)
 
 input wire aclk
 );
 
- localparam [15:0]
- STATE_0 =   'h0,
- STATE_1 =   'h1,
- STATE_2 =   'h2,
- STATE_3 =   'h3,
- STATE_4 =   'h4,
- STATE_5 =   'h5,
- STATE_6 =   'h6,
- STATE_7 =   'h7,
- STATE_8 =   'h8,
- STATE_9 =   'h9,
- STATE_10 =  'hA,
- STATE_11 =  'hB,
- STATE_12 =  'hC,
- STATE_13 =  'hD,
- STATE_14 =  'hE,
- STATE_15 =  'hF;
+ localparam [4:0]
+ STATE_RST = 'h0,
+ STATE_0 =   'h1,
+ STATE_1 =   'h2,
+ STATE_2 =   'h3,
+ STATE_3 =   'h4,
+ STATE_4 =   'h5,
+ STATE_5 =   'h6,
+ STATE_6 =   'h7,
+ STATE_7 =   'h8,
+ STATE_8 =   'h9,
+ STATE_9 =   'hA,
+ STATE_10 =  'hB,
+ STATE_11 =  'hC,
+ STATE_12 =  'hD,
+ STATE_13 =  'hE,
+ STATE_14 =  'hF,
+ STATE_15 =  'h10;
  
- reg [15:0] state;
+ reg [4:0] state;
  initial begin
      state <= STATE_RST;
  end

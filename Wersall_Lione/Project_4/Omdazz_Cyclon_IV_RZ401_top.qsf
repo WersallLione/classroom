@@ -152,6 +152,9 @@ set_location_assignment PIN_91 -to KEY4
 set_location_assignment PIN_110 -to beep
 set_global_assignment -name ENABLE_SIGNALTAP ON
 set_global_assignment -name USE_SIGNALTAP_FILE stp2.stp
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name VERILOG_FILE src/module_select_number_of_notes_driver.v
 set_global_assignment -name VERILOG_FILE src/module_sevenseg_dynamic_ctrl.v
 set_global_assignment -name VERILOG_FILE src/module_sevenseg_ctrl.v
 set_global_assignment -name VERILOG_FILE src/module_sensivity_key.v
@@ -161,7 +164,5 @@ set_global_assignment -name VERILOG_FILE src/module_count1_4bit_ctrl.v
 set_global_assignment -name VERILOG_FILE src/module_count_3sec_ctrl.v
 set_global_assignment -name VERILOG_FILE src/module_buzzer_ctrl.v
 set_global_assignment -name VERILOG_FILE Omdazz_Cyclon_IV_RZ401_top.v
-set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
-set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name SLD_FILE db/stp2_auto_stripped.stp

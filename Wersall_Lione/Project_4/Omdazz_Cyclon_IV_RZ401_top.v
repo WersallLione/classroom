@@ -172,6 +172,7 @@ wire w_dt                     ;
 wire w_cnt_strobe             ;
 wire w_strobe_end             ;
 wire w_capacity_cnt           ;
+wire [26:0] w_limit_cnt       ;
 
 wire [3:0] w_data_low_cnt     ;
 wire [3:0] w_data_high_cnt    ;
@@ -331,13 +332,14 @@ number_of_notes_inst
     .i_enable               (w_strobe_end),
     .o_volume             (w_capacity_cnt),
     .o_data                      (w_notes),
+	 .o_limit                 (w_limit_cnt),
     .aclk                      (FPGA_CLK)
 );
 
 count_3sec_ctrl
 #(  // не указывай если не менял, относиться построчно
-   .P_LIMIT_CNT                         (),
-   .P_CAPACITY_CNT        (w_capacity_cnt),                                  
+  // .P_LIMIT_CNT              (w_limit_cnt),
+   //.P_CAPACITY_CNT        (w_capacity_cnt),                                  
    .P_SHORT_OR_LONG                    (0)      // potomn butet upravlyztsya drugim param
  )
 count_long_strobe_music_sheet
