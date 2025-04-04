@@ -8,6 +8,7 @@ module count_3sec_ctrl
 // if P_SHORT_OR_LONG == 0, 
 
 (
+	input wire [P_CAPACITY_CNT -1:00] P_LIMIT_CNT
     input wire FPGA_CLK,
     input wire en_key,
 

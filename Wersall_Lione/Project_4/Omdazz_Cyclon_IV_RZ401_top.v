@@ -172,8 +172,8 @@ wire w_dt                     ;
 wire w_cnt_strobe             ;
 wire w_strobe_end             ;
 wire w_capacity_cnt           ;
-wire [26:0] w_limit_cnt       ;
 
+wire [26:0] w_limit_cnt       ;
 wire [3:0] w_data_low_cnt     ;
 wire [3:0] w_data_high_cnt    ;
 wire [3:0] w_low_data_inv     ;
@@ -332,7 +332,7 @@ number_of_notes_inst
     .i_enable               (w_strobe_end),
     .o_volume             (w_capacity_cnt),
     .o_data                      (w_notes),
-	 .o_limit                 (w_limit_cnt),
+	.o_limit                 (w_limit_cnt),
     .aclk                      (FPGA_CLK)
 );
 
