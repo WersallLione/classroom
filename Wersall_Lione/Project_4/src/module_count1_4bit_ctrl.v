@@ -5,7 +5,7 @@ input wire i_underflow  ,
 
 output reg o_overflow   ,
 output reg o_underflow  ,
-output reg  [3:0] o_data
+output reg  [3:0] o_data,
 
 input wire aclk       ,
 input wire aresetn
@@ -47,7 +47,7 @@ always@ (posedge aclk) begin
     if(enable) begin  // po idei eto enable
 	    if(i_overflow) begin
 			if(o_data == 4'b1111) begin
-			     o_overflow <= 1'b1;
+			     o_overflow <=  1'b1;
 			     o_underflow <= 1'b0;
 			end else begin
                  o_overflow <= 1'b0;

@@ -168,7 +168,8 @@ wire w_key_overflow_1or4      ;
 wire w_key_underflow_1or4     ;
 wire w_overflow_low           ;
 wire w_underflow_low          ;
-
+wire w_over_en                ;
+wire w_under_en               ;
 wire w_cnt_3sec               ;
 wire w_dt                     ;
 wire w_cnt_strobe             ;
@@ -182,6 +183,7 @@ wire [3:0] w_high_data_inv    ;
 wire [3:0] w_data_seg         ;
 wire [3:0] w_en_seg           ;
 wire [3:0] w_notes            ;
+
 
 
 
@@ -259,10 +261,15 @@ count_low_bit_inst
     .aresetn                                ()
 );
 
+assign w_over_en = (w_overflow_low) ? (1'b1):(
+                 (w_underflow_low) ? (1'b1):(1'b0));
+
+
+
 count1_4bit_ctrl
 count_high_bit_inst
 (
-    .enable                       (w_key_1or4),
+    .enable                  (w_over_en),
     .i_overflow               (w_overflow_low),
     .i_underflow             (w_underflow_low),
 
