@@ -1,36 +1,44 @@
 module sensivity_key(
-input wire FPGA_CLK    ,
-input wire din1        ,
-input wire din2        ,
+input wire i_data1        ,
+input wire i_data2        ,
 
-output reg sens_key    , // signal put the butt
-output reg dir           // signal direction key
+output reg o_enable       , // signal put the butt
+output reg o_overflow     ,          // signal direction key
+output reg o_underflow    ,
+
+input wire aclk           ,
+input wire aresetn
 );
+
 wire [1:0] sens;
 
 initial begin 
-dir = 'd0;
+o_overflow = 'd0;
+o_underflow = 'd0;
 end
 
-assign sens[0] = din1;
-assign sens[1] = din2;
+assign sens[0] = i_data1;
+assign sens[1] = i_data2;
 
-always@ (posedge FPGA_CLK) begin
+always@ (posedge aclk) begin
 //    case (sens)
 //        : 
 //        default: 
 //    endcase
     if(sens[0]) begin 
-        sens_key <= 'd1;
-        dir <= 'd1;
+        o_enable <= 'd1;
+        o_overflow <= 'd1;
+        o_underflow <= 'd0;
     end else 
     if(sens[1]) begin
-        sens_key <= 'd1;
-        dir <= 'd0;
+        o_enable <= 'd1;
+        o_overflow <= 'd0;
+        o_underflow <= 'd1;
     end else
     begin
-        sens_key <= 'd0;
-        dir <= 'd0;
+        o_enable <= 'd0;
+        o_overflow <= 'd0;
+        o_underflow <= 'd0;
     end 
 end
 

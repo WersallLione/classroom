@@ -1,17 +1,20 @@
 module count1_4bit_ctrl(
-input wire f_key_add      ,
-input wire f_key_direction,
-input wire FPGA_CLK       , 
+input wire enable      ,
+input wire i_overflow   ,
+input wire i_underflow  ,
 
-output reg f_overflow     ,
-//output reg f_direct_over  ,
-output reg  [3:0] dout
+output reg o_overflow   ,
+output reg o_underflow  ,
+output reg  [3:0] o_data
+
+input wire aclk       ,
+input wire aresetn
 );
 
 initial begin
- dout = 'd0;
- f_overflow = 'd0;
- //f_direct_over = 'd0;
+ o_data = 'd0;
+ o_overflow = 'd0;
+ o_underflow = 'd0;
 end 
 
 //wire w_dout_or;
@@ -22,35 +25,49 @@ end
 //wire wire_1;
 //assign wire_1 = (dout == 4'b1111);
 
-always@ (posedge FPGA_CLK) begin
-    if(f_key_add) begin  // po idei eto enable
-	    if(f_key_direction) begin
-			if(dout == 4'b1111) begin
-			   f_overflow <= 1'b1;
-//			   f_direct_over <= 1'd1;
-			   dout <= dout + 1'd1;
+always@ (posedge aclk) begin
+    if(enable) begin  // po idei eto enable
+	    if(i_overflow) begin
+			 o_data <= o_data + 1'd1;
+		end 
+		else 
+		if(i_underflow) begin
+			 o_data <= o_data - 1'd1;	
+		end
+	    else begin
+		 o_data <= o_data;
+	    end
+	end    
+    else begin 
+         o_data <= o_data;
+    end
+end
+
+always@ (posedge aclk) begin
+    if(enable) begin  // po idei eto enable
+	    if(i_overflow) begin
+			if(o_data == 4'b1111) begin
+			     o_overflow <= 1'b1;
+			     o_underflow <= 1'b0;
 			end else begin
-               f_overflow <= 1'b0;
-//			   f_direct_over <= f_direct_over;
-			   dout <= dout + 1'd1;
+                 o_overflow <= 1'b0;
+			     o_underflow <= 1'b0;
 			end	
 		end 
-		else begin
-			if(dout == 4'b0000) begin
-			   f_overflow <= 1'b1;
-//			   f_direct_over <= 1'd0;
-			   dout <= dout - 1'd1;
+		else 
+		if(i_underflow) begin
+			if(o_data == 4'b0000) begin
+			     o_overflow <= 1'b0;
+			     o_underflow <= 1'b1;
 		    end else begin
-				f_overflow <= 1'b0;
-	//			f_direct_over <= f_direct_over;
-				dout <= dout - 1'd1;	
+			     o_overflow <= 1'b0;
+			     o_underflow <= 1'b0;
 		    end
         end 
 	end 
 	else begin
-	    f_overflow <= 'd0;
-//		f_direct_over <= f_direct_over;
-		dout <= dout;
+	     o_overflow <= 'd0;
+		 o_underflow <= 'd0;
 	end
     
 end

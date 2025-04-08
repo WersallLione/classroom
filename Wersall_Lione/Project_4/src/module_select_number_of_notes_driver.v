@@ -6,10 +6,9 @@ module select_number_of_notes_driver
 ( 
 input wire i_global_en     , // внешнее разрешение, например с кнопки для того что бы запустить маш состояний
 input wire i_enable        , // разрешение от стробирующего модуля
-output integer o_volume    , // значение int объем счетчика которые будет считать стробирование
-output reg [3:0] o_data   , // данные для нот
-output reg [26:0] o_limit ,
-output reg o_en           , // разрешение для следующего блока (например для строб)
+output reg [3:0] o_data    , // данные для нот
+output reg [26:0] o_limit  ,
+output reg o_en            , // разрешение для следующего блока (например для строб)
 
 input wire aclk
 );
@@ -35,6 +34,9 @@ input wire aclk
  
  reg [4:0] state;
  initial begin
+     o_data = 'd0;
+     o_limit = 'd0;
+     o_en = 'd0;
      state <= STATE_RST;
  end
 
@@ -187,109 +189,91 @@ input wire aclk
      case (state)
      STATE_RST :begin
          o_limit  <= 'h0;
-         o_volume <= 'd0;
          o_data   <= 'd0;
          o_en     <= 'd0;
      end
      STATE_0 :begin
          o_limit  <= 'h7A_1200 ; // 8kk in Hex
-         o_volume <= 'd25      ;
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_1 :begin
          o_limit  <= 'h7A_1200 ;
-         o_volume <= 'd24      ;
          o_data   <= 'd1111    ;
          o_en     <= 'd1       ;
      end
      STATE_2 :begin
          o_limit  <= 'h7A_1200 ;
-         o_volume <= 'd22      ;
          o_data   <= 'd0010    ;
          o_en     <= 'd1       ;
      end 
      STATE_3 :begin
          o_limit  <= 'h7A_1200 ;
-         o_volume <= 'd20      ;
          o_data   <= 'd0110    ;
          o_en     <= 'd1       ;
      end
      STATE_4 :begin
          o_limit  <= 'h7A_1200 ;
-         o_volume <= 'd20      ;
          o_data   <= 'd1110    ;
          o_en     <= 'd1       ;
      end
      STATE_5 :begin
          o_limit  <= 'h7A_1200 ;
-         o_volume <= 'd20      ;
          o_data   <= 'd1101    ;
          o_en     <= 'd1       ;
      end
      STATE_6 :begin
          o_limit  <= 'h7A_1200 ;
-         o_volume <= 'd21      ;
          o_data   <= 'd0001    ;
          o_en     <= 'd1       ;
      end
      STATE_7 :begin
          o_limit  <= 'h7A_1200 ;
-         o_volume <= 'd22      ;
          o_data   <= 'd0000    ;
          o_en     <= 'd1       ;
      end
      STATE_8 :begin
          o_limit  <= 'h7A_1200 ;
-         o_volume <= 'd23      ;
          o_data   <= 'd0111    ;
          o_en     <= 'd1       ;
      end
      STATE_9 :begin
          o_limit  <= 'h7A_1200 ;
-         o_volume <= 'd22      ;
          o_data   <= 'd0110    ;
          o_en     <= 'd1       ;
      end
      STATE_10 :begin
          o_limit  <= 'h7A_1200 ;
-         o_volume <= 'd21      ;
          o_data   <= 'd1110    ;
          o_en     <= 'd1       ;
      end
      STATE_11 :begin
          o_limit  <= 'h7A_1200 ;
-         o_volume <= 'd22      ;
          o_data   <= 'd1001    ;
          o_en     <= 'd1       ;
      end
      STATE_12 :begin
          o_limit  <= 'h7A_1200 ;
-         o_volume <= 'd20      ;
          o_data   <= 'd1011    ;
          o_en     <= 'd1       ;
      end
      STATE_13 :begin
          o_limit  <= 'h7A_1200 ;
-         o_volume <= 'd23      ;
          o_data   <= 'd1100    ;
          o_en     <= 'd1       ;
      end
      STATE_14 :begin
          o_limit  <= 'h7A_1200 ;
-         o_volume <= 'd22      ;
          o_data   <= 'd0100    ;
          o_en     <= 'd1       ;
      end
      STATE_15 :begin
          o_limit  <= 'h7A_1200 ;
-         o_volume <= 'd21      ;
          o_data   <= 'd1111    ;
          o_en     <= 'd1       ;
      end 
      default :begin
          o_limit  <= 'h0       ;
-         o_volume <= 'd0       ;
          o_data   <= 'd0       ;
          o_en     <= 'd0       ;
      end 

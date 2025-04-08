@@ -1,6 +1,6 @@
 module count_3sec_ctrl
 #(
-	parameter P_LIMIT_CNT    = 'h8F0_D180,
+	//parameter P_LIMIT_CNT    = 'h8F0_D180,
 	parameter P_CAPACITY_CNT = 28,
 	parameter P_SHORT_OR_LONG = 1
 )
@@ -8,7 +8,7 @@ module count_3sec_ctrl
 // if P_SHORT_OR_LONG == 0, 
 
 (
-	input wire [P_CAPACITY_CNT -1:00] P_LIMIT_CNT
+	input wire [P_CAPACITY_CNT -1:00] i_limit_cnt,
     input wire FPGA_CLK,
     input wire en_key,
 
@@ -43,7 +43,7 @@ generate
 		end
 		always@(posedge FPGA_CLK) begin //по достижении лимита выставляет флаг
 			if(en_key) begin
-				if (cnt3sec == P_LIMIT_CNT) begin
+				if (cnt3sec == limit_cnt) begin
 					f_cnt_3sec <= 1'b1;
 				end
 				else begin
@@ -66,7 +66,7 @@ generate
 		end		
 		always@(posedge FPGA_CLK) begin // при достижение лимита инвертирует сигнал флага, а при переполнении инвертирует еще раз. 
 			if(en_key) begin
-				if (cnt3sec == P_LIMIT_CNT) begin
+				if (cnt3sec == limit_cnt) begin
 					f_cnt_3sec <= ~f_cnt_3sec;
 				end
 				else 
@@ -96,7 +96,7 @@ generate
  	else begin		
  		always@(posedge FPGA_CLK) begin  // при всех других работает как P_SHORT_OR_LONG = 1
 			if(en_key) begin
-				if (cnt3sec >= P_LIMIT_CNT) begin
+				if (cnt3sec >= limit_cnt) begin
 					cnt3sec <= cnt3sec;
 				end
 				else begin
@@ -109,7 +109,7 @@ generate
 		end
 		always@(posedge FPGA_CLK) begin 
 			if(en_key) begin
-				if (cnt3sec >= P_LIMIT_CNT) begin
+				if (cnt3sec >= limit_cnt) begin
 					f_cnt_3sec <= 1'b1;
 				end
 				else begin
@@ -127,7 +127,7 @@ generate
 //always@(posedge FPGA_CLK) begin 
 //	if(en_key) begin
 //		if(P_SHORT_OR_LONG) begin
-//			if (cnt3sec >= P_LIMIT_CNT) begin
+//			if (cnt3sec >= limit_cnt) begin
 //			    f_cnt_3sec <= 1'b1;
 //			end
 //			else begin
@@ -135,7 +135,7 @@ generate
 //			end
 //		end
 //		else begin // P_SHORT_OR_LONG == 0
-//			if (cnt3sec >= P_LIMIT_CNT) begin
+//			if (cnt3sec >= limit_cnt) begin
 //			    f_cnt_3sec <= ~f_cnt_3sec;
 //			end
 //			else begin

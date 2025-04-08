@@ -164,16 +164,17 @@ wire w_key2                   ;
 wire w_key3                   ;
 wire w_key4                   ;
 wire w_key_1or4               ;
-wire w_key_direct_1or4        ;
+wire w_key_overflow_1or4      ;
+wire w_key_underflow_1or4     ;
 wire w_overflow_low           ;
-//wire w_direct_over_low        ;
+wire w_underflow_low          ;
+
 wire w_cnt_3sec               ;
 wire w_dt                     ;
 wire w_cnt_strobe             ;
 wire w_strobe_end             ;
-wire w_capacity_cnt           ;
 
-wire [26:0] w_limit_cnt       ;
+wire [27:0] w_limit_cnt       ;
 wire [3:0] w_data_low_cnt     ;
 wire [3:0] w_data_high_cnt    ;
 wire [3:0] w_low_data_inv     ;
@@ -232,41 +233,51 @@ key_inv_inst
 sensivity_key
 sensivity_key_inst
 (
-   .FPGA_CLK        (FPGA_CLK),
-   .din1              (w_key1),
-   .din2              (w_key4),
+    .i_data1                    (w_key1),
+    .i_data2                    (w_key4),
 
-   .sens_key      (w_key_1or4), 
-   .dir    (w_key_direct_1or4)
+    .o_enable               (w_key_1or4), 
+    .o_overflow    (w_key_overflow_1or4),  
+    .o_underflow  (w_key_underflow_1or4),
+    
+    .aclk                     (FPGA_CLK),
+    .aresetn                          ()
 );
 
 count1_4bit_ctrl
 count_low_bit_inst
 (
-    .f_key_add                (w_key_1or4),
-    .f_key_direction   (w_key_direct_1or4),
-    .FPGA_CLK                   (FPGA_CLK), 
+    .enable                       (w_key_1or4),
+    .i_overflow          (w_key_overflow_1or4),
+    .i_underflow        (w_key_underflow_1or4),
 
-    .f_overflow           (w_overflow_low),
- //   .f_direct_over     (w_direct_over_low),
-    .dout                 (w_data_low_cnt)
+    .o_overflow               (w_overflow_low),
+    .o_underflow             (w_underflow_low),
+    .o_data                   (w_data_low_cnt),
+    
+    .aclk                           (FPGA_CLK),
+    .aresetn                                ()
 );
 
 count1_4bit_ctrl
 count_high_bit_inst
 (
-    .f_key_add            (w_overflow_low),
-    .f_key_direction   (w_key_direct_1or4), // w_direct_over_low
-    .FPGA_CLK                   (FPGA_CLK), 
+    .enable                       (w_key_1or4),
+    .i_overflow               (w_overflow_low),
+    .i_underflow             (w_underflow_low),
 
-    .f_overflow                         (),
-  //  .f_direct_over                      (),
-    .dout                (w_data_high_cnt)
+    .o_overflow                             (),
+    .o_underflow                            (),
+    .o_data                  (w_data_high_cnt),
+    
+    .aclk                           (FPGA_CLK),
+    .aresetn                                ()
 );
 
 count_3sec_ctrl
 count_3sec
 (
+    .i_limit_cnt              ('h8F0_D180),
     .FPGA_CLK                   (FPGA_CLK),
     .en_key                       (w_key2),
     
@@ -330,7 +341,6 @@ number_of_notes_inst
 (
     .i_global_en                  (w_key3),
     .i_enable               (w_strobe_end),
-    .o_volume             (w_capacity_cnt),
     .o_data                      (w_notes),
 	.o_limit                 (w_limit_cnt),
     .aclk                      (FPGA_CLK)
@@ -338,12 +348,12 @@ number_of_notes_inst
 
 count_3sec_ctrl
 #(  // не указывай если не менял, относиться построчно
-  // .P_LIMIT_CNT              (w_limit_cnt),
-   //.P_CAPACITY_CNT        (w_capacity_cnt),                                  
+   .P_CAPACITY_CNT                    (24),                                  
    .P_SHORT_OR_LONG                    (0)      // potomn butet upravlyztsya drugim param
  )
 count_long_strobe_music_sheet
 (
+    .i_limit_cnt              (w_limit_cnt),
     .FPGA_CLK                    (FPGA_CLK),
     .en_key                        (w_key3),
 
