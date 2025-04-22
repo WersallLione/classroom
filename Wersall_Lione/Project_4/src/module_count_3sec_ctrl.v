@@ -1,19 +1,19 @@
 module count_3sec_ctrl
 #(
 	//parameter P_LIMIT_CNT    = 'h8F0_D180,
-	parameter P_CAPACITY_CNT = 28,
+	parameter P_CAPACITY_CNT = 25,
 	parameter P_SHORT_OR_LONG = 1
 )
 // if P_SHORT_OR_LONG == 1, cnt++, if cnt = 'd1 cnt stop end if P_LIMIT_CNT to  f_cnt = 1 
 // if P_SHORT_OR_LONG == 0, 
 
 (
-	 input wire [P_CAPACITY_CNT -1:00] i_limit_cnt,
-    input wire FPGA_CLK,
-    input wire en_key,
-
-    output reg f_cnt_cycl_end,
-    output reg f_cnt_3sec
+ input wire [P_CAPACITY_CNT -1:00] i_limit_cnt,
+ input wire FPGA_CLK,
+ input wire en_key,
+ 
+ output reg f_cnt_cycl_end,
+ output reg f_cnt_3sec
 );
 
 reg [P_CAPACITY_CNT -1:00] cnt3sec; 

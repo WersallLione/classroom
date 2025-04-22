@@ -174,6 +174,7 @@ wire w_cnt_3sec               ;
 wire w_dt                     ;
 wire w_cnt_strobe             ;
 wire w_strobe_end             ;
+wire w_en_state_mashin        ;
 
 wire [27:0] w_limit_cnt       ;
 wire [3:0] w_data_low_cnt     ;
@@ -284,7 +285,7 @@ count_high_bit_inst
 count_3sec_ctrl
 count_3sec
 (
-    .i_limit_cnt              ('h8F0_D180),
+    .i_limit_cnt              ('h8F0_D180), // можно ли так писать?????????
     .FPGA_CLK                   (FPGA_CLK),
     .en_key                       (w_key2),
     
@@ -350,6 +351,7 @@ number_of_notes_inst
     .i_enable               (w_strobe_end),
     .o_data                      (w_notes),
 	.o_limit                 (w_limit_cnt),
+    .o_en              (w_en_state_mashin),
     .aclk                      (FPGA_CLK)
 );
 
@@ -362,7 +364,7 @@ count_long_strobe_music_sheet
 (
     .i_limit_cnt              (w_limit_cnt),
     .FPGA_CLK                    (FPGA_CLK),
-    .en_key                        (w_key3),
+    .en_key             (w_en_state_mashin),
 
     .f_cnt_cycl_end          (w_strobe_end),
     .f_cnt_3sec              (w_cnt_strobe)

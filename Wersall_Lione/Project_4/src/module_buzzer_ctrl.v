@@ -37,23 +37,23 @@ end
 // add function select freq on data
 always @ (data) begin 
 case (data)
-// 440 Hz == 50.000.000 Hz / (113.637 /2 !) 'hF4240
- 'd0:       freq = 'h6EF9;  // sheet music 
- 'd1:       freq = 'h62F1;
- 'd2:       freq = 'h5D5C;
- 'd3:       freq = 'h532E;
- 'd4:       freq = 'h4A18;
- 'd5:       freq = 'h45F4;
- 'd6:       freq = 'h3E47;
- 'd7:       freq = 'h377C;
- 'd8:       freq = 'h3172;
- 'd9:       freq = 'h2EA8;
- 'd10:      freq = 'h2992;
- 'd11:      freq = 'h2508;
- 'd12:      freq = 'h22F6;
- 'd13:      freq = 'h1F23;
- 'd14:      freq = 'h1BBE; // Lya di ez 4 akt,  i tak dalee nije 
- 'd15:      freq = 'h18B7; //Ci 4 akt
+// 440 Hz == 50.000.000 Hz / (113.637 /2 !) 'hDDF2
+ 'd0:       freq = 'hD190; // LYA # 1
+ 'd1:       freq = 'hC5AF; // CI 1
+ 'd2:       freq = 'hBAB9; // DO 2
+ 'd3:       freq = 'hA65D; // RE 2
+ 'd4:       freq = 'h9D00; // RE # 2
+ 'd5:       freq = 'h9430; // MI 2
+ 'd6:       freq = 'h8BE9; // FA 2 
+ 'd7:       freq = 'h83F8; // FA # 2
+ 'd8:       freq = 'h7C90; // SOL 2 
+ 'd9:       freq = 'h7584; // SOL # 2
+ 'd10:      freq = 'h6EF9; // LYA 2
+ 'd11:      freq = 'h68C8; // LYA # 2
+ 'd12:      freq = 'h62D8; // CI 2
+ 'd13:      freq = 'h5D45; // DO 3
+ 'd14:      freq = 'h580E; // DO # 3 
+ 'd15:      freq = 'h531C; // RE 3 
  default:freq = 'h3F_FFFF; // off buzzer, freq > cnt_bzz/
  endcase
 end

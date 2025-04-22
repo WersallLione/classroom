@@ -30,8 +30,22 @@ input wire aclk
  STATE_12 =  'hD,
  STATE_13 =  'hE,
  STATE_14 =  'hF,
- STATE_15 =  'h10;
- 
+ STATE_15 =  'h10,
+ STATE_16 =  'h11,
+ STATE_17 =  'h12,
+ STATE_18 =  'h13,
+ STATE_19 =  'h14,
+ STATE_20 =  'h15,
+ STATE_21 =  'h16,
+ STATE_22 =  'h17,
+ STATE_23 =  'h18,
+ STATE_24 =  'h19,
+ STATE_25 =  'h1A,
+ STATE_26 =  'h1B,
+ STATE_27 =  'h1C,
+ STATE_28 =  'h1D,
+ STATE_29 =  'h1E,
+ STATE_30 =  'h1F;
  reg [4:0] state;
  initial begin
      o_data = 'd0;
@@ -173,12 +187,132 @@ input wire aclk
      end
      STATE_15 :begin
         if (i_enable) begin
-             state <= STATE_0 ;
+             state <= STATE_16 ;
         end
         else begin
              state <= STATE_15; 
         end      
-     end    
+     end 
+     STATE_16 :begin
+          if (i_enable) begin
+               state <= STATE_17 ;
+          end
+          else begin
+               state <= STATE_16; 
+          end      
+       end 
+     STATE_17 :begin
+          if (i_enable) begin
+               state <= STATE_18 ;
+          end
+          else begin
+               state <= STATE_17; 
+          end      
+       end 
+     STATE_18 :begin
+          if (i_enable) begin
+               state <= STATE_19 ;
+          end
+          else begin
+               state <= STATE_18; 
+          end      
+       end 
+     STATE_19 :begin
+          if (i_enable) begin
+               state <= STATE_20 ;
+          end
+          else begin
+               state <= STATE_19; 
+          end      
+       end 
+     STATE_20 :begin
+          if (i_enable) begin
+               state <= STATE_21 ;
+          end
+          else begin
+               state <= STATE_20; 
+          end      
+       end 
+     STATE_21 :begin
+          if (i_enable) begin
+               state <= STATE_22 ;
+          end
+          else begin
+               state <= STATE_21; 
+          end      
+       end 
+     STATE_22 :begin
+          if (i_enable) begin
+               state <= STATE_23 ;
+          end
+          else begin
+               state <= STATE_22; 
+          end      
+       end 
+     STATE_23 :begin
+          if (i_enable) begin
+               state <= STATE_24;
+          end
+          else begin
+               state <= STATE_23; 
+          end      
+       end 
+     STATE_24 :begin
+          if (i_enable) begin
+               state <= STATE_25 ;
+          end
+          else begin
+               state <= STATE_14; 
+          end      
+       end 
+     STATE_25 :begin
+          if (i_enable) begin
+               state <= STATE_26 ;
+          end
+          else begin
+               state <= STATE_25; 
+          end      
+       end 
+     STATE_26 :begin
+          if (i_enable) begin
+               state <= STATE_27 ;
+          end
+          else begin
+               state <= STATE_26; 
+          end      
+       end 
+     STATE_27 :begin
+          if (i_enable) begin
+               state <= STATE_28 ;
+          end
+          else begin
+               state <= STATE_27; 
+          end      
+       end 
+     STATE_28 :begin
+          if (i_enable) begin
+               state <= STATE_29;
+          end
+          else begin
+               state <= STATE_28; 
+          end      
+       end 
+     STATE_29 :begin
+          if (i_enable) begin
+               state <= STATE_30 ;
+          end
+          else begin
+               state <= STATE_29; 
+          end      
+       end 
+     STATE_30 :begin
+          if (i_enable) begin
+               state <= STATE_0 ;
+          end
+          else begin
+               state <= STATE_30; 
+          end      
+       end      
      default :begin
          state <= STATE_0;
          end 
@@ -188,92 +322,167 @@ input wire aclk
  always @(posedge aclk) begin :_inst
      case (state)
      STATE_RST :begin
-         o_limit  <= 'h0;
-         o_data   <= 'd0;
-         o_en     <= 'd0;
+         o_limit<= 'h17D_7840; // 25kk in Hex
+         o_data   <= 'd0     ;
+         o_en     <= 'd0     ;
      end
      STATE_0 :begin
-         o_limit  <= 'h7A_1200 ; // 8kk in Hex
-         o_data   <= 'd0101    ;
-         o_en     <= 'd1       ;
-     end
-     STATE_1 :begin
-         o_limit  <= 'h7A_1200 ;
-         o_data   <= 'd1111    ;
-         o_en     <= 'd1       ;
-     end
-     STATE_2 :begin
-         o_limit  <= 'h7A_1200 ;
-         o_data   <= 'd0010    ;
-         o_en     <= 'd1       ;
-     end 
-     STATE_3 :begin
-         o_limit  <= 'h7A_1200 ;
-         o_data   <= 'd0110    ;
-         o_en     <= 'd1       ;
-     end
-     STATE_4 :begin
-         o_limit  <= 'h7A_1200 ;
-         o_data   <= 'd1110    ;
-         o_en     <= 'd1       ;
-     end
-     STATE_5 :begin
-         o_limit  <= 'h7A_1200 ;
-         o_data   <= 'd1101    ;
-         o_en     <= 'd1       ;
-     end
-     STATE_6 :begin
-         o_limit  <= 'h7A_1200 ;
+         o_limit<= 'h17D_7840  ; 
          o_data   <= 'd0001    ;
          o_en     <= 'd1       ;
      end
-     STATE_7 :begin
-         o_limit  <= 'h7A_1200 ;
-         o_data   <= 'd0000    ;
+     STATE_1 :begin 
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
-     STATE_8 :begin
-         o_limit  <= 'h7A_1200 ;
+     STATE_2 :begin
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd1000    ;
+         o_en     <= 'd1       ;
+     end 
+     STATE_3 :begin
+         o_limit<= 'h17D_7840  ; 
          o_data   <= 'd0111    ;
          o_en     <= 'd1       ;
      end
-     STATE_9 :begin
-         o_limit  <= 'h7A_1200 ;
-         o_data   <= 'd0110    ;
+     STATE_4 :begin
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
-     STATE_10 :begin
-         o_limit  <= 'h7A_1200 ;
-         o_data   <= 'd1110    ;
-         o_en     <= 'd1       ;
-     end
-     STATE_11 :begin
-         o_limit  <= 'h7A_1200 ;
-         o_data   <= 'd1001    ;
-         o_en     <= 'd1       ;
-     end
-     STATE_12 :begin
-         o_limit  <= 'h7A_1200 ;
-         o_data   <= 'd1011    ;
-         o_en     <= 'd1       ;
-     end
-     STATE_13 :begin
-         o_limit  <= 'h7A_1200 ;
+     STATE_5 :begin
+         o_limit<= 'h17D_7840  ; 
          o_data   <= 'd1100    ;
          o_en     <= 'd1       ;
      end
-     STATE_14 :begin
-         o_limit  <= 'h7A_1200 ;
+     STATE_6 :begin
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd1010    ;
+         o_en     <= 'd1       ;
+     end
+     STATE_7 :begin
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd0111    ;
+         o_en     <= 'd1       ;
+     end
+     STATE_8 :begin
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd0101    ;
+         o_en     <= 'd1       ;
+     end
+     STATE_9 :begin
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd1000    ;
+         o_en     <= 'd1       ;
+     end
+     STATE_10 :begin
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd0111    ;
+         o_en     <= 'd1       ;
+     end
+     STATE_11 :begin
+         o_limit<= 'h17D_7840  ; 
          o_data   <= 'd0100    ;
          o_en     <= 'd1       ;
      end
+     STATE_12 :begin
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd0110    ;
+         o_en     <= 'd1       ;
+     end
+     STATE_13 :begin
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd0001    ;
+         o_en     <= 'd1       ;
+     end
+     STATE_14 :begin
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd1100    ;
+         o_en     <= 'd1       ;
+     end
      STATE_15 :begin
-         o_limit  <= 'h7A_1200 ;
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd0101    ;
+         o_en     <= 'd1       ;
+     end
+     STATE_16 :begin
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd1000    ;
+         o_en     <= 'd1       ;
+      end
+      STATE_17 :begin
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd0111    ;
+         o_en     <= 'd1       ;
+      end
+      STATE_18 :begin
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd0101    ;
+         o_en     <= 'd1       ;
+      end
+      STATE_19 :begin
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd1100    ;
+         o_en     <= 'd1       ;
+      end
+      STATE_20 :begin
+         o_limit<= 'h17D_7840  ; 
          o_data   <= 'd1111    ;
          o_en     <= 'd1       ;
-     end 
+      end
+      STATE_21 :begin
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd1110    ;
+         o_en     <= 'd1       ;
+      end
+      STATE_22 :begin
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd1101    ;
+         o_en     <= 'd1       ;
+      end
+      STATE_23 :begin
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd1001    ;
+         o_en     <= 'd1       ;
+      end
+      STATE_24 :begin
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd1101    ;
+         o_en     <= 'd1       ;
+      end
+      STATE_25 :begin
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd1100    ;
+         o_en     <= 'd1       ;
+      end
+      STATE_26 :begin
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd1011    ;
+         o_en     <= 'd1       ;
+      end
+      STATE_27 :begin
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd0000    ;
+         o_en     <= 'd1       ;
+      end
+      STATE_28 :begin
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd1000    ;
+         o_en     <= 'd1       ;
+      end
+      STATE_29 :begin
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd0100    ;
+         o_en     <= 'd1       ;
+      end
+      STATE_30 :begin
+         o_limit<= 'h17D_7840  ; 
+         o_data   <= 'd1000    ;
+         o_en     <= 'd1       ;
+      end                
      default :begin
-         o_limit  <= 'h0       ;
+         o_limit<= 'h17D_7840  ; 
          o_data   <= 'd0       ;
          o_en     <= 'd0       ;
      end 
