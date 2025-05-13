@@ -4,7 +4,7 @@ module count_3sec_ctrl
 	parameter P_CAPACITY_CNT = 25,
 	parameter P_SHORT_OR_LONG = 1
 )
-// if P_SHORT_OR_LONG == 1, cnt++, if cnt = 'd1 cnt stop end if P_LIMIT_CNT to  f_cnt = 1 
+// if P_SHORT_OR_LONG == 1, 
 // if P_SHORT_OR_LONG == 0, 
 
 (
@@ -40,7 +40,7 @@ generate
 	if(P_SHORT_OR_LONG == 1)begin		
 		always@(posedge FPGA_CLK) begin  // пока нажата кнопка считает до переполнения и останавливается
 			if(en_key) begin
-				if (cnt3sec == 'd1) begin
+				if (cnt3sec == 'd1) begin // 'd1 это просто 0000001....
 					cnt3sec <= cnt3sec;
 				end
 				else begin
@@ -80,7 +80,7 @@ generate
 					f_cnt_3sec <= ~f_cnt_3sec;
 				end
 				else 
-				if (cnt3sec == 'd1) begin
+				if (cnt3sec == 'd1) begin // 'd1 это просто 0000001....
 					f_cnt_3sec <= ~f_cnt_3sec;
 				end
 				else begin

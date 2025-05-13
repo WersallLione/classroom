@@ -262,7 +262,7 @@ input wire aclk
                state <= STATE_25 ;
           end
           else begin
-               state <= STATE_14; 
+               state <= STATE_24; 
           end      
        end 
      STATE_25 :begin

@@ -283,12 +283,18 @@ count_high_bit_inst
 );
 
 count_3sec_ctrl
+#( 
+   .P_CAPACITY_CNT                    (28),                                  
+   .P_SHORT_OR_LONG                    (1)      
+ )
+
 count_3sec
 (
-    .i_limit_cnt              ('h8F0_D180), // можно ли так писать?????????
+    .i_limit_cnt              ('h8F0_D180), 
     .FPGA_CLK                   (FPGA_CLK),
     .en_key                       (w_key2),
     
+    .f_cnt_cycl_end                     (),
     .f_cnt_3sec               (w_cnt_3sec)
 );
 
@@ -358,8 +364,8 @@ number_of_notes_inst
 count_3sec_ctrl
 #(  // не указывай если не менял, относиться построчно
    .P_CAPACITY_CNT                    (24),                                  
-   .P_SHORT_OR_LONG                    (0)      // potomn butet upravlyztsya drugim param
- )
+   .P_SHORT_OR_LONG                    (0)      
+)
 count_long_strobe_music_sheet
 (
     .i_limit_cnt              (w_limit_cnt),
@@ -374,7 +380,7 @@ buzzer_ctrl
 buzzer_inst
 ( 
 	.FPGA_CLK                   (FPGA_CLK), 
-	.sound_on               (w_cnt_strobe), //  potom dlitelnost noty budet zaviset' ot     w_cnt_strobe
+	.sound_on               (w_cnt_strobe), 
     .data                        (w_notes),
     .beep                           (beep)
 );
