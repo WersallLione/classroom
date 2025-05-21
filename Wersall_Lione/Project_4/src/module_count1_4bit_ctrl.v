@@ -29,16 +29,16 @@ always@(posedge aclk, negedge aresetn) begin
         o_data <= {P_CAPACITY_1b4_CNT{1'b0}};
     end 
     else begin
-        if(( direct||i_preoverflow)) begin 
-            if(enable) begin
+        if(direct) begin 
+            if((enable||i_preoverflow)) begin
                 o_data <= o_data + 1'b1;
             end
             else begin
                 o_data <= o_data;
             end
         end
-        else if((direct||i_preunderflow)) begin
-            if(enable) begin
+        else if(direct) begin
+            if((enable||i_preunderflow)) begin
                 o_data <= o_data - 1'b1;
             end
             else begin

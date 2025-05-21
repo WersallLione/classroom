@@ -164,8 +164,7 @@ wire w_key2                   ;
 wire w_key3                   ;
 wire w_key4                   ;
 wire w_key_1or4               ;
-wire w_key_overflow_1or4      ;
-wire w_key_underflow_1or4     ;
+wire w_key_direct             ;
 wire w_overflow_low           ;
 wire w_underflow_low          ;
 wire w_over_en                ;
@@ -175,6 +174,7 @@ wire w_dt                     ;
 wire w_cnt_strobe             ;
 wire w_strobe_end             ;
 wire w_en_state_mashin        ;
+wire w_resetn                 ;
 
 wire [27:0] w_limit_cnt       ;
 wire [3:0] w_data_low_cnt     ;
@@ -240,47 +240,50 @@ sensivity_key_inst
     .i_data2                    (w_key4),
 
     .o_enable               (w_key_1or4), 
-    .o_overflow    (w_key_overflow_1or4),  
-    .o_underflow  (w_key_underflow_1or4),
+    .o_direect            (w_key_direct),  
     
     .aclk                     (FPGA_CLK),
     .aresetn                          ()
 );
 
 count1_4bit_ctrl
+#(
+    .P_CAPACITY_1b4_CNT              (),
+)
 count_low_bit_inst
 (
-    .enable                       (w_key_1or4),
-    .i_overflow          (w_key_overflow_1or4),
-    .i_underflow        (w_key_underflow_1or4),
+    .enable                (w_key_1or4),
+    .direct              (w_key_direct),
+    .i_preoverflow                   (),
+    .i_preunderflow                  (),
 
-    .o_overflow               (w_overflow_low),
-    .o_underflow             (w_underflow_low),
-    .o_data                   (w_data_low_cnt),
-    
-    .aclk                           (FPGA_CLK),
-    .aresetn                                ()
+    .o_preoverflow     (w_overflow_low),
+    .o_preunderflow   (w_underflow_low),
+    .o_data            (w_data_low_cnt),
+
+    .aclk                    (FPGA_CLK),
+    .aresetn                 (w_resetn)
 );
-
-assign w_over_en = (w_overflow_low) ? (1'b1):(
-                 (w_underflow_low) ? (1'b1):(1'b0));
-
-
 
 count1_4bit_ctrl
-count_high_bit_inst
+#(
+    .P_CAPACITY_1b4_CNT              (),
+)
+count_low_bit_inst
 (
-    .enable                  (w_over_en),
-    .i_overflow               (w_overflow_low),
-    .i_underflow             (w_underflow_low),
+    .enable                (w_key_1or4),
+    .direct              (w_key_direct),
+    .i_preoverflow     (w_overflow_low),
+    .i_preunderflow   (w_underflow_low),
 
-    .o_overflow                             (),
-    .o_underflow                            (),
-    .o_data                  (w_data_high_cnt),
-    
-    .aclk                           (FPGA_CLK),
-    .aresetn                                ()
+    .o_preoverflow                   (),
+    .o_preunderflow                  (),
+    .o_data           (w_data_high_cnt),
+
+    .aclk                    (FPGA_CLK),
+    .aresetn                 (w_resetn)
 );
+
 
 count_3sec_ctrl
 #( 
