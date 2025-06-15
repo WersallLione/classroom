@@ -13,6 +13,7 @@ wire [1:0] sens;
 
 initial begin 
 o_direct = 'd0;
+o_enable = 'd0;
 end
 
 assign sens[0] = i_data1;

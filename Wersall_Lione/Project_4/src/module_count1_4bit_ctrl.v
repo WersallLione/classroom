@@ -1,6 +1,6 @@
 module count1_4bit_ctrl
 #(
-    parameter P_CAPACITY_1b4_CNT = 4,
+    parameter P_CAPACITY_1b4_CNT = 4
 )
 (
 input wire enable       ,
@@ -30,30 +30,27 @@ always@(posedge aclk, negedge aresetn) begin
     end 
     else begin
         if(direct) begin 
-            if((enable||i_preoverflow)) begin
+            if(enable & i_preoverflow) begin
                 o_data <= o_data + 1'b1;
             end
             else begin
                 o_data <= o_data;
             end
         end
-        else if(direct) begin
-            if((enable||i_preunderflow)) begin
+        else begin
+            if(enable & i_preunderflow) begin
                 o_data <= o_data - 1'b1;
             end
             else begin
                 o_data <= o_data;
             end
         end
-		else begin
-            o_data <= o_data;
-		end
     end
 end
 
 //--------------overflow----------------
-assign o_preoverflow = (o_data ==({P_CAPACITY_1b4_CNT{1'b1} - 1'b1})) ? (1'b1):(1'b0);
-assign o_preunderflow = (o_data ==({P_CAPACITY_1b4_CNT{1'b0} + 1'b1})) ? (1'b1):(1'b0);
+assign o_preoverflow = (o_data ==({P_CAPACITY_1b4_CNT{1'b1}})) ? (1'b1):(1'b0); //- 1'b1}
+assign o_preunderflow = (o_data ==({P_CAPACITY_1b4_CNT{1'b0}})) ? (1'b1):(1'b0); //+ 1'b1}
 
 
 //wire w_dout_or;

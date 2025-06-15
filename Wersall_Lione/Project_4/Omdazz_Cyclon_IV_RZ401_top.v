@@ -174,7 +174,6 @@ wire w_dt                     ;
 wire w_cnt_strobe             ;
 wire w_strobe_end             ;
 wire w_en_state_mashin        ;
-wire w_resetn                 ;
 
 wire [27:0] w_limit_cnt       ;
 wire [3:0] w_data_low_cnt     ;
@@ -240,36 +239,36 @@ sensivity_key_inst
     .i_data2                    (w_key4),
 
     .o_enable               (w_key_1or4), 
-    .o_direect            (w_key_direct),  
+    .o_direct             (w_key_direct),  
     
     .aclk                     (FPGA_CLK),
-    .aresetn                          ()
+    .aresetn                 (RESET_BUT)
 );
 
 count1_4bit_ctrl
 #(
-    .P_CAPACITY_1b4_CNT              (),
+    .P_CAPACITY_1b4_CNT              ()
 )
 count_low_bit_inst
 (
     .enable                (w_key_1or4),
     .direct              (w_key_direct),
-    .i_preoverflow                   (),
-    .i_preunderflow                  (),
+    .i_preoverflow         (w_key_1or4),
+    .i_preunderflow        (w_key_1or4),
 
     .o_preoverflow     (w_overflow_low),
     .o_preunderflow   (w_underflow_low),
     .o_data            (w_data_low_cnt),
 
     .aclk                    (FPGA_CLK),
-    .aresetn                 (w_resetn)
+    .aresetn                (RESET_BUT)
 );
 
 count1_4bit_ctrl
 #(
-    .P_CAPACITY_1b4_CNT              (),
+    .P_CAPACITY_1b4_CNT              ()
 )
-count_low_bit_inst
+count_high_bit_inst
 (
     .enable                (w_key_1or4),
     .direct              (w_key_direct),
@@ -281,7 +280,7 @@ count_low_bit_inst
     .o_data           (w_data_high_cnt),
 
     .aclk                    (FPGA_CLK),
-    .aresetn                 (w_resetn)
+    .aresetn                (RESET_BUT)
 );
 
 
