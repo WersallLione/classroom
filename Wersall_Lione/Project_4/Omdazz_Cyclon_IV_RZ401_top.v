@@ -365,7 +365,7 @@ number_of_notes_inst
 
 count_3sec_ctrl
 #(  // не указывай если не менял, относиться построчно
-   .P_CAPACITY_CNT                    (24),                                  
+   .P_CAPACITY_CNT                    (27),                                  
    .P_SHORT_OR_LONG                    (0)      
 )
 count_long_strobe_music_sheet

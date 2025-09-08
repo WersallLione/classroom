@@ -19,6 +19,7 @@ module count_3sec_ctrl
 reg [P_CAPACITY_CNT -1:00] cnt3sec; 
 reg f_cnt_3sec0;
 //reg [P_CAPACITY_CNT -1:00] limit_cnt1;
+
  
 initial begin
  cnt3sec = 'd0;
