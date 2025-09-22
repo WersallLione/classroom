@@ -7,8 +7,7 @@ module select_number_of_notes_driver
 input wire i_global_en     , // внешнее разрешение, например с кнопки для того что бы запустить маш состояний
 input wire i_enable        , // разрешение от стробирующего модуля
 output reg [3:0] o_data    , // данные для нот
-output reg [26:0] o_limit  ,
-output reg [6:0] cnt_state , // счетчик для отслеживания последовательности нот
+output reg [23:0] o_limit  ,
 output reg o_en            , // разрешение для следующего блока (например для строб)
 
 input wire aclk
@@ -66,7 +65,7 @@ input wire aclk
  STATE_47 =  'h30,
  STATE_48 =  'h31,
  STATE_49 =  'h32,
- STATE_40 =  'h33,
+ STATE_50 =  'h33,
  STATE_51 =  'h34,
  STATE_52 =  'h35,
  STATE_53 =  'h36,
@@ -87,7 +86,6 @@ input wire aclk
      o_limit = 'd0;
      o_en = 'd0;
      state <= STATE_RST;
-     cnt_state <= 'd0;
  end
 
 
@@ -619,330 +617,330 @@ input wire aclk
      endcase
  end
   
- always @(posedge aclk) begin :_inst       // 2-0010  3-0011  5-0101  6-0110  8-1000     h17D_7840 - 0.5 sec     h2FA_F080 - 1 sec     h5F5_E100 - 2 sec    hBEB_C200 - 4 sec
+ always @(posedge aclk) begin :_inst       // 2-0010  3-0011  5-0101  6-0110  8-1000   hBE_BC20 - 0.25 sec  h17D_7840 - 0.5 sec     h2FA_F080 - 1 sec     5F5_E100 - 2 sec    
      case (state)
      STATE_RST :begin
-         o_limit <= 'h17D_7840 ; // 25kk in Hex
+         o_limit <= 'hBE_BC20 ; // 25kk in Hex
          o_data   <=  'd0      ;
          o_en     <=  'd0      ;
      end
      STATE_0 :begin
-         o_limit<= 'h2FA_F080  ; // MI
+         o_limit<= 'hBE_BC20  ; // MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_1 :begin 
-         o_limit<= 'h2FA_F080  ; // MI
+         o_limit<= 'hBE_BC20  ; // MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_2 :begin
-         o_limit<= 'h5F5_E100  ; // MI-MI
+         o_limit<= 'h17D_7840  ; // MI-MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end 
      STATE_3 :begin
-         o_limit<= 'h2FA_F080  ; // MI
+         o_limit<= 'hBE_BC20  ; // MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_4 :begin
-         o_limit<= 'h2FA_F080  ; // MI
+         o_limit<= 'hBE_BC20  ; // MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_5 :begin
-         o_limit<= 'h5F5_E100  ; // MI-MI
+         o_limit<= 'h17D_7840  ; // MI-MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_6 :begin
-         o_limit<= 'h2FA_F080  ; // MI
+         o_limit<= 'hBE_BC20  ; // MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_7 :begin
-         o_limit<= 'h2FA_F080  ; // SOL
+         o_limit<= 'hBE_BC20  ; // SOL
          o_data   <= 'd1000    ;
          o_en     <= 'd1       ;
      end
      STATE_8 :begin
-         o_limit<= 'h2FA_F080  ; // DO
+         o_limit<= 'hBE_BC20  ; // DO
          o_data   <= 'd0010    ;
          o_en     <= 'd1       ;
      end
      STATE_9 :begin
-         o_limit<= 'h2FA_F080  ; // RE
+         o_limit<= 'hBE_BC20  ; // RE
          o_data   <= 'd0011    ;
          o_en     <= 'd1       ;
      end
      STATE_10 :begin
-         o_limit<= 'hBEB_C200  ; // MI-MI-MI-MI
+         o_limit<= 'h2FA_F080  ; // MI-MI-MI-MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_11 :begin
-         o_limit<= 'h2FA_F080  ; // FA
+         o_limit<= 'hBE_BC20  ; // FA
          o_data   <= 'd0110    ;
          o_en     <= 'd1       ;
      end
      STATE_12 :begin
-         o_limit<= 'h2FA_F080  ; // FA
+         o_limit<= 'hBE_BC20  ; // FA
          o_data   <= 'd0110    ;
          o_en     <= 'd1       ;
      end
      STATE_13 :begin
-         o_limit<= 'h2FA_F080  ; // FA
+         o_limit<= 'hBE_BC20  ; // FA
          o_data   <= 'd0110    ;
          o_en     <= 'd1       ;
      end
      STATE_14 :begin
-         o_limit<= 'h2FA_F080  ; // FA
+         o_limit<= 'hBE_BC20  ; // FA
          o_data   <= 'd0110    ;
          o_en     <= 'd1       ;
      end
      STATE_15 :begin
-         o_limit<= 'h2FA_F080  ; // FA
+         o_limit<= 'hBE_BC20  ; // FA
          o_data   <= 'd0110    ;
          o_en     <= 'd1       ;
      end
      STATE_16 :begin
-         o_limit<= 'h2FA_F080  ; // MI
+         o_limit<= 'hBE_BC20  ; // MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_17 :begin
-         o_limit<= 'h5F5_E100  ; // MI-MI
+         o_limit<= 'h17D_7840  ; // MI-MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_18 :begin
-         o_limit<= 'h2FA_F080  ; // MI
+         o_limit<= 'hBE_BC20  ; // MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_19 :begin
-         o_limit<= 'h2FA_F080  ; // RE
+         o_limit<= 'hBE_BC20  ; // RE
          o_data   <= 'd0011    ;
          o_en     <= 'd1       ;
      end
      STATE_20 :begin
-         o_limit<= 'h2FA_F080  ; // RE
+         o_limit<= 'hBE_BC20  ; // RE
          o_data   <= 'd0011    ;
          o_en     <= 'd1       ;
      end
      STATE_21 :begin
-         o_limit<= 'h2FA_F080  ; // MI
+         o_limit<= 'hBE_BC20  ; // MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_22 :begin
-         o_limit<= 'h5F5_E100  ; // RE-RE
+         o_limit<= 'h17D_7840  ; // RE-RE
          o_data   <= 'd0011    ;
          o_en     <= 'd1       ;
      end
      STATE_23 :begin
-         o_limit<= 'h5F5_E100  ; // SOL-SOL
+         o_limit<= 'h17D_7840  ; // SOL-SOL
          o_data   <= 'd1000    ;
          o_en     <= 'd1       ;
      end
      STATE_24 :begin
-         o_limit<= 'h2FA_F080  ; // MI
+         o_limit<= 'hBE_BC20  ; // MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_25 :begin 
-         o_limit<= 'h2FA_F080  ; // MI
+         o_limit<= 'hBE_BC20  ; // MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_26 :begin
-         o_limit<= 'h5F5_E100  ; // MI-MI
+         o_limit<= 'h17D_7840  ; // MI-MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end 
      STATE_27 :begin
-         o_limit<= 'h2FA_F080  ; // MI
+         o_limit<= 'hBE_BC20  ; // MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_28 :begin
-         o_limit<= 'h2FA_F080  ; // MI
+         o_limit<= 'hBE_BC20  ; // MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_29 :begin
-         o_limit<= 'h5F5_E100  ; // MI-MI
+         o_limit<= 'h17D_7840  ; // MI-MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_30 :begin
-         o_limit<= 'h2FA_F080  ; // MI
+         o_limit<= 'hBE_BC20  ; // MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_31 :begin
-         o_limit<= 'h2FA_F080  ; // SOL
+         o_limit<= 'hBE_BC20  ; // SOL
          o_data   <= 'd1000    ;
          o_en     <= 'd1       ;
      end
      STATE_32 :begin
-         o_limit<= 'h2FA_F080  ; // DO
+         o_limit<= 'hBE_BC20  ; // DO
          o_data   <= 'd0010    ;
          o_en     <= 'd1       ;
      end
      STATE_33 :begin
-         o_limit<= 'h2FA_F080  ; // RE
+         o_limit<= 'hBE_BC20  ; // RE
          o_data   <= 'd0011    ;
          o_en     <= 'd1       ;
      end
      STATE_34 :begin
-         o_limit<= 'hBEB_C200  ; // MI-MI-MI-MI
+         o_limit<= 'h2FA_F080  ; // MI-MI-MI-MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_35 :begin
-         o_limit<= 'h2FA_F080  ; // FA
+         o_limit<= 'hBE_BC20  ; // FA
          o_data   <= 'd0110    ;
          o_en     <= 'd1       ;
      end
      STATE_36 :begin
-         o_limit<= 'h2FA_F080  ; // FA
+         o_limit<= 'hBE_BC20  ; // FA
          o_data   <= 'd0110    ;
          o_en     <= 'd1       ;
      end
      STATE_37 :begin
-         o_limit<= 'h2FA_F080  ; // FA
+         o_limit<= 'hBE_BC20  ; // FA
          o_data   <= 'd0110    ;
          o_en     <= 'd1       ;
      end
      STATE_38 :begin
-         o_limit<= 'h2FA_F080  ; // FA
+         o_limit<= 'hBE_BC20  ; // FA
          o_data   <= 'd0110    ;
          o_en     <= 'd1       ;
      end
      STATE_39 :begin
-         o_limit<= 'h2FA_F080  ; // FA
+         o_limit<= 'hBE_BC20  ; // FA
          o_data   <= 'd0110    ;
          o_en     <= 'd1       ;
      end
      STATE_40 :begin
-         o_limit<= 'h2FA_F080  ; // MI
+         o_limit<= 'hBE_BC20  ; // MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_41 :begin
-         o_limit<= 'h5F5_E100  ; // MI-MI
+         o_limit<= 'h17D_7840  ; // MI-MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_42 :begin
-         o_limit<= 'h2FA_F080  ; // SOL
+         o_limit<= 'hBE_BC20  ; // SOL
          o_data   <= 'd1000    ;
          o_en     <= 'd1       ;
      end
      STATE_43 :begin
-         o_limit<= 'h2FA_F080  ; // SOL
+         o_limit<= 'hBE_BC20  ; // SOL
          o_data   <= 'd1000    ;
          o_en     <= 'd1       ;
      end
      STATE_44 :begin
-         o_limit<= 'h2FA_F080  ; // FA
+         o_limit<= 'hBE_BC20  ; // FA
          o_data   <= 'd0110    ;
          o_en     <= 'd1       ;
      end
      STATE_45 :begin
-         o_limit<= 'h2FA_F080  ; // RE
+         o_limit<= 'hBE_BC20  ; // RE
          o_data   <= 'd0011    ;
          o_en     <= 'd1       ;
      end
      STATE_46 :begin
-         o_limit<= 'hBEB_C200  ; // MI-MI-MI-MI
+         o_limit<= 'h2FA_F080  ; // MI-MI-MI-MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_47 :begin
-         o_limit<= 'h2FA_F080  ; // MI
+         o_limit<= 'hBE_BC20  ; // MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_48 :begin 
-         o_limit<= 'h2FA_F080  ; // MI
+         o_limit<= 'hBE_BC20  ; // MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_49 :begin
-         o_limit<= 'h5F5_E100  ; // MI-MI
+         o_limit<= 'h17D_7840  ; // MI-MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end 
      STATE_50 :begin
-         o_limit<= 'h2FA_F080  ; // MI
+         o_limit<= 'hBE_BC20  ; // MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_51 :begin
-         o_limit<= 'h2FA_F080  ; // MI
+         o_limit<= 'hBE_BC20  ; // MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_52 :begin
-         o_limit<= 'h5F5_E100  ; // MI-MI
+         o_limit<= 'h17D_7840  ; // MI-MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_53 :begin
-         o_limit<= 'h2FA_F080  ; // MI
+         o_limit<= 'hBE_BC20  ; // MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_54 :begin
-         o_limit<= 'h2FA_F080  ; // SOL
+         o_limit<= 'hBE_BC20  ; // SOL
          o_data   <= 'd1000    ;
          o_en     <= 'd1       ;
      end
      STATE_55 :begin
-         o_limit<= 'h2FA_F080  ; // DO
+         o_limit<= 'hBE_BC20  ; // DO
          o_data   <= 'd0010    ;
          o_en     <= 'd1       ;
      end
      STATE_56 :begin
-         o_limit<= 'h2FA_F080  ; // RE
+         o_limit<= 'hBE_BC20  ; // RE
          o_data   <= 'd0011    ;
          o_en     <= 'd1       ;
      end
      STATE_57 :begin
-         o_limit<= 'hBEB_C200  ; // MI-MI-MI-MI
+         o_limit<= 'h2FA_F080  ; // MI-MI-MI-MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
       end 
      STATE_58 :begin
-         o_limit<= 'h5F5_E100  ; // MI-MI
+         o_limit<= 'h17D_7840  ; // MI-MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_59 :begin
-         o_limit<= 'h2FA_F080  ; // MI
+         o_limit<= 'hBE_BC20  ; // MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
      end
      STATE_60 :begin
-         o_limit<= 'h2FA_F080  ; // SOL
+         o_limit<= 'hBE_BC20  ; // SOL
          o_data   <= 'd1000    ;
          o_en     <= 'd1       ;
      end
      STATE_61 :begin
-         o_limit<= 'h2FA_F080  ; // DO
+         o_limit<= 'hBE_BC20  ; // DO
          o_data   <= 'd0010    ;
          o_en     <= 'd1       ;
      end
      STATE_62 :begin
-         o_limit<= 'h2FA_F080  ; // RE
+         o_limit<= 'hBE_BC20  ; // RE
          o_data   <= 'd0011    ;
          o_en     <= 'd1       ;
      end
      STATE_63 :begin
-         o_limit<= 'hBEB_C200  ; // MI-MI-MI-MI
+         o_limit<= 'h2FA_F080  ; // MI-MI-MI-MI
          o_data   <= 'd0101    ;
          o_en     <= 'd1       ;
       end                   

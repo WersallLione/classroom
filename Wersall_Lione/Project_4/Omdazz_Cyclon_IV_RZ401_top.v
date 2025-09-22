@@ -360,13 +360,13 @@ number_of_notes_inst
     .o_data                      (w_notes),
 	.o_limit                 (w_limit_cnt),
     .o_en              (w_en_state_mashin),
-    .aclk                      (FPGA_CLK)
+    .aclk                       (FPGA_CLK)
 );
 
 count_3sec_ctrl
 #(  // не указывай если не менял, относиться построчно
-   .P_CAPACITY_CNT                    (27),                                  
-   .P_SHORT_OR_LONG                    (0)      
+   .P_CAPACITY_CNT                      (26),                                  
+   .P_SHORT_OR_LONG                      (0)    
 )
 count_long_strobe_music_sheet
 (
@@ -381,10 +381,10 @@ count_long_strobe_music_sheet
 buzzer_ctrl
 buzzer_inst
 ( 
-	.FPGA_CLK                   (FPGA_CLK), 
-	.sound_on               (w_cnt_strobe), 
-    .data                        (w_notes),
-    .beep                           (beep)
+	.FPGA_CLK                    (FPGA_CLK), 
+	.sound_on                (w_strobe_end), //w_cnt_strobe
+    .data                         (w_notes),
+    .beep                            (beep)
 );
 
 endmodule
