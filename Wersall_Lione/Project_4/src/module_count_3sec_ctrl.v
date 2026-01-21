@@ -76,11 +76,10 @@ generate
 		always@(posedge FPGA_CLK) begin // при достижение лимита инвертирует сигнал флага, а при переполнении инвертирует еще раз. 
 			if(en_key) begin
 				if (cnt3sec == i_limit_cnt) begin
-					f_cnt_3sec <= ~f_cnt_3sec;
+					f_cnt_3sec <= 1'b1;
 				end
-				else 
-				if (cnt3sec == {P_CAPACITY_CNT{1'b1}}) begin // 'd1 это просто 0000001....
-					f_cnt_3sec <= ~f_cnt_3sec;
+				else if (cnt3sec == {P_CAPACITY_CNT{1'b1}}) begin // 'd1 это просто 0000001....
+					f_cnt_3sec <= 1'b0;
 				end
 				else begin
 					f_cnt_3sec <= f_cnt_3sec;			

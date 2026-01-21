@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy
+ date="2025.10.02.20:53:57"
+ outputDirectory="D:/Projects/class/Omdazz_Cyclon_IV_DevBoard/IP/Flash_loader/">
+ <perimeter>
+  <parameter
+     name="AUTO_GENERATION_ID"
+     type="Integer"
+     defaultValue="0"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_UNIQUE_ID"
+     type="String"
+     defaultValue=""
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_FAMILY"
+     type="String"
+     defaultValue="Cyclone IV E"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE"
+     type="String"
+     defaultValue="EP4CE10E22C8"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_SPEEDGRADE"
+     type="String"
+     defaultValue="8"
+     onHdl="0"
+     affectsHdl="1" />
+  <interface name="noe_in" kind="conduit" start="0">
+   <property name="associatedClock" value="" />
+   <property name="associatedReset" value="" />
+   <port name="noe_in" direction="input" role="noe" width="1" />
+  </interface>
+ </perimeter>
+ <entity
+   path=""
+   parameterizationKey="Flash_loader:1.0:AUTO_DEVICE=EP4CE10E22C8,AUTO_DEVICE_FAMILY=Cyclone IV E,AUTO_DEVICE_SPEEDGRADE=8,AUTO_GENERATION_ID=1759427636,AUTO_UNIQUE_ID=(altera_serial_flash_loader:22.1:ENABLE_QUAD_SPI_SUPPORT=false,ENABLE_SHARED_ACCESS=OFF,ENHANCED_MODE=true,INTENDED_DEVICE_FAMILY=Cyclone IV E,NCSO_WIDTH=1,gui_shared_access=false(altera_serial_flash_loader:22.1:CLOCK_TYPE=1,DEVICE_FAMILY=Cyclone IV E,ENA_REGISTER_MODE=1,GUI_USE_ENA=true,NUMBER_OF_CLOCKS=1,USE_GLITCH_FREE_SWITCH_OVER_IMPLEMENTATION=false(altclkctrl:22.1:CLOCK_TYPE=1,DEVICE_FAMILY=Cyclone IV E,ENA_REGISTER_MODE=1,GUI_USE_ENA=true,NUMBER_OF_CLOCKS=1,USE_GLITCH_FREE_SWITCH_OVER_IMPLEMENTATION=false)))"
+   instancePathKey="Flash_loader"
+   kind="Flash_loader"
+   version="1.0"
+   name="Flash_loader">
+  <parameter name="AUTO_GENERATION_ID" value="1759427636" />
+  <parameter name="AUTO_DEVICE" value="EP4CE10E22C8" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV E" />
+  <parameter name="AUTO_UNIQUE_ID" value="" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="8" />
+  <generatedFiles>
+   <file
+       path="D:/Projects/class/Omdazz_Cyclon_IV_DevBoard/IP/Flash_loader/synthesis/Flash_loader.v"
+       type="VERILOG" />
+  </generatedFiles>
+  <childGeneratedFiles>
+   <file
+       path="D:/Projects/class/Omdazz_Cyclon_IV_DevBoard/IP/Flash_loader/synthesis/submodules/altera_serial_flash_loader.v"
+       type="VERILOG"
+       attributes="" />
+   <file
+       path="D:/Projects/class/Omdazz_Cyclon_IV_DevBoard/IP/Flash_loader/synthesis/submodules/altclkctrl_inst.v"
+       type="VERILOG" />
+   <file
+       path="D:/Projects/class/Omdazz_Cyclon_IV_DevBoard/IP/Flash_loader/synthesis/submodules/Flash_loader_serial_flash_loader_0_altclkctrl_inst_altclkctrl_inst.v"
+       type="VERILOG"
+       attributes="" />
+  </childGeneratedFiles>
+  <sourceFiles>
+   <file
+       path="D:/Projects/class/Omdazz_Cyclon_IV_DevBoard/IP/Flash_loader.qsys" />
+  </sourceFiles>
+  <childSourceFiles>
+   <file
+       path="C:/intelfpga/22.1std/ip/altera/altera_serial_flash_loader/altera_serial_flash_loader_hw.tcl" />
+   <file
+       path="C:/intelfpga/22.1std/ip/altera/megafunctions/altclkctrl/altclkctrl_hw.tcl" />
+  </childSourceFiles>
+  <messages>
+   <message level="Debug" culprit="Flash_loader">queue size: 0 starting:Flash_loader "Flash_loader"</message>
+   <message level="Progress" culprit="min"></message>
+   <message level="Progress" culprit="max"></message>
+   <message level="Progress" culprit="current"></message>
+   <message level="Debug">Transform: CustomInstructionTransform</message>
+   <message level="Debug">No custom instruction connections, skipping transform </message>
+   <message level="Debug" culprit="merlin_custom_instruction_transform"><![CDATA[After transform: <b>1</b> modules, <b>0</b> connections]]></message>
+   <message level="Debug">Transform: MMTransform</message>
+   <message level="Debug">Transform: InterruptMapperTransform</message>
+   <message level="Debug">Transform: InterruptSyncTransform</message>
+   <message level="Debug">Transform: InterruptFanoutTransform</message>
+   <message level="Debug">Transform: AvalonStreamingTransform</message>
+   <message level="Debug">Transform: ResetAdaptation</message>
+   <message level="Debug" culprit="Flash_loader"><![CDATA["<b>Flash_loader</b>" reuses <b>altera_serial_flash_loader</b> "<b>submodules/altera_serial_flash_loader</b>"]]></message>
+   <message level="Debug" culprit="Flash_loader">queue size: 0 starting:altera_serial_flash_loader "submodules/altera_serial_flash_loader"</message>
+   <message level="Info" culprit="serial_flash_loader_0">generating top-level entity altera_serial_flash_loader</message>
+   <message level="Info" culprit="altclkctrl_inst">"Generating: altclkctrl_inst"</message>
+   <message level="Debug" culprit="serial_flash_loader_0"><![CDATA["<b>serial_flash_loader_0</b>" reuses <b>altera_serial_flash_loader</b> "<b>submodules/altclkctrl_inst</b>"]]></message>
+   <message level="Info" culprit="serial_flash_loader_0"><![CDATA["<b>Flash_loader</b>" instantiated <b>altera_serial_flash_loader</b> "<b>serial_flash_loader_0</b>"]]></message>
+   <message level="Debug" culprit="Flash_loader">queue size: 0 starting:altera_serial_flash_loader "submodules/altclkctrl_inst"</message>
+   <message level="Debug" culprit="altclkctrl_inst"><![CDATA["<b>altclkctrl_inst</b>" reuses <b>altclkctrl</b> "<b>submodules/Flash_loader_serial_flash_loader_0_altclkctrl_inst_altclkctrl_inst</b>"]]></message>
+   <message level="Info" culprit="altclkctrl_inst"><![CDATA["<b>serial_flash_loader_0</b>" instantiated <b>altera_serial_flash_loader</b> "<b>altclkctrl_inst</b>"]]></message>
+   <message level="Debug" culprit="Flash_loader">queue size: 0 starting:altclkctrl "submodules/Flash_loader_serial_flash_loader_0_altclkctrl_inst_altclkctrl_inst"</message>
+   <message level="Info" culprit="altclkctrl_inst">Generating top-level entity Flash_loader_serial_flash_loader_0_altclkctrl_inst_altclkctrl_inst.</message>
+   <message level="Debug" culprit="altclkctrl_inst">Current quartus bindir: C:/intelfpga/22.1std/quartus/bin64/.</message>
+   <message level="Info" culprit="altclkctrl_inst"><![CDATA["<b>altclkctrl_inst</b>" instantiated <b>altclkctrl</b> "<b>altclkctrl_inst</b>"]]></message>
+  </messages>
+ </entity>
+ <entity
+   path="submodules/"
+   parameterizationKey="altera_serial_flash_loader:22.1:ENABLE_QUAD_SPI_SUPPORT=false,ENABLE_SHARED_ACCESS=OFF,ENHANCED_MODE=true,INTENDED_DEVICE_FAMILY=Cyclone IV E,NCSO_WIDTH=1,gui_shared_access=false(altera_serial_flash_loader:22.1:CLOCK_TYPE=1,DEVICE_FAMILY=Cyclone IV E,ENA_REGISTER_MODE=1,GUI_USE_ENA=true,NUMBER_OF_CLOCKS=1,USE_GLITCH_FREE_SWITCH_OVER_IMPLEMENTATION=false(altclkctrl:22.1:CLOCK_TYPE=1,DEVICE_FAMILY=Cyclone IV E,ENA_REGISTER_MODE=1,GUI_USE_ENA=true,NUMBER_OF_CLOCKS=1,USE_GLITCH_FREE_SWITCH_OVER_IMPLEMENTATION=false))"
+   instancePathKey="Flash_loader:.:serial_flash_loader_0"
+   kind="altera_serial_flash_loader"
+   version="22.1"
+   name="altera_serial_flash_loader">
+  <parameter name="ENABLE_SHARED_ACCESS" value="OFF" />
+  <parameter name="ENABLE_QUAD_SPI_SUPPORT" value="false" />
+  <parameter name="ENHANCED_MODE" value="true" />
+  <parameter name="gui_shared_access" value="false" />
+  <parameter name="NCSO_WIDTH" value="1" />
+  <parameter name="INTENDED_DEVICE_FAMILY" value="Cyclone IV E" />
+  <generatedFiles>
+   <file
+       path="D:/Projects/class/Omdazz_Cyclon_IV_DevBoard/IP/Flash_loader/synthesis/submodules/altera_serial_flash_loader.v"
+       type="VERILOG"
+       attributes="" />
+  </generatedFiles>
+  <childGeneratedFiles>
+   <file
+       path="D:/Projects/class/Omdazz_Cyclon_IV_DevBoard/IP/Flash_loader/synthesis/submodules/altclkctrl_inst.v"
+       type="VERILOG" />
+   <file
+       path="D:/Projects/class/Omdazz_Cyclon_IV_DevBoard/IP/Flash_loader/synthesis/submodules/Flash_loader_serial_flash_loader_0_altclkctrl_inst_altclkctrl_inst.v"
+       type="VERILOG"
+       attributes="" />
+  </childGeneratedFiles>
+  <sourceFiles>
+   <file
+       path="C:/intelfpga/22.1std/ip/altera/altera_serial_flash_loader/altera_serial_flash_loader_hw.tcl" />
+  </sourceFiles>
+  <childSourceFiles>
+   <file
+       path="C:/intelfpga/22.1std/ip/altera/megafunctions/altclkctrl/altclkctrl_hw.tcl" />
+  </childSourceFiles>
+  <instantiator instantiator="Flash_loader" as="serial_flash_loader_0" />
+  <messages>
+   <message level="Debug" culprit="Flash_loader">queue size: 0 starting:altera_serial_flash_loader "submodules/altera_serial_flash_loader"</message>
+   <message level="Info" culprit="serial_flash_loader_0">generating top-level entity altera_serial_flash_loader</message>
+   <message level="Info" culprit="altclkctrl_inst">"Generating: altclkctrl_inst"</message>
+   <message level="Debug" culprit="serial_flash_loader_0"><![CDATA["<b>serial_flash_loader_0</b>" reuses <b>altera_serial_flash_loader</b> "<b>submodules/altclkctrl_inst</b>"]]></message>
+   <message level="Info" culprit="serial_flash_loader_0"><![CDATA["<b>Flash_loader</b>" instantiated <b>altera_serial_flash_loader</b> "<b>serial_flash_loader_0</b>"]]></message>
+   <message level="Debug" culprit="Flash_loader">queue size: 0 starting:altera_serial_flash_loader "submodules/altclkctrl_inst"</message>
+   <message level="Debug" culprit="altclkctrl_inst"><![CDATA["<b>altclkctrl_inst</b>" reuses <b>altclkctrl</b> "<b>submodules/Flash_loader_serial_flash_loader_0_altclkctrl_inst_altclkctrl_inst</b>"]]></message>
+   <message level="Info" culprit="altclkctrl_inst"><![CDATA["<b>serial_flash_loader_0</b>" instantiated <b>altera_serial_flash_loader</b> "<b>altclkctrl_inst</b>"]]></message>
+   <message level="Debug" culprit="Flash_loader">queue size: 0 starting:altclkctrl "submodules/Flash_loader_serial_flash_loader_0_altclkctrl_inst_altclkctrl_inst"</message>
+   <message level="Info" culprit="altclkctrl_inst">Generating top-level entity Flash_loader_serial_flash_loader_0_altclkctrl_inst_altclkctrl_inst.</message>
+   <message level="Debug" culprit="altclkctrl_inst">Current quartus bindir: C:/intelfpga/22.1std/quartus/bin64/.</message>
+   <message level="Info" culprit="altclkctrl_inst"><![CDATA["<b>altclkctrl_inst</b>" instantiated <b>altclkctrl</b> "<b>altclkctrl_inst</b>"]]></message>
+  </messages>
+ </entity>
+ <entity
+   path="submodules/"
+   parameterizationKey="altera_serial_flash_loader:22.1:CLOCK_TYPE=1,DEVICE_FAMILY=Cyclone IV E,ENA_REGISTER_MODE=1,GUI_USE_ENA=true,NUMBER_OF_CLOCKS=1,USE_GLITCH_FREE_SWITCH_OVER_IMPLEMENTATION=false(altclkctrl:22.1:CLOCK_TYPE=1,DEVICE_FAMILY=Cyclone IV E,ENA_REGISTER_MODE=1,GUI_USE_ENA=true,NUMBER_OF_CLOCKS=1,USE_GLITCH_FREE_SWITCH_OVER_IMPLEMENTATION=false)"
+   instancePathKey="Flash_loader:.:serial_flash_loader_0:.:altclkctrl_inst"
+   kind="altera_serial_flash_loader"
+   version="22.1"
+   name="altclkctrl_inst">
+  <parameter name="NUMBER_OF_CLOCKS" value="1" />
+  <parameter name="USE_GLITCH_FREE_SWITCH_OVER_IMPLEMENTATION" value="false" />
+  <parameter name="GUI_USE_ENA" value="true" />
+  <parameter name="DEVICE_FAMILY" value="Cyclone IV E" />
+  <parameter name="ENA_REGISTER_MODE" value="1" />
+  <parameter name="CLOCK_TYPE" value="1" />
+  <generatedFiles>
+   <file
+       path="D:/Projects/class/Omdazz_Cyclon_IV_DevBoard/IP/Flash_loader/synthesis/submodules/altclkctrl_inst.v"
+       type="VERILOG" />
+  </generatedFiles>
+  <childGeneratedFiles>
+   <file
+       path="D:/Projects/class/Omdazz_Cyclon_IV_DevBoard/IP/Flash_loader/synthesis/submodules/Flash_loader_serial_flash_loader_0_altclkctrl_inst_altclkctrl_inst.v"
+       type="VERILOG"
+       attributes="" />
+  </childGeneratedFiles>
+  <sourceFiles/>
+  <childSourceFiles>
+   <file
+       path="C:/intelfpga/22.1std/ip/altera/megafunctions/altclkctrl/altclkctrl_hw.tcl" />
+  </childSourceFiles>
+  <instantiator instantiator="altera_serial_flash_loader" as="altclkctrl_inst" />
+  <messages>
+   <message level="Debug" culprit="Flash_loader">queue size: 0 starting:altera_serial_flash_loader "submodules/altclkctrl_inst"</message>
+   <message level="Debug" culprit="altclkctrl_inst"><![CDATA["<b>altclkctrl_inst</b>" reuses <b>altclkctrl</b> "<b>submodules/Flash_loader_serial_flash_loader_0_altclkctrl_inst_altclkctrl_inst</b>"]]></message>
+   <message level="Info" culprit="altclkctrl_inst"><![CDATA["<b>serial_flash_loader_0</b>" instantiated <b>altera_serial_flash_loader</b> "<b>altclkctrl_inst</b>"]]></message>
+   <message level="Debug" culprit="Flash_loader">queue size: 0 starting:altclkctrl "submodules/Flash_loader_serial_flash_loader_0_altclkctrl_inst_altclkctrl_inst"</message>
+   <message level="Info" culprit="altclkctrl_inst">Generating top-level entity Flash_loader_serial_flash_loader_0_altclkctrl_inst_altclkctrl_inst.</message>
+   <message level="Debug" culprit="altclkctrl_inst">Current quartus bindir: C:/intelfpga/22.1std/quartus/bin64/.</message>
+   <message level="Info" culprit="altclkctrl_inst"><![CDATA["<b>altclkctrl_inst</b>" instantiated <b>altclkctrl</b> "<b>altclkctrl_inst</b>"]]></message>
+  </messages>
+ </entity>
+ <entity
+   path="submodules/"
+   parameterizationKey="altclkctrl:22.1:CLOCK_TYPE=1,DEVICE_FAMILY=Cyclone IV E,ENA_REGISTER_MODE=1,GUI_USE_ENA=true,NUMBER_OF_CLOCKS=1,USE_GLITCH_FREE_SWITCH_OVER_IMPLEMENTATION=false"
+   instancePathKey="Flash_loader:.:serial_flash_loader_0:.:altclkctrl_inst:.:altclkctrl_inst"
+   kind="altclkctrl"
+   version="22.1"
+   name="Flash_loader_serial_flash_loader_0_altclkctrl_inst_altclkctrl_inst">
+  <parameter name="NUMBER_OF_CLOCKS" value="1" />
+  <parameter name="USE_GLITCH_FREE_SWITCH_OVER_IMPLEMENTATION" value="false" />
+  <parameter name="GUI_USE_ENA" value="true" />
+  <parameter name="DEVICE_FAMILY" value="Cyclone IV E" />
+  <parameter name="ENA_REGISTER_MODE" value="1" />
+  <parameter name="CLOCK_TYPE" value="1" />
+  <generatedFiles>
+   <file
+       path="D:/Projects/class/Omdazz_Cyclon_IV_DevBoard/IP/Flash_loader/synthesis/submodules/Flash_loader_serial_flash_loader_0_altclkctrl_inst_altclkctrl_inst.v"
+       type="VERILOG"
+       attributes="" />
+  </generatedFiles>
+  <childGeneratedFiles/>
+  <sourceFiles>
+   <file
+       path="C:/intelfpga/22.1std/ip/altera/megafunctions/altclkctrl/altclkctrl_hw.tcl" />
+  </sourceFiles>
+  <childSourceFiles/>
+  <instantiator instantiator="altclkctrl_inst" as="altclkctrl_inst" />
+  <messages>
+   <message level="Debug" culprit="Flash_loader">queue size: 0 starting:altclkctrl "submodules/Flash_loader_serial_flash_loader_0_altclkctrl_inst_altclkctrl_inst"</message>
+   <message level="Info" culprit="altclkctrl_inst">Generating top-level entity Flash_loader_serial_flash_loader_0_altclkctrl_inst_altclkctrl_inst.</message>
+   <message level="Debug" culprit="altclkctrl_inst">Current quartus bindir: C:/intelfpga/22.1std/quartus/bin64/.</message>
+   <message level="Info" culprit="altclkctrl_inst"><![CDATA["<b>altclkctrl_inst</b>" instantiated <b>altclkctrl</b> "<b>altclkctrl_inst</b>"]]></message>
+  </messages>
+ </entity>
+</deploy>

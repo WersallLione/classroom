@@ -38,7 +38,7 @@ end
 always @ (data) begin 
 case (data)
 // 440 Hz == 50.000.000 Hz / (113.637 /2 !) 'hDDF2
- 'd0:       freq = 'hD190; // LYA # 1
+ 'd0:       freq = 'hFFFF; // 
  'd1:       freq = 'hC5AF; // CI 1
  'd2:       freq = 'hBAB9; // DO 2
  'd3:       freq = 'hA65D; // RE 2

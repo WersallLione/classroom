@@ -1,0 +1,12 @@
+*.bak
+
+project/db/
+project/incremental_db/
+project/simulation/
+project/output_files/*
+project/*.txt
+
+!project/output_files/*.sof
+!project/output_files/*.bin
+!project/output_files/*.bit
+!project/output_files/*.pof
